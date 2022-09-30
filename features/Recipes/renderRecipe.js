@@ -1,8 +1,8 @@
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
-import { Card, ListItem, Icon } from "react-native-elements";
+import { Card, ListItem, Icon, Button } from "react-native-elements";
 import { RECIPES } from "../../shared/recipes";
 
-const RenderRecipe = ({ item: recipe }) => {
+const RenderRecipe = ({ recipe, navigation }) => {
   return (
     <Card containerStyle={styles.card}>
       <View style={styles.cardView}>
@@ -11,7 +11,13 @@ const RenderRecipe = ({ item: recipe }) => {
         </View>
         <View style={styles.textView}>
           <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Icon name="star" type="font-awesome" iconStyle={{ flex: "1" }} />
+          <Icon name="star" type="font-awesome" />
+          <Button
+            buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
+            type="outline"
+            title="Details"
+            onPress={() => navigation.navigate("RecipeDetails", { recipe })}
+          />
         </View>
       </View>
     </Card>

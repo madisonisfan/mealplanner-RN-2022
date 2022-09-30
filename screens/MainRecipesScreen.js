@@ -11,12 +11,16 @@ import { RECIPES } from "../shared/recipes";
         </View>
       </Card>
 */
-const MainRecipes = () => {
+const MainRecipes = ({ navigation }) => {
+  const renderRecipe = ({ item: recipe }) => {
+    return <RenderRecipe recipe={recipe} navigation={navigation} />;
+  };
+
   return (
     <FlatList
       data={RECIPES}
       keyExtractor={(recipe) => recipe.id.toString()}
-      renderItem={RenderRecipe}
+      renderItem={renderRecipe}
     />
   );
 };

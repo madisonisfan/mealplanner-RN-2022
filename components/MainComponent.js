@@ -2,6 +2,7 @@ import MainRecipes from "../screens/MainRecipesScreen";
 import Blog from "../screens/BlogScreen";
 import Profile from "../screens/MealplanScreen";
 import Mealplan from "../screens/ProfileScreen";
+import RecipeDetails from "../screens/RecipeDetailsScreen";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -15,6 +16,13 @@ const MainRecipesDirectory = () => {
         name="MainRecipes"
         component={MainRecipes}
         options={{ title: "Recipes" }}
+      />
+      <Stack.Screen
+        name="RecipeDetails"
+        component={RecipeDetails}
+        options={({ route }) => ({
+          title: route.params.recipe.name,
+        })}
       />
     </Stack.Navigator>
   );
