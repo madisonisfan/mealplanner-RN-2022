@@ -20,9 +20,9 @@ const MainRecipesDirectory = () => {
       <Stack.Screen
         name="RecipeDetails"
         component={RecipeDetails}
-        options={({ route }) => ({
+        /*options={({ route }) => ({
           title: route.params.recipe.name,
-        })}
+        })}*/
       />
     </Stack.Navigator>
   );
