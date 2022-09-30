@@ -20,7 +20,8 @@
     "react-native-elements": "3.4.2",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-safe-area-context": "3.3.2",
-    "react-native-screens": "~3.10.1"
+    "react-native-screens": "~3.10.1",
+    "@react-navigation/bottom-tabs": "5.11.15"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
