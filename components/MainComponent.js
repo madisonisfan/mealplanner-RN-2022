@@ -3,6 +3,7 @@ import Blog from "../screens/BlogScreen";
 import Profile from "../screens/MealplanScreen";
 import Mealplan from "../screens/ProfileScreen";
 import RecipeDetails from "../screens/RecipeDetailsScreen";
+import Favorites from "../screens/FavoritesScreen";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -24,6 +25,7 @@ const MainRecipesDirectory = () => {
           title: route.params.recipe.name,
         })}*/
       />
+      <Stack.Screen name="Favorites" component={Favorites} />
     </Stack.Navigator>
   );
 };
