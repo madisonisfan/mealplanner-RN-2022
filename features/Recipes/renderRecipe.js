@@ -4,7 +4,7 @@ import { RECIPES } from "../../shared/recipes";
 import { useSelector } from "react-redux";
 import { selectRecipeById } from "./recipesSlice";
 
-const RenderRecipe = ({ recipe, navigation }) => {
+const RenderRecipe = ({ recipe, navigate }) => {
   // const recipe = useSelector(selectRecipeById(recipeId));
 
   return (
@@ -20,7 +20,7 @@ const RenderRecipe = ({ recipe, navigation }) => {
             buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
             type="outline"
             title="Details"
-            onPress={() => navigation.navigate("RecipeDetails", { recipe })}
+            onPress={() => navigate("RecipeDetails", { recipe })}
           />
         </View>
       </View>

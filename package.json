@@ -14,7 +14,10 @@
     "@react-navigation/bottom-tabs": "5.11.15",
     "@react-navigation/native": "5.9.8",
     "@react-navigation/stack": "5.14.9",
+    "@reduxjs/toolkit": "1.7.2",
+    "@rneui/themed": "^4.0.0-rc.6",
     "expo": "^44.0.6",
+    "expo-constants": "~13.0.1",
     "expo-status-bar": "~1.4.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -23,9 +26,8 @@
     "react-native-gesture-handler": "~2.1.0",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
-    "redux": "4.1.2",
     "react-redux": "7.2.6",
-    "@reduxjs/toolkit": "1.7.2"
+    "redux": "4.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

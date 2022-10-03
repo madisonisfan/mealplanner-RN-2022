@@ -10,6 +10,7 @@ import {
   selectAllRecipes,
   selectRecipeByType,
 } from "../features/Recipes/recipesSlice";
+import RecipeForm from "../features/Recipes/RecipeForm";
 
 const recipeTypes = {
   all: "All Recipes",
@@ -27,7 +28,7 @@ const MainRecipes = ({ navigation }) => {
   //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
   const renderRecipe = ({ item: recipe }) => {
-    return <RenderRecipe recipe={recipe} navigation={navigation} />;
+    return <RenderRecipe recipe={recipe} navigate={navigation.navigate} />;
   };
 
   return (
@@ -57,6 +58,7 @@ const MainRecipes = ({ navigation }) => {
               titleStyle={{ color: "black" }}
               type="outline"
               title="Add Recipe"
+              onPress={() => toggleRecipeForm(!isRecipeFormOpen)}
             />
           </View>
           <Button
@@ -92,7 +94,7 @@ const MainRecipes = ({ navigation }) => {
             </View>
           </Modal>
           <Modal visible={isRecipeFormOpen}>
-            <View></View>
+            <RecipeForm toggle={toggleRecipeForm} />
           </Modal>
         </View>
       }

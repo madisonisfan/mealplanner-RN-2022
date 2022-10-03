@@ -8,10 +8,28 @@ const initialState = {
 const recipesSlice = createSlice({
   name: "recipes",
   initialState,
-  //reducers: [],
+  reducers: {
+    addRecipe: (state, action) => {
+      console.log(`add comment action.payload`, action.payload);
+      console.log(`add comemnet state.comments`, state.recipesArray);
+
+      const newRecipe = {
+        id: state.recipesArray.length + 1,
+        date: new Date(Date.now()).toISOString(),
+        totaltime: action.payload.preptime + action.payload.cooktime,
+        ...action.payload,
+        //image: require("../../assets/images/food1.jpg"),
+      };
+
+      console.log(`new recipe`, newRecipe);
+
+      state.recipesArray.push(newRecipe);
+    },
+  },
 });
 
 export const recipeReducer = recipesSlice.reducer;
+export const { addRecipe } = recipesSlice.actions;
 
 export const selectRecipeById = (id) => (state) => {
   console.log(`id passed`, id);
