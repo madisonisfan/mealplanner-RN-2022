@@ -1,9 +1,16 @@
 import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import { Card } from "react-native-elements";
+import { useSelector } from "react-redux";
+import { selectRecipeById } from "../features/Recipes/recipesSlice";
 
 //<Image source={recipe.image} style={{ resizeMode: "contain" }} />
 const RecipeDetails = ({ route }) => {
   const { recipe } = route.params;
+  /*const { recipeId } = route.params;
+  console.log(`params `, route.params);
+  console.log(`details of `, parseInt(recipeId));
+  const recipe = useSelector(selectRecipeById(recipeId));*/
+
   return (
     <ScrollView style={styles.mainView}>
       <Text style={styles.recipeName}>{recipe.name}</Text>

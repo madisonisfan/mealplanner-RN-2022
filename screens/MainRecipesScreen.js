@@ -5,15 +5,11 @@ import { RECIPES } from "../shared/recipes";
 import { Picker } from "@react-native-picker/picker";
 import Favorites from "./FavoritesScreen";
 import { useState } from "react";
-
-/*
-<Card containerStyle={styles.card}>
-        <Card.Title>{recipe.name}</Card.Title>
-        <View>
-          <Text>{recipe.description}</Text>
-        </View>
-      </Card>
-*/
+import { useSelector } from "react-redux";
+import {
+  selectAllRecipes,
+  selectRecipeByType,
+} from "../features/Recipes/recipesSlice";
 
 const recipeTypes = {
   all: "All Recipes",
@@ -26,6 +22,9 @@ const recipeTypes = {
 const MainRecipes = ({ navigation }) => {
   const [selectedRecipeType, setType] = useState("all");
   const [isTypeModalOpen, toggleTypeModal] = useState(false);
+  const [isRecipeFormOpen, toggleRecipeForm] = useState(false);
+  const recipes = useSelector(selectAllRecipes);
+  //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
   const renderRecipe = ({ item: recipe }) => {
     return <RenderRecipe recipe={recipe} navigation={navigation} />;
@@ -33,11 +32,13 @@ const MainRecipes = ({ navigation }) => {
 
   return (
     <FlatList
+      data={recipes}
+      /*
       data={
         selectedRecipeType === "all"
-          ? RECIPES
-          : RECIPES.filter((recipe) => recipe.mealType === selectedRecipeType)
-      }
+          ? selectAllRecipes
+          : selectRecipeByType(selectRecipeByType)
+      }*/
       //data={RECIPES}
       keyExtractor={(recipe) => recipe.id.toString()}
       renderItem={renderRecipe}
@@ -89,6 +90,9 @@ const MainRecipes = ({ navigation }) => {
                 onPress={() => toggleTypeModal(!isTypeModalOpen)}
               />
             </View>
+          </Modal>
+          <Modal visible={isRecipeFormOpen}>
+            <View></View>
           </Modal>
         </View>
       }

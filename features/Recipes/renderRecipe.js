@@ -1,8 +1,12 @@
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import { Card, ListItem, Icon, Button } from "react-native-elements";
 import { RECIPES } from "../../shared/recipes";
+import { useSelector } from "react-redux";
+import { selectRecipeById } from "./recipesSlice";
 
 const RenderRecipe = ({ recipe, navigation }) => {
+  // const recipe = useSelector(selectRecipeById(recipeId));
+
   return (
     <Card containerStyle={styles.card}>
       <View style={styles.cardView}>
