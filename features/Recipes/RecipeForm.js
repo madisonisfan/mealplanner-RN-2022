@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Platform,
   FlatList,
+  ScrollView,
 } from "react-native";
 import { useState } from "react";
 import { Input, Button } from "react-native-elements";
@@ -55,7 +56,7 @@ const RecipeForm = ({ toggle }) => {
   };
 
   return (
-    <View style={styles.mainView}>
+    <ScrollView style={styles.mainView}>
       <Text style={styles.title}>Add Recipe</Text>
 
       <View style={styles.inputView}>
@@ -148,16 +149,33 @@ const RecipeForm = ({ toggle }) => {
 
       <Button
         title="Submit"
+        style={styles.bottomButton}
+        titleStyle={{ color: "black", fontWeight: "500" }}
+        buttonStyle={{ backgroundColor: "white", border: "black" }}
         onPress={() => {
           handleRecipeSubmit();
           toggle(false);
         }}
       />
-    </View>
+
+      <Button
+        title="Cancel"
+        style={styles.bottomButton}
+        buttonStyle={{ backgroundColor: "red" }}
+        onPress={() => {
+          resetForm();
+          toggle(false);
+        }}
+      />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  bottomButton: {
+    marginHorizontal: 30,
+    marginTop: 10,
+  },
   formTitle: {
     fontSize: 18,
     paddingLeft: 10,

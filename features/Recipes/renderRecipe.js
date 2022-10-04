@@ -1,12 +1,20 @@
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
-import { Card, ListItem, Icon, Button } from "react-native-elements";
+import { Card, ListItem, Button } from "react-native-elements";
 import { RECIPES } from "../../shared/recipes";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRecipeById } from "./recipesSlice";
+import {
+  toggleFavorite,
+  selectAllFavorites,
+} from "../Favorites/favoritesSlice";
+import { favoritesReducer } from "../Favorites/favoritesSlice";
+
+import { Icon } from "@rneui/themed";
 
 const RenderRecipe = ({ recipe, navigate }) => {
   // const recipe = useSelector(selectRecipeById(recipeId));
-
+  const favorites = useSelector(selectAllFavorites);
+  const dispatch = useDispatch();
   return (
     <Card containerStyle={styles.card}>
       <View style={styles.cardView}>
@@ -15,7 +23,14 @@ const RenderRecipe = ({ recipe, navigate }) => {
         </View>
         <View style={styles.textView}>
           <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Icon name="star" type="font-awesome" />
+          <Icon
+            name={favorites.includes(recipe.id) ? "star" : "star-o"}
+            type="font-awesome"
+            onPress={() => {
+              dispatch(toggleFavorite(recipe.id));
+            }}
+          />
+
           <Button
             buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
             type="outline"
