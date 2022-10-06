@@ -1,7 +1,7 @@
 import MainRecipes from "../screens/MainRecipesScreen";
 import Blog from "../screens/BlogScreen";
-import Profile from "../screens/MealplanScreen";
-import Mealplan from "../screens/ProfileScreen";
+import Mealplan from "../screens/MealplanScreen";
+import Profile from "../screens/ProfileScreen";
 import RecipeDetails from "../screens/RecipeDetailsScreen";
 import Favorites from "../screens/FavoritesScreen";
 import { Text, View, StyleSheet, Platform } from "react-native";
