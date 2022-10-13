@@ -3,7 +3,7 @@ import { Card, Button } from "react-native-elements";
 import { useState } from "react";
 import MealplanOptionsModal from "./MealplanOptionsModal";
 
-const MealplanItem = ({ recipe, navigate }) => {
+const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
   const [isOptionsOpen, toggleOptions] = useState(false);
 
   if (recipe) {
@@ -45,7 +45,11 @@ const MealplanItem = ({ recipe, navigate }) => {
         </Card>
       </View>
       <Modal visible={isOptionsOpen}>
-        <MealplanOptionsModal toggleModal={toggleOptions} />
+        <MealplanOptionsModal
+          toggleModal={toggleOptions}
+          mealplanId={mealplanId}
+          mealType={mealType}
+        />
       </Modal>
     </>
   );

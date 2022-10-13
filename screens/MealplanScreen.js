@@ -52,30 +52,38 @@ const Mealplan = ({ navigation }) => {
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
         <MealplanItem
           navigate={navigation.navigate}
-          recipe={recipes.find(
-            (recipe) => recipe.id === currentDay.breakfast[0]
-          )}
+          recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
+          mealplanId={currentDay.id}
+          mealType={"breakfast"}
         />
 
         <Text style={styles.mealtypeTitle}>Lunch</Text>
         <MealplanItem
           navigate={navigation.navigate}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.lunch[0])}
+          recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
+          mealplanId={currentDay.id}
+          mealType={"lunch"}
         />
         <Text style={styles.mealtypeTitle}>Dinner</Text>
         <MealplanItem
           navigate={navigation.navigate}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.dinner[0])}
+          recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
+          mealplanId={currentDay.id}
+          mealType={"dinner"}
         />
         <Text style={styles.mealtypeTitle}>Snacks</Text>
         <MealplanItem
           navigate={navigation.navigate}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.snacks[0])}
+          recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
+          mealplanId={currentDay.id}
+          mealType={"snacks"}
         />
         <Text style={styles.mealtypeTitle}>Drinks</Text>
         <MealplanItem
           navigate={navigation.navigate}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.drinks[0])}
+          recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
+          mealplanId={currentDay.id}
+          mealType={"drinks"}
         />
       </ScrollView>
     </>
