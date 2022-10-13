@@ -1,23 +1,10 @@
-import { Text, View, StyleSheet, FlatList, Image, Modal } from "react-native";
-import { Card, ListItem, Button } from "react-native-elements";
-import { RECIPES } from "../../shared/recipes";
-import FavoritesModal from "../Mealplan/MealplanOptionsModal";
-import { useDispatch, useSelector } from "react-redux";
-import { selectRecipeById } from "./recipesSlice";
-import {
-  toggleFavorite,
-  selectAllFavorites,
-} from "../Favorites/favoritesSlice";
-import { favoritesReducer } from "../Favorites/favoritesSlice";
-
-import { Icon } from "@rneui/themed";
+import { View, Text, StyleSheet, Modal } from "react-native";
+import { Card, Button } from "react-native-elements";
 import { useState } from "react";
+import MealplanOptionsModal from "./MealplanOptionsModal";
 
-const RenderRecipe = ({ recipe, navigate }) => {
-  // const recipe = useSelector(selectRecipeById(recipeId));
-  const favorites = useSelector(selectAllFavorites);
-  const dispatch = useDispatch();
-  const [isFavModalOpen, toggleFavModal] = useState(false);
+const MealplanItem = ({ recipe, navigate }) => {
+  const [isOptionsOpen, toggleOptions] = useState(false);
 
   if (recipe) {
     return (
@@ -28,13 +15,7 @@ const RenderRecipe = ({ recipe, navigate }) => {
           </View>
           <View style={styles.textView}>
             <Text style={styles.recipeName}>{recipe.name}</Text>
-            <Icon
-              name={favorites.includes(recipe.id) ? "star" : "star-o"}
-              type="font-awesome"
-              onPress={() => {
-                dispatch(toggleFavorite(recipe.id));
-              }}
-            />
+            <Button title="Edit" onPress={() => toggleOptions(true)} />
 
             <Button
               buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
@@ -50,7 +31,22 @@ const RenderRecipe = ({ recipe, navigate }) => {
 
   return (
     <>
-      <View></View>
+      <View>
+        <Card>
+          <View style={styles.noRecipeView}>
+            <Text>No Recipe Selected</Text>
+            <Button
+              title="+"
+              type="clear"
+              buttonStyle={{ padding: 0 }}
+              onPress={() => toggleOptions(true)}
+            />
+          </View>
+        </Card>
+      </View>
+      <Modal visible={isOptionsOpen}>
+        <MealplanOptionsModal toggleModal={toggleOptions} />
+      </Modal>
     </>
   );
 };
@@ -84,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RenderRecipe;
+export default MealplanItem;

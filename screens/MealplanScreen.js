@@ -9,6 +9,7 @@ import {
 } from "../features/Mealplan/mealplanSlice";
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
 import RenderRecipe from "../features/Recipes/renderRecipe";
+import MealplanItem from "../features/Mealplan/MealplanItem";
 
 const Mealplan = ({ navigation }) => {
   const allDays = useSelector(selectAllDays);
@@ -49,7 +50,7 @@ const Mealplan = ({ navigation }) => {
       <ScrollView>
         <Text style={styles.date}>{currentDay.date}</Text>
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
-        <RenderRecipe
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find(
             (recipe) => recipe.id === currentDay.breakfast[0]
@@ -57,22 +58,22 @@ const Mealplan = ({ navigation }) => {
         />
 
         <Text style={styles.mealtypeTitle}>Lunch</Text>
-        <RenderRecipe
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.lunch[0])}
         />
         <Text style={styles.mealtypeTitle}>Dinner</Text>
-        <RenderRecipe
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.dinner[0])}
         />
         <Text style={styles.mealtypeTitle}>Snacks</Text>
-        <RenderRecipe
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.snacks[0])}
         />
         <Text style={styles.mealtypeTitle}>Drinks</Text>
-        <RenderRecipe
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.drinks[0])}
         />

@@ -28,7 +28,13 @@ const MainRecipes = ({ navigation }) => {
   //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
   const renderRecipe = ({ item: recipe }) => {
-    return <RenderRecipe recipe={recipe} navigate={navigation.navigate} />;
+    return (
+      <RenderRecipe
+        recipe={recipe}
+        navigate={navigation.navigate}
+        toAdd={false}
+      />
+    );
   };
 
   return (

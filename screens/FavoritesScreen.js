@@ -10,7 +10,7 @@ const Favorites = ({ navigation }) => {
   const favorites = useSelector(selectAllFavorites);
   const recipes = useSelector(selectAllRecipes);
 
-  useSelector((state) => console.log(`state`, state));
+  //useSelector((state) => console.log(`state`, state));
 
   const renderFavorite = ({ item: recipe }) => {
     return <RenderRecipe recipe={recipe} navigate={navigation.navigate} />;
