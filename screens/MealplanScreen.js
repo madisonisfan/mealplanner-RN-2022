@@ -51,17 +51,13 @@ const Mealplan = ({ navigation }) => {
       <ScrollView>
         <Text style={styles.date}>{currentDay.date}</Text>
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
-        <View style={{ flexDirection: "row" }}>
-          <MealplanItemTwo
-            navigate={navigation.navigate}
-            recipe={recipes.find(
-              (recipe) => recipe.id === currentDay.breakfast
-            )}
-            mealplanId={currentDay.id}
-            mealType={"breakfast"}
-          />
-          <AddRecipe />
-        </View>
+
+        <MealplanItemTwo
+          navigate={navigation.navigate}
+          recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
+          mealplanId={currentDay.id}
+          mealType={"breakfast"}
+        />
 
         <Text style={styles.mealtypeTitle}>Lunch</Text>
         <MealplanItemTwo
@@ -106,7 +102,8 @@ const AddRecipe = () => {
 
 const styles = StyleSheet.create({
   emptyContainer: {
-    justifyContent: "center",
+    //justifyContent: "center",
+    height: "100%",
 
     /*
     width: "50%",

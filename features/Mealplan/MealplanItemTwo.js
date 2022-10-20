@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ListItem, Button } from "react-native-elements";
+import EmptyMealplanItem from "./EmptyMealplanItem";
+import { Icon } from "@rneui/themed";
 //import { RECIPES } from "../../shared/recipes";
 //import FavoritesModal from "../Mealplan/MealplanOptionsModal";
 //import { useDispatch, useSelector } from "react-redux";
@@ -40,6 +42,27 @@ const MealplanItemTwo = ({ recipe, navigate, meaplanId, mealType }) => {
             <View style={styles.textView}>
               <Card.Title style={styles.name}>{recipe.name}</Card.Title>
             </View>
+            <View
+              style={{
+                position: "absolute",
+                marginLeft: 5,
+                marginTop: 5,
+              }}
+            >
+              <Button
+                title="Edit"
+                buttonStyle={{
+                  //width: 10,
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  paddingBottom: 2,
+                  paddingTop: 2,
+                }}
+                onPress={() => {
+                  toggleOptions(true);
+                }}
+              />
+            </View>
           </Card>
         </TouchableOpacity>
 
@@ -54,19 +77,10 @@ const MealplanItemTwo = ({ recipe, navigate, meaplanId, mealType }) => {
     );
   }
 
-  return (
-    <View>
-      <Button title="+" />
-    </View>
-  );
+  return <EmptyMealplanItem />;
 };
 
 const styles = StyleSheet.create({
-  emptyContainer: {
-    width: "50%",
-    padding: 10,
-    backgroundColor: "grey",
-  },
   parentContainer: {
     width: "50%",
     padding: 10,
@@ -86,6 +100,7 @@ const styles = StyleSheet.create({
   textView: {
     flex: 1,
     //justifyContent: "center",
+    paddingBottom: 2,
   },
   name: {
     flex: 1,

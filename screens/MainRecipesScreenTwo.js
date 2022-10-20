@@ -46,7 +46,7 @@ const MainRecipesTwo = ({ navigation }) => {
           <Button
             type="outline"
             title="My Favorites"
-            titleStyle={{ color: "black", fontWeight: "thin" }}
+            titleStyle={{ color: "black" }}
             buttonStyle={styles.button}
             onPress={() => navigation.navigate("Favorites")}
           />

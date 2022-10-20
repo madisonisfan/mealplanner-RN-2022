@@ -41,9 +41,18 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
         >
           <Card containerStyle={styles.card}>
             <Card.Image source={recipe.image} style={styles.image} />
-            <View style={styles.textView}>
-              <Card.Title style={styles.name}>{recipe.name}</Card.Title>
+            <Card.Title style={styles.name}>{recipe.name}</Card.Title>
 
+            <View
+              style={{
+                //width: 100,
+                //height: 100,
+                //backgroundColor: "red",
+                position: "absolute",
+                top: 10,
+                left: 10,
+              }}
+            >
               <Icon
                 iconStyle={styles.icon}
                 name={favorites.includes(recipe.id) ? "star" : "star-o"}
@@ -82,15 +91,21 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
   },
+  icon: {
+    width: 30,
+    height: 30,
+    backgroundColor: "grey",
+  },
   textView: {
     flex: 1,
+
     //justifyContent: "center",
   },
   name: {
     //flex: 1,
-
     marginTop: "auto",
-    // marginBottom: "auto",
+    marginBottom: "auto",
+    paddingVertical: 10,
     // paddingVertical: 8,
   },
 });
