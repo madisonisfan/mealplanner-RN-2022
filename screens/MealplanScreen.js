@@ -119,11 +119,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 15,
     marginLeft: 15,
+    color: "white",
   },
   date: {
     textAlign: "center",
     marginTop: 20,
     fontSize: 20,
+    color: "white",
   },
   dayButton: {},
 });

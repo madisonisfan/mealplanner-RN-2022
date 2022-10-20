@@ -13,6 +13,7 @@ import {
 } from "../features/Recipes/recipesSlice";
 import RecipeForm from "../features/Recipes/RecipeForm";
 import { ScrollView } from "react-native-gesture-handler";
+import { Icon } from "@rneui/themed";
 
 const recipeTypes = {
   all: "All Recipes",
@@ -21,6 +22,45 @@ const recipeTypes = {
   snacks: "Snacks",
   drinks: "Drinks",
 };
+
+/*
+<Button
+        type="outline"
+        title="F"
+        containerStyle={{
+          position: "absolute",
+          width: 75,
+          borderWidth: 1,
+          borderColor: "red",
+        }}
+        titleStyle={{ color: "black" }}
+        buttonStyle={styles.button}
+        onPress={() => {
+          console.log(`pressed favs`);
+          navigation.navigate("Favorites");
+        }}
+      />
+
+      <Button
+        buttonStyle={styles.button}
+        containerStyle={{
+          position: "absolute",
+          right: 0,
+          marginRight: 10,
+          //marginTop: 10,
+          borderRadius: 10,
+        }}
+        titleStyle={{ color: "black" }}
+        type="outline"
+        title="+"
+        onPress={() => {
+          console.log(`pressed`);
+          toggleRecipeForm(!isRecipeFormOpen);
+        }}
+      />
+
+
+*/
 
 const MainRecipesTwo = ({ navigation }) => {
   const [selectedRecipeType, setType] = useState("all");
@@ -40,32 +80,62 @@ const MainRecipesTwo = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
-      <View>
-        <View style={styles.buttonView}>
-          <Button
-            type="outline"
-            title="My Favorites"
-            titleStyle={{ color: "black" }}
-            buttonStyle={styles.button}
-            onPress={() => navigation.navigate("Favorites")}
-          />
-          <Button
-            buttonStyle={styles.button}
-            titleStyle={{ color: "black" }}
-            type="outline"
-            title="Add Recipe"
-            onPress={() => toggleRecipeForm(!isRecipeFormOpen)}
-          />
-        </View>
+    <ScrollView style={{ marginTop: 20 }}>
+      <Button
+        type="outline"
+        title="F"
+        containerStyle={{
+          position: "absolute",
+          width: 50,
+        }}
+        titleStyle={{ color: "black" }}
+        buttonStyle={styles.button}
+        onPress={() => {
+          console.log(`pressed favs`);
+          navigation.navigate("Favorites");
+        }}
+      />
+
+      <Button
+        buttonStyle={styles.button}
+        containerStyle={{
+          position: "absolute",
+          right: 0,
+          marginRight: 10,
+          width: 50,
+          //marginTop: 10,
+          borderRadius: 10,
+        }}
+        titleStyle={{ color: "black" }}
+        type="outline"
+        title="+"
+        onPress={() => {
+          console.log(`pressed`);
+          toggleRecipeForm(!isRecipeFormOpen);
+        }}
+      />
+
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          //marginTop: 300,
+          marginLeft: "auto",
+          marginRight: "auto",
+          width: 125,
+        }}
+      >
         <Button
           title={recipeTypes[selectedRecipeType]}
-          containerStyle={{
-            paddingLeft: 55,
-            paddingRight: 55,
-            paddingTop: 15,
-            paddingBottom: 10,
-          }}
+          containerStyle={
+            {
+              //width: 150,
+              //paddingLeft: 55,
+              //paddingRight: 55,
+              //paddingTop: 15,
+              //paddingBottom: 10,
+            }
+          }
           onPress={() => toggleTypeModal(!isTypeModalOpen)}
           buttonStyle={{}}
         />
