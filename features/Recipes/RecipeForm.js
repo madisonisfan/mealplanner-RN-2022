@@ -8,11 +8,12 @@ import {
   ScrollView,
 } from "react-native";
 import { useState } from "react";
-import { Input, Button } from "react-native-elements";
 import { ListItem } from "@rneui/themed";
 import Constants from "expo-constants";
 import { addRecipe } from "./recipesSlice";
 import { useDispatch } from "react-redux";
+import { Input } from "@rneui/themed";
+import { Button } from "@rneui/themed";
 
 const RecipeForm = ({ toggle }) => {
   const [name, setName] = useState("");
@@ -59,34 +60,42 @@ const RecipeForm = ({ toggle }) => {
     <ScrollView style={styles.mainView}>
       <Text style={styles.title}>Add Recipe</Text>
 
-      <View style={styles.inputView}>
-        <Input
-          style={styles.input}
-          placeholder="Recipe Name"
-          value={name}
-          onChangeText={(text) => setName(text)}
-        />
-        <Input
-          placeholder="Description"
-          value={description}
-          onChangeText={(text) => setDescription(text)}
-        />
-        <Input
-          placeholder="Preptime"
-          value={preptime}
-          onChangeText={(text) => setPreptime(text)}
-        />
-        <Input
-          placeholder="Cooktime"
-          value={cooktime}
-          onChangeText={(text) => setCooktime(text)}
-        />
-        <Input
-          placeholder="Servings"
-          value={servings}
-          onChangeText={(text) => setServings(text)}
-        />
-      </View>
+      <TextInput
+        // containerStyle={styles.inputContainer}
+        placeholderTextColor="grey"
+        style={styles.input}
+        placeholder="Recipe Name"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
+      <TextInput
+        placeholder="Description"
+        placeholderTextColor="grey"
+        style={styles.input}
+        value={description}
+        onChangeText={(text) => setDescription(text)}
+      />
+      <TextInput
+        placeholder="Preptime"
+        placeholderTextColor="grey"
+        style={styles.input}
+        value={preptime}
+        onChangeText={(text) => setPreptime(text)}
+      />
+      <TextInput
+        placeholder="Cooktime"
+        placeholderTextColor="grey"
+        style={styles.input}
+        value={cooktime}
+        onChangeText={(text) => setCooktime(text)}
+      />
+      <TextInput
+        placeholder="Servings"
+        value={servings}
+        placeholderTextColor="grey"
+        style={styles.input}
+        onChangeText={(text) => setServings(text)}
+      />
 
       <Text style={styles.formTitle}>Ingredients</Text>
       <View style={styles.inputView}>
@@ -94,20 +103,25 @@ const RecipeForm = ({ toggle }) => {
           return (
             <ListItem key={index} containerStyle={{ padding: 0 }}>
               <ListItem.Content style={{ paddingTop: 5 }}>
-                <ListItem.Title>- {i}</ListItem.Title>
+                <ListItem.Title style={{ fontSize: 20 }}>- {i}</ListItem.Title>
               </ListItem.Content>
             </ListItem>
           );
         })}
-        <View style={{ flexDirection: "row" }}>
-          <Input
-            containerStyle={{ width: "80%" }}
+        <View style={styles.largeInputContainer}>
+          <TextInput
+            style={styles.largeInput}
+            //containerStyle={{ width: "80%" }}
             placeholder="Add Ingredient"
+            placeholderTextColor="grey"
             value={currentIngredient}
             onChangeText={(text) => setCI(text)}
           />
           <Button
-            title="Add"
+            title="+"
+            titleStyle={{ color: "black" }}
+            type="clear"
+            //color="black"
             onPress={() => {
               setIngredients([...ingredients, currentIngredient]);
               setCI("");
@@ -122,7 +136,7 @@ const RecipeForm = ({ toggle }) => {
           return (
             <ListItem key={index} containerStyle={{ padding: 0 }}>
               <ListItem.Content style={{ paddingTop: 5 }}>
-                <ListItem.Title>
+                <ListItem.Title style={{ fontSize: 20 }}>
                   {index + 1}. {d}
                 </ListItem.Title>
               </ListItem.Content>
@@ -130,15 +144,19 @@ const RecipeForm = ({ toggle }) => {
           );
         })}
 
-        <View style={{ flexDirection: "row" }}>
-          <Input
-            containerStyle={{ width: "80%" }}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <TextInput
+            style={styles.largeInput}
+            //containerStyle={{ width: "80%" }}
             placeholder="Add Direction"
+            placeholderTextColor="grey"
             value={currentDirection}
             onChangeText={(text) => setCD(text)}
           />
           <Button
-            title="Add"
+            title="+"
+            titleStyle={{ color: "black" }}
+            type="clear"
             onPress={() => {
               setDirections([...directions, currentDirection]);
               setCD("");
@@ -172,44 +190,59 @@ const RecipeForm = ({ toggle }) => {
 };
 
 const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+    paddingHorizontal: 10,
+    backgroundColor: "#D9D9D9",
+    //paddingTop: 50,
+    //paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+  },
   bottomButton: {
     marginHorizontal: 30,
     marginTop: 10,
   },
   formTitle: {
-    fontSize: 18,
-    paddingLeft: 10,
+    fontSize: 20,
+    //paddingLeft: 10,
     marginTop: 10,
     marginBottom: 10,
-    color: "white",
+    color: "black",
   },
   inputView: {
     backgroundColor: "white",
-    paddingTop: 10,
-    paddingLeft: 0,
+    borderWidth: 1,
+    borderRadius: 7,
+    borderColor: "white",
+    paddingLeft: 5,
+    fontSize: 20,
   },
   input: {
-    paddingLeft: 0,
+    color: "black",
+    fontSize: 20,
+    borderWidth: 1,
+    borderColor: "white",
+    backgroundColor: "white",
+    borderRadius: 7,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    marginBottom: 10,
+  },
+  largeInputContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    //color: "black",
+    fontSize: 20,
+  },
+  largeInput: {
+    fontSize: 20,
   },
 
   title: {
     fontSize: 25,
-    textAlign: "center",
+    textAlign: "left",
     fontWeight: "600",
     paddingBottom: 20,
-  },
-  textbox: {
-    //height: 30,
-    //borderColor: "black",
-    // borderWidth: 1,
-  },
-  mainView: {
-    flex: 1,
-
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "grey",
-    //paddingTop: 50,
-    //paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
   },
 });
 

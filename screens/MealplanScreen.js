@@ -10,6 +10,7 @@ import {
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
 import RenderRecipe from "../features/Recipes/renderRecipe";
 import MealplanItem from "../features/Mealplan/MealplanItem";
+import MealplanItemTwo from "../features/Mealplan/MealplanItemTwo";
 
 const Mealplan = ({ navigation }) => {
   const allDays = useSelector(selectAllDays);
@@ -50,36 +51,41 @@ const Mealplan = ({ navigation }) => {
       <ScrollView>
         <Text style={styles.date}>{currentDay.date}</Text>
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
-        <MealplanItem
-          navigate={navigation.navigate}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
-          mealplanId={currentDay.id}
-          mealType={"breakfast"}
-        />
+        <View style={{ flexDirection: "row" }}>
+          <MealplanItemTwo
+            navigate={navigation.navigate}
+            recipe={recipes.find(
+              (recipe) => recipe.id === currentDay.breakfast
+            )}
+            mealplanId={currentDay.id}
+            mealType={"breakfast"}
+          />
+          <AddRecipe />
+        </View>
 
         <Text style={styles.mealtypeTitle}>Lunch</Text>
-        <MealplanItem
+        <MealplanItemTwo
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
           mealplanId={currentDay.id}
           mealType={"lunch"}
         />
         <Text style={styles.mealtypeTitle}>Dinner</Text>
-        <MealplanItem
+        <MealplanItemTwo
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
           mealplanId={currentDay.id}
           mealType={"dinner"}
         />
         <Text style={styles.mealtypeTitle}>Snacks</Text>
-        <MealplanItem
+        <MealplanItemTwo
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
           mealplanId={currentDay.id}
           mealType={"snacks"}
         />
         <Text style={styles.mealtypeTitle}>Drinks</Text>
-        <MealplanItem
+        <MealplanItemTwo
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
           mealplanId={currentDay.id}
@@ -90,7 +96,28 @@ const Mealplan = ({ navigation }) => {
   );
 };
 
+const AddRecipe = () => {
+  return (
+    <View style={styles.emptyContainer}>
+      <Button title="+" />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
+  emptyContainer: {
+    justifyContent: "center",
+
+    /*
+    width: "50%",
+    backgroundColor: "grey",
+    //margin: 1,
+    marginTop: margi
+    marginVertical: 1,
+    borderWidth: 0,
+    borderRadius: 7,*/
+  },
+
   mealtypeTitle: {
     fontSize: 20,
     marginTop: 15,

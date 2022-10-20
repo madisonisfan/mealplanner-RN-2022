@@ -1,4 +1,5 @@
 import MainRecipes from "../screens/MainRecipesScreen";
+import MainRecipesTwo from "../screens/MainRecipesScreenTwo";
 import Blog from "../screens/BlogScreen";
 import Mealplan from "../screens/MealplanScreen";
 import Profile from "../screens/ProfileScreen";
@@ -8,14 +9,21 @@ import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Icon } from "@rneui/themed";
 
 const MainRecipesDirectory = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: "#3C3C3C",
+        },
+      }}
+    >
       <Stack.Screen
         name="MainRecipes"
-        component={MainRecipes}
+        component={MainRecipesTwo}
         options={{ title: "Recipes" }}
       />
       <Stack.Screen
@@ -33,11 +41,24 @@ const MainRecipesDirectory = () => {
 const MealplanDirectory = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: "#3C3C3C",
+        },
+      }}
+    >
       <Stack.Screen
         name="Mealplan"
         component={Mealplan}
         options={{ title: "Mealplan" }}
+      />
+      <Stack.Screen
+        name="RecipeDetails"
+        component={RecipeDetails}
+        /*options={({ route }) => ({
+          title: route.params.recipe.name,
+        })}*/
       />
     </Stack.Navigator>
   );
@@ -46,7 +67,13 @@ const MealplanDirectory = () => {
 const BlogDirectory = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: "#3C3C3C",
+        },
+      }}
+    >
       <Stack.Screen name="Blog" component={Blog} options={{ title: "Blog" }} />
     </Stack.Navigator>
   );
@@ -55,7 +82,13 @@ const BlogDirectory = () => {
 const ProfileDirectory = () => {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: "#3C3C3C",
+        },
+      }}
+    >
       <Stack.Screen
         name="Profile"
         component={Profile}
@@ -72,10 +105,42 @@ const Main = () => {
   return (
     <View style={styles.mainContainer}>
       <Tab.Navigator>
-        <Tab.Screen name="Recipes" component={MainRecipesDirectory} />
-        <Tab.Screen name="Mealplan" component={MealplanDirectory} />
-        <Tab.Screen name="Blog" component={BlogDirectory} />
-        <Tab.Screen name="Profile" component={ProfileDirectory} />
+        <Tab.Screen
+          name="Recipes"
+          component={MainRecipesDirectory}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="list" color={color} type="font-awesome" />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Mealplan"
+          component={MealplanDirectory}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="star" color={color} type="font-awesome" />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Blog"
+          component={BlogDirectory}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="comment" color={color} type="font-awesome" />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileDirectory}
+          options={{
+            tabBarIcon: ({ color }) => (
+              <Icon name="user" color={color} type="font-awesome" />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </View>
   );

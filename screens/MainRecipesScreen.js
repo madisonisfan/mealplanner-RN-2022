@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet, FlatList, Modal } from "react-native";
 import { Card, ListItem, Button } from "react-native-elements";
 import RenderRecipe from "../features/Recipes/renderRecipe";
+import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
 import { RECIPES } from "../shared/recipes";
 import { Picker } from "@react-native-picker/picker";
 import Favorites from "./FavoritesScreen";
@@ -29,7 +30,7 @@ const MainRecipes = ({ navigation }) => {
 
   const renderRecipe = ({ item: recipe }) => {
     return (
-      <RenderRecipe
+      <RenderRecipeTwo
         recipe={recipe}
         navigate={navigation.navigate}
         toAdd={false}
@@ -39,6 +40,7 @@ const MainRecipes = ({ navigation }) => {
 
   return (
     <FlatList
+      flexWrap
       data={recipes}
       /*
       data={
@@ -122,6 +124,7 @@ const styles = StyleSheet.create({
     //padding: 0,
     //paddingTop: 100,
     //alignItems: "center",
+    backgroundColor: "black",
   },
 
   header: {

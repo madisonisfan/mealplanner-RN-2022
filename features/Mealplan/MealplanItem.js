@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Modal } from "react-native";
+import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import { Card, Button } from "react-native-elements";
 import { useState } from "react";
 import MealplanOptionsModal from "./MealplanOptionsModal";
@@ -8,24 +8,35 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
 
   if (recipe) {
     return (
-      <Card containerStyle={styles.card}>
-        <View style={styles.cardView}>
-          <View style={styles.imageView}>
-            <Card.Image source={recipe.image} />
-          </View>
-          <View style={styles.textView}>
-            <Text style={styles.recipeName}>{recipe.name}</Text>
-            <Button title="Edit" onPress={() => toggleOptions(true)} />
-
-            <Button
-              buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
-              type="outline"
-              title="Details"
-              onPress={() => navigate("RecipeDetails", { recipe })}
-            />
-          </View>
-        </View>
-      </Card>
+      <>
+        <Card containerStyle={styles.card}>
+          <TouchableOpacity
+            onPress={() => navigate("RecipeDetails", { recipe })}
+          >
+            <View style={styles.cardView}>
+              <View style={styles.imageView}>
+                <Card.Image source={recipe.image} />
+              </View>
+              <View style={styles.textView}>
+                <Text style={styles.recipeName}>{recipe.name}</Text>
+                <Button
+                  title="Edit"
+                  onPress={() => {
+                    toggleOptions(true);
+                  }}
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
+        </Card>
+        <Modal visible={isOptionsOpen}>
+          <MealplanOptionsModal
+            toggleModal={toggleOptions}
+            mealplanId={mealplanId}
+            mealType={mealType}
+          />
+        </Modal>
+      </>
     );
   }
 
@@ -85,3 +96,15 @@ const styles = StyleSheet.create({
 });
 
 export default MealplanItem;
+
+/*
+
+
+ <Button
+                buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
+                type="outline"
+                title="Details"
+                onPress={() => navigate("RecipeDetails", { recipe })}
+              />
+
+              */
