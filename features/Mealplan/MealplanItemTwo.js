@@ -43,27 +43,21 @@ const MealplanItemTwo = ({ recipe, navigate, meaplanId, mealType }) => {
             <View style={styles.textView}>
               <Card.Title style={styles.name}>{recipe.name}</Card.Title>
             </View>
-            <View
-              style={{
+
+            <Icon
+              name="pencil"
+              type="font-awesome"
+              color="black"
+              size={25}
+              containerStyle={{
                 position: "absolute",
-                marginLeft: 5,
-                marginTop: 5,
+                right: 5,
+                //marginTop: 5,
               }}
-            >
-              <Button
-                title="Edit"
-                buttonStyle={{
-                  //width: 10,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  paddingBottom: 2,
-                  paddingTop: 2,
-                }}
-                onPress={() => {
-                  toggleOptions(true);
-                }}
-              />
-            </View>
+              onPress={() => {
+                toggleOptions(true);
+              }}
+            />
           </Card>
         </TouchableOpacity>
 

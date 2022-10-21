@@ -24,7 +24,17 @@ const MainRecipesDirectory = () => {
       <Stack.Screen
         name="MainRecipes"
         component={MainRecipesTwo}
-        options={{ title: "Recipes" }}
+        options={{
+          title: "Recipes",
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
       />
       <Stack.Screen
         name="RecipeDetails"
@@ -32,6 +42,17 @@ const MainRecipesDirectory = () => {
         /*options={({ route }) => ({
           title: route.params.recipe.name,
         })}*/
+        options={{
+          title: "Recipe Details",
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
       />
       <Stack.Screen name="Favorites" component={Favorites} />
     </Stack.Navigator>
@@ -51,7 +72,17 @@ const MealplanDirectory = () => {
       <Stack.Screen
         name="Mealplan"
         component={Mealplan}
-        options={{ title: "Mealplan" }}
+        options={{
+          title: "Mealplan",
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
       />
       <Stack.Screen
         name="RecipeDetails"
@@ -59,6 +90,17 @@ const MealplanDirectory = () => {
         /*options={({ route }) => ({
           title: route.params.recipe.name,
         })}*/
+        options={{
+          title: "Recipe Details",
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
       />
     </Stack.Navigator>
   );
@@ -74,7 +116,21 @@ const BlogDirectory = () => {
         },
       }}
     >
-      <Stack.Screen name="Blog" component={Blog} options={{ title: "Blog" }} />
+      <Stack.Screen
+        name="Blog"
+        component={Blog}
+        options={{
+          title: "Blog",
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -92,7 +148,17 @@ const ProfileDirectory = () => {
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{ title: "Profile" }}
+        options={{
+          title: "Profile",
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
       />
     </Stack.Navigator>
   );
@@ -104,7 +170,7 @@ const Main = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{}}>
         <Tab.Screen
           name="Recipes"
           component={MainRecipesDirectory}
@@ -112,6 +178,10 @@ const Main = () => {
             tabBarIcon: ({ color }) => (
               <Icon name="list" color={color} type="font-awesome" />
             ),
+            tabBarLabelStyle: {
+              backgroundColor: "red",
+              color: "blue",
+            },
           }}
         />
         <Tab.Screen
@@ -119,7 +189,7 @@ const Main = () => {
           component={MealplanDirectory}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon name="star" color={color} type="font-awesome" />
+              <Icon name="cutlery" color={color} type="font-awesome" />
             ),
           }}
         />

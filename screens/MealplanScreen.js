@@ -52,7 +52,7 @@ const Mealplan = ({ navigation }) => {
         <Text style={styles.date}>{currentDay.date}</Text>
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
 
-        <MealplanItemTwo
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
           mealplanId={currentDay.id}
@@ -60,28 +60,28 @@ const Mealplan = ({ navigation }) => {
         />
 
         <Text style={styles.mealtypeTitle}>Lunch</Text>
-        <MealplanItemTwo
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
           mealplanId={currentDay.id}
           mealType={"lunch"}
         />
         <Text style={styles.mealtypeTitle}>Dinner</Text>
-        <MealplanItemTwo
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
           mealplanId={currentDay.id}
           mealType={"dinner"}
         />
         <Text style={styles.mealtypeTitle}>Snacks</Text>
-        <MealplanItemTwo
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
           mealplanId={currentDay.id}
           mealType={"snacks"}
         />
         <Text style={styles.mealtypeTitle}>Drinks</Text>
-        <MealplanItemTwo
+        <MealplanItem
           navigate={navigation.navigate}
           recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
           mealplanId={currentDay.id}

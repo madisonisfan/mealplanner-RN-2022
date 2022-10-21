@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, FlatList, Modal } from "react-native";
-import { Card, ListItem, Button } from "react-native-elements";
+import { Card, ListItem } from "react-native-elements";
 import RenderRecipe from "../features/Recipes/renderRecipe";
 import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
 import { RECIPES } from "../shared/recipes";
@@ -14,6 +14,7 @@ import {
 import RecipeForm from "../features/Recipes/RecipeForm";
 import { ScrollView } from "react-native-gesture-handler";
 import { Icon } from "@rneui/themed";
+import { Button } from "@rneui/themed";
 
 const recipeTypes = {
   all: "All Recipes",
@@ -81,16 +82,16 @@ const MainRecipesTwo = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ marginTop: 20 }}>
-        <Button
-          type="outline"
-          title="F"
+      <ScrollView style={{ paddingTop: 20 }}>
+        <Icon
+          size={35}
+          color="orange"
           containerStyle={{
             position: "absolute",
-            width: 50,
+            right: 10,
+            //width: 50,
           }}
-          titleStyle={{ color: "black" }}
-          buttonStyle={styles.button}
+          name="bookmark"
           onPress={() => {
             console.log(`pressed favs`);
             navigation.navigate("Favorites");
@@ -108,19 +109,27 @@ const MainRecipesTwo = ({ navigation }) => {
           }}
         >
           <Button
-            title={recipeTypes[selectedRecipeType]}
-            containerStyle={
-              {
-                //width: 150,
-                //paddingLeft: 55,
-                //paddingRight: 55,
-                //paddingTop: 15,
-                //paddingBottom: 10,
-              }
-            }
+            // type="solid"
+            containerStyle={{
+              backgroundColor: "white",
+              //width: 150,
+              //paddingLeft: 55,
+              //paddingRight: 55,
+              //paddingTop: 15,
+              //paddingBottom: 10,
+            }}
+            titleStyle={{ color: "black" }}
             onPress={() => toggleTypeModal(!isTypeModalOpen)}
-            buttonStyle={{}}
-          />
+            buttonStyle={{ backgroundColor: "white", paddingHorizontal: 17 }}
+          >
+            {recipeTypes[selectedRecipeType]}
+            <Icon
+              name="chevron-down"
+              type="font-awesome"
+              size={15}
+              iconStyle={{ paddingLeft: 10 }}
+            />
+          </Button>
           <Modal visible={isTypeModalOpen}>
             <View>
               <Picker

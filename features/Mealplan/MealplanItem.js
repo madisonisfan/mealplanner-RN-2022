@@ -1,34 +1,43 @@
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import { Card, Button } from "react-native-elements";
 import { useState } from "react";
+import { Icon } from "@rneui/themed";
+
 import MealplanOptionsModal from "./MealplanOptionsModal";
 
 const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
   const [isOptionsOpen, toggleOptions] = useState(false);
+  const [isCompleted, toggleIsCompleted] = useState(false);
 
   if (recipe) {
     return (
       <>
-        <Card containerStyle={styles.card}>
-          <TouchableOpacity
-            onPress={() => navigate("RecipeDetails", { recipe })}
-          >
+        <TouchableOpacity onPress={() => navigate("RecipeDetails", { recipe })}>
+          <Card containerStyle={styles.card}>
             <View style={styles.cardView}>
               <View style={styles.imageView}>
-                <Card.Image source={recipe.image} />
+                <Card.Image source={recipe.image} style={styles.image} />
               </View>
-              <View style={styles.textView}>
-                <Text style={styles.recipeName}>{recipe.name}</Text>
-                <Button
-                  title="Edit"
-                  onPress={() => {
-                    toggleOptions(true);
-                  }}
-                />
+
+              <View style={styles.contentView}>
+                <View style={styles.textView}>
+                  <Text style={styles.recipeName}>{recipe.name}</Text>
+                </View>
+
+                <View style={styles.iconView}>
+                  <Icon name="pencil" type="font-awesome" />
+                  <Icon
+                    color="grey"
+                    name={isCompleted ? "check-circle" : "check-circle-o"}
+                    type="font-awesome"
+                    size={30}
+                    onPress={() => toggleIsCompleted(!isCompleted)}
+                  />
+                </View>
               </View>
             </View>
-          </TouchableOpacity>
-        </Card>
+          </Card>
+        </TouchableOpacity>
         <Modal visible={isOptionsOpen}>
           <MealplanOptionsModal
             toggleModal={toggleOptions}
@@ -69,6 +78,8 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
 const styles = StyleSheet.create({
   card: {
     padding: 0,
+    borderRadius: 7,
+    borderWidth: 0,
   },
   noRecipeView: {
     flexDirection: "row",
@@ -81,17 +92,25 @@ const styles = StyleSheet.create({
     flex: 3,
     // backgroundColor: "grey",
   },
-  textView: {
-    justifyContent: "center",
-    alignItems: "center",
+  image: {
+    borderBottomLeftRadius: 7,
+    borderTopLeftRadius: 7,
+  },
+  contentView: {
     flex: 2,
     padding: 10,
   },
+  textView: { justifyContent: "center", flexGrow: 1 },
   recipeName: {
     fontSize: 18,
     textAlign: "center",
     fontWeight: "500",
-    flex: 2,
+  },
+
+  iconView: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 
