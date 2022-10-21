@@ -80,104 +80,107 @@ const MainRecipesTwo = ({ navigation }) => {
   };
 
   return (
-    <ScrollView style={{ marginTop: 20 }}>
-      <Button
-        type="outline"
-        title="F"
-        containerStyle={{
-          position: "absolute",
-          width: 50,
-        }}
-        titleStyle={{ color: "black" }}
-        buttonStyle={styles.button}
-        onPress={() => {
-          console.log(`pressed favs`);
-          navigation.navigate("Favorites");
-        }}
-      />
-
-      <Button
-        buttonStyle={styles.button}
-        containerStyle={{
-          position: "absolute",
-          right: 0,
-          marginRight: 10,
-          width: 50,
-          //marginTop: 10,
-          borderRadius: 10,
-        }}
-        titleStyle={{ color: "black" }}
-        type="outline"
-        title="+"
-        onPress={() => {
-          console.log(`pressed`);
-          toggleRecipeForm(!isRecipeFormOpen);
-        }}
-      />
-
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          //marginTop: 300,
-          marginLeft: "auto",
-          marginRight: "auto",
-          width: 125,
-        }}
-      >
+    <View style={{ flex: 1 }}>
+      <ScrollView style={{ marginTop: 20 }}>
         <Button
-          title={recipeTypes[selectedRecipeType]}
-          containerStyle={
-            {
-              //width: 150,
-              //paddingLeft: 55,
-              //paddingRight: 55,
-              //paddingTop: 15,
-              //paddingBottom: 10,
-            }
-          }
-          onPress={() => toggleTypeModal(!isTypeModalOpen)}
-          buttonStyle={{}}
+          type="outline"
+          title="F"
+          containerStyle={{
+            position: "absolute",
+            width: 50,
+          }}
+          titleStyle={{ color: "black" }}
+          buttonStyle={styles.button}
+          onPress={() => {
+            console.log(`pressed favs`);
+            navigation.navigate("Favorites");
+          }}
         />
-        <Modal visible={isTypeModalOpen}>
-          <View>
-            <Picker
-              mode="dropdown"
-              selectedValue={selectedRecipeType}
-              onValueChange={(type, index) => setType(type)}
-              style={{
-                color: "blue",
-              }}
-            >
-              <Picker.Item label="All Recipes" value="all" />
-              <Picker.Item label="Breakfast" value="breakfast" />
-              <Picker.Item label="Lunch/Dinner" value="lunchDinner" />
-              <Picker.Item label="Drinks" value="drinks" />
-              <Picker.Item label="Snacks" value="snacks" />
-            </Picker>
-            <Button
-              title="Done"
-              onPress={() => toggleTypeModal(!isTypeModalOpen)}
-            />
-          </View>
-        </Modal>
-        <Modal visible={isRecipeFormOpen}>
-          <RecipeForm toggle={toggleRecipeForm} />
-        </Modal>
+
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            //marginTop: 300,
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: 125,
+          }}
+        >
+          <Button
+            title={recipeTypes[selectedRecipeType]}
+            containerStyle={
+              {
+                //width: 150,
+                //paddingLeft: 55,
+                //paddingRight: 55,
+                //paddingTop: 15,
+                //paddingBottom: 10,
+              }
+            }
+            onPress={() => toggleTypeModal(!isTypeModalOpen)}
+            buttonStyle={{}}
+          />
+          <Modal visible={isTypeModalOpen}>
+            <View>
+              <Picker
+                mode="dropdown"
+                selectedValue={selectedRecipeType}
+                onValueChange={(type, index) => setType(type)}
+                style={{
+                  color: "blue",
+                }}
+              >
+                <Picker.Item label="All Recipes" value="all" />
+                <Picker.Item label="Breakfast" value="breakfast" />
+                <Picker.Item label="Lunch/Dinner" value="lunchDinner" />
+                <Picker.Item label="Drinks" value="drinks" />
+                <Picker.Item label="Snacks" value="snacks" />
+              </Picker>
+              <Button
+                title="Done"
+                onPress={() => toggleTypeModal(!isTypeModalOpen)}
+              />
+            </View>
+          </Modal>
+          <Modal visible={isRecipeFormOpen}>
+            <RecipeForm toggle={toggleRecipeForm} />
+          </Modal>
+        </View>
+        <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
+          {recipes.map((recipe) => {
+            console.log(`recipe`, recipe);
+            return (
+              <RenderRecipeTwo
+                //key={index}
+                recipe={recipe}
+                navigate={navigation.navigate}
+              />
+            );
+          })}
+        </View>
+      </ScrollView>
+      <View>
+        <Icon
+          raised
+          reverse
+          name="plus"
+          type="font-awesome"
+          color="white"
+          iconStyle={{ color: "black" }}
+          containerStyle={{
+            position: "absolute",
+            right: 10,
+            bottom: 3,
+            alignSelf: "flex-end",
+          }}
+          onPress={() => {
+            console.log(`pressed`);
+            toggleRecipeForm(!isRecipeFormOpen);
+          }}
+        />
       </View>
-      <View style={{ flexDirection: "row" }} flexWrap>
-        {recipes.map((recipe) => {
-          console.log(`recipe`, recipe);
-          return (
-            <RenderRecipeTwo
-              //key={index}
-              recipe={recipe}
-              navigate={navigation.navigate}
-            />
-          );
-        })}
-      </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -212,5 +215,29 @@ export default MainRecipesTwo;
             <Picker.Item label="Drinks" value="Drinks" />
             <Picker.Item label="Snacks" value="Snacks" />
           </Picker>
+
+*/
+
+/*
+<Icon
+        reverse
+        name="plus"
+        type="font-awesome"
+        color="white"
+        iconStyle={{ color: "black" }}
+        containerStyle={{
+          position: "fixed",
+          //right: 0,
+          bottom: 0,
+          //marginRight: 10,
+          borderWidth: 1,
+          borderColor: "blue",
+        }}
+        onPress={() => {
+          console.log(`pressed`);
+          toggleRecipeForm(!isRecipeFormOpen);
+        }}
+      />
+
 
 */

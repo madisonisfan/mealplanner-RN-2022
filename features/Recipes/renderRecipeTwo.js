@@ -49,13 +49,18 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
                 //height: 100,
                 //backgroundColor: "red",
                 position: "absolute",
-                top: 10,
-                left: 10,
+                top: -3,
+                right: 15,
+                padding: 0,
               }}
             >
               <Icon
+                // reverse
+                size={35}
+                // color="rgb(99, 97, 90, 0.5)"
+
                 iconStyle={styles.icon}
-                name={favorites.includes(recipe.id) ? "star" : "star-o"}
+                name={favorites.includes(recipe.id) ? "bookmark" : "bookmark-o"}
                 type="font-awesome"
                 onPress={() => {
                   dispatch(toggleFavorite(recipe.id));
@@ -92,9 +97,12 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 7,
   },
   icon: {
-    width: 30,
-    height: 30,
-    backgroundColor: "grey",
+    //width: 30,
+    //height: 30,
+    //backgroundColor: "grey",
+    padding: 0,
+    color: "orange",
+    //height: ,
   },
   textView: {
     flex: 1,
@@ -109,6 +117,23 @@ const styles = StyleSheet.create({
     // paddingVertical: 8,
   },
 });
+
+/*
+
+<Icon
+                // reverse
+                size={35}
+                // color="rgb(99, 97, 90, 0.5)"
+
+                iconStyle={styles.icon}
+                name={favorites.includes(recipe.id) ? "bookmark" : "bookmark-o"}
+                type="font-awesome"
+                onPress={() => {
+                  dispatch(toggleFavorite(recipe.id));
+                }}
+              />
+
+              */
 
 export default RenderRecipeTwo;
 
