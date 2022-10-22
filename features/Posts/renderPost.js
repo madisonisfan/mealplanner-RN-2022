@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Avatar } from "@rneui/themed";
 import { Icon } from "@rneui/themed";
+import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
 
 const RenderPost = ({ post }) => {
   const { id, author, date, postType, postContent } = post;
@@ -19,9 +20,9 @@ const RenderPost = ({ post }) => {
         <View style={styles.textView}>
           <View style={styles.headerView}>
             <Text style={styles.name}>{author}</Text>
-            <Text>{postType}</Text>
+            <Text style={styles.postType}>{postType}</Text>
           </View>
-          <Text>{date}</Text>
+          <Text style={styles.date}>{date}</Text>
         </View>
       </View>
       <View style={styles.postConent}>
@@ -52,6 +53,12 @@ const styles = StyleSheet.create({
   },
   postConent: {
     marginTop: 10,
+  },
+  date: {
+    color: "grey",
+  },
+  postType: {
+    color: "grey",
   },
 });
 
