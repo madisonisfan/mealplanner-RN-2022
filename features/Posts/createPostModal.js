@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Button } from "@rneui/themed";
 import Constants from "expo-constants";
 import { useState } from "react";
+import { addPost } from "./postSlice";
 
 const CreatePostModal = ({ toggleModal }) => {
   const [postType, setPostType] = useState("");

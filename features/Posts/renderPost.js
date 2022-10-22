@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Avatar } from "@rneui/themed";
-import { Icon } from "@rneui/themed";
+import { Avatar, Button, Icon } from "@rneui/themed";
 import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
 
 const RenderPost = ({ post }) => {
@@ -27,6 +26,36 @@ const RenderPost = ({ post }) => {
       </View>
       <View style={styles.postConent}>
         <Text>{postContent}</Text>
+      </View>
+      <View style={styles.bottomButtonView}>
+        <Button
+          type="clear"
+          // title="Like"
+          buttonStyle={styles.bottomButton}
+          titleStyle={{ color: "grey" }}
+        >
+          Like
+          <Icon
+            name="thumbs-o-up"
+            type="font-awesome"
+            color="grey"
+            iconStyle={{ paddingLeft: 5 }}
+          />
+        </Button>
+        <Button
+          type="clear"
+          title="Comment"
+          titleStyle={{ color: "grey" }}
+          buttonStyle={styles.bottomButton}
+        >
+          Comment
+          <Icon
+            name="comment-o"
+            type="font-awesome"
+            color="grey"
+            iconStyle={{ paddingLeft: 5 }}
+          />
+        </Button>
       </View>
     </View>
   );
@@ -56,9 +85,26 @@ const styles = StyleSheet.create({
   },
   date: {
     color: "grey",
+    paddingTop: 2,
+    fontSize: 15,
   },
   postType: {
     color: "grey",
+    fontSize: 15,
+  },
+  bottomButtonView: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-around",
+    //paddingTop: 10,
+    marginTop: 5,
+    borderTopColor: "grey",
+    borderTopWidth: 1,
+    paddingVertical: 2,
+  },
+  bottomButton: {
+    backgroundColor: "white",
+    padding: 0,
   },
 });
 
