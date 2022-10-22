@@ -29,6 +29,7 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
   const dispatch = useDispatch();
   const [isFavModalOpen, toggleFavModal] = useState(false);
   const [isDetailsOpen, toggleDetails] = useState(false);
+  console.log(`recipe being displayed: `, recipe);
 
   if (recipe) {
     return (
@@ -74,7 +75,7 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
   }
 
   return (
-    <View>
+    <View style={{ height: 100, backgroundColor: "blue" }}>
       <Text>no recipe</Text>
     </View>
   );
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
     padding: 0,
     borderWidth: 0,
     borderRadius: 7,
+    //backgroundColor: "blue",
   },
   image: {
     borderTopLeftRadius: 7,

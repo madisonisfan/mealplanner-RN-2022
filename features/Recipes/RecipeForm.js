@@ -14,6 +14,7 @@ import { addRecipe } from "./recipesSlice";
 import { useDispatch } from "react-redux";
 import { Input } from "@rneui/themed";
 import { Button } from "@rneui/themed";
+import { Icon } from "@rneui/themed";
 
 const RecipeForm = ({ toggle }) => {
   const [name, setName] = useState("");
@@ -102,8 +103,23 @@ const RecipeForm = ({ toggle }) => {
         {ingredients.map((i, index) => {
           return (
             <ListItem key={index} containerStyle={{ padding: 0 }}>
-              <ListItem.Content style={{ paddingTop: 5 }}>
-                <ListItem.Title style={{ fontSize: 20 }}>- {i}</ListItem.Title>
+              <ListItem.Content
+                style={{ paddingTop: 5, justifyContent: "center" }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Icon
+                    name="circle"
+                    type="font-awesome"
+                    size={10}
+                    iconStyle={{ paddingRight: 3 }}
+                  />
+                  <Text style={{ fontSize: 20 }}>{i}</Text>
+                </View>
               </ListItem.Content>
             </ListItem>
           );
@@ -137,7 +153,7 @@ const RecipeForm = ({ toggle }) => {
             <ListItem key={index} containerStyle={{ padding: 0 }}>
               <ListItem.Content style={{ paddingTop: 5 }}>
                 <ListItem.Title style={{ fontSize: 20 }}>
-                  {index + 1}. {d}
+                  <Icon name="circle" type="font-awesome" /> {index + 1}. {d}
                 </ListItem.Title>
               </ListItem.Content>
             </ListItem>
@@ -194,7 +210,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: Constants.statusBarHeight,
     paddingHorizontal: 10,
-    backgroundColor: "#D9D9D9",
+
+    backgroundColor: "#1f1e1e",
     //paddingTop: 50,
     //paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
   },
@@ -210,10 +227,10 @@ const styles = StyleSheet.create({
     color: "black",
   },
   inputView: {
-    backgroundColor: "white",
+    backgroundColor: "#D9D9D9",
     borderWidth: 1,
     borderRadius: 7,
-    borderColor: "white",
+    backgroundColor: "#D9D9D9",
     paddingLeft: 5,
     fontSize: 20,
   },
@@ -221,8 +238,8 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 20,
     borderWidth: 1,
-    borderColor: "white",
-    backgroundColor: "white",
+    backgroundColor: "#D9D9D9",
+    backgroundColor: "#D9D9D9",
     borderRadius: 7,
     paddingVertical: 10,
     paddingHorizontal: 5,

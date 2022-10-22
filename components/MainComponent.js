@@ -54,7 +54,20 @@ const MainRecipesDirectory = () => {
           },
         }}
       />
-      <Stack.Screen name="Favorites" component={Favorites} />
+      <Stack.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          headerStyle: {
+            backgroundColor: "#1f1e1e",
+          },
+          //headerTintColor: "white",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };

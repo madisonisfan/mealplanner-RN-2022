@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, FlatList, Modal } from "react-native";
+import { Text, View, StyleSheet, FlatList, Modal, Switch } from "react-native";
 import { Card, ListItem } from "react-native-elements";
 import RenderRecipe from "../features/Recipes/renderRecipe";
 import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
@@ -67,6 +67,7 @@ const MainRecipesTwo = ({ navigation }) => {
   const [selectedRecipeType, setType] = useState("all");
   const [isTypeModalOpen, toggleTypeModal] = useState(false);
   const [isRecipeFormOpen, toggleRecipeForm] = useState(false);
+  const [favoritesEnabled, toggleFavorites] = useState(false);
   const recipes = useSelector(selectAllRecipes);
   //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
