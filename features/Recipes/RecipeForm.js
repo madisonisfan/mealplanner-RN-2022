@@ -8,13 +8,10 @@ import {
   ScrollView,
 } from "react-native";
 import { useState } from "react";
-import { ListItem } from "@rneui/themed";
 import Constants from "expo-constants";
 import { addRecipe } from "./recipesSlice";
 import { useDispatch } from "react-redux";
-import { Input } from "@rneui/themed";
-import { Button } from "@rneui/themed";
-import { Icon } from "@rneui/themed";
+import { Input, Button, Icon, ListItem } from "@rneui/themed";
 
 const RecipeForm = ({ toggle }) => {
   const [name, setName] = useState("");
@@ -59,7 +56,18 @@ const RecipeForm = ({ toggle }) => {
 
   return (
     <ScrollView style={styles.mainView}>
-      <Text style={styles.title}>Add Recipe</Text>
+      <View style={styles.headerView}>
+        <Text style={styles.headerTitle}> Add Recipe</Text>
+        <Button
+          title="X"
+          type="clear"
+          titleStyle={{ color: "white" }}
+          onPress={() => {
+            resetForm();
+            toggle(false);
+          }}
+        />
+      </View>
 
       <TextInput
         // containerStyle={styles.inputContainer}
@@ -191,21 +199,27 @@ const RecipeForm = ({ toggle }) => {
           toggle(false);
         }}
       />
-
-      <Button
-        title="Cancel"
-        style={styles.bottomButton}
-        buttonStyle={{ backgroundColor: "red" }}
-        onPress={() => {
-          resetForm();
-          toggle(false);
-        }}
-      />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  headerView: {
+    // backgroundColor: "#1f1e1e",
+    marginBottom: 20,
+    textAlign: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    //flexDirection,
+  },
+  headerTitle: {
+    color: "white",
+    fontSize: 23,
+    fontWeight: "400",
+    textAlign: "center",
+  },
+
   mainView: {
     flex: 1,
     paddingTop: Constants.statusBarHeight,
@@ -224,7 +238,7 @@ const styles = StyleSheet.create({
     //paddingLeft: 10,
     marginTop: 10,
     marginBottom: 10,
-    color: "black",
+    color: "white",
   },
   inputView: {
     backgroundColor: "#D9D9D9",

@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Avatar, Button, Icon } from "@rneui/themed";
+
 import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
 
 const RenderPost = ({ post }) => {
