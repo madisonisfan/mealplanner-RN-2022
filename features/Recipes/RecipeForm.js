@@ -68,44 +68,55 @@ const RecipeForm = ({ toggle }) => {
           }}
         />
       </View>
-
+      <Text style={styles.inputLabel}>Recipe Name</Text>
       <TextInput
         // containerStyle={styles.inputContainer}
+        autofocus={true}
         placeholderTextColor="grey"
         style={styles.input}
         placeholder="Recipe Name"
+        maxLength={20}
         value={name}
         onChangeText={(text) => setName(text)}
       />
+      <Text style={styles.inputLabel}>Recipe Description</Text>
       <TextInput
+        multiline
+        numberOfLines={3}
         placeholder="Description"
         placeholderTextColor="grey"
         style={styles.input}
         value={description}
         onChangeText={(text) => setDescription(text)}
       />
+      <Text style={styles.inputLabel}>Preptime</Text>
       <TextInput
-        placeholder="Preptime"
+        placeholder="in minutes"
         placeholderTextColor="grey"
+        keyboardType="numeric"
         style={styles.input}
         value={preptime}
         onChangeText={(text) => setPreptime(text)}
       />
+      .focus()
+      <Text style={styles.inputLabel}>Cooktime</Text>
       <TextInput
-        placeholder="Cooktime"
+        placeholder="in minutes"
         placeholderTextColor="grey"
+        keyboardType="numeric"
         style={styles.input}
         value={cooktime}
         onChangeText={(text) => setCooktime(text)}
       />
+      <Text style={styles.inputLabel}>Servings</Text>
       <TextInput
         placeholder="Servings"
         value={servings}
         placeholderTextColor="grey"
+        keyboardType="numeric"
         style={styles.input}
         onChangeText={(text) => setServings(text)}
       />
-
       <Text style={styles.formTitle}>Ingredients</Text>
       <View style={styles.inputView}>
         {ingredients.map((i, index) => {
@@ -143,7 +154,7 @@ const RecipeForm = ({ toggle }) => {
           />
           <Button
             title="+"
-            titleStyle={{ color: "black" }}
+            titleStyle={{ color: "black", fontSize: 20, fontWeight: "medium" }}
             type="clear"
             //color="black"
             onPress={() => {
@@ -153,7 +164,6 @@ const RecipeForm = ({ toggle }) => {
           />
         </View>
       </View>
-
       <Text style={styles.formTitle}>Directions</Text>
       <View style={styles.inputView}>
         {directions.map((d, index) => {
@@ -179,7 +189,8 @@ const RecipeForm = ({ toggle }) => {
           />
           <Button
             title="+"
-            titleStyle={{ color: "black" }}
+            titleStyle={{ color: "black", fontSize: 20, fontWeight: "medium" }}
+            containerStyle={{ padding: 0 }}
             type="clear"
             onPress={() => {
               setDirections([...directions, currentDirection]);
@@ -188,12 +199,11 @@ const RecipeForm = ({ toggle }) => {
           />
         </View>
       </View>
-
       <Button
         title="Submit"
-        style={styles.bottomButton}
+        radius={9}
         titleStyle={{ color: "black", fontWeight: "500" }}
-        buttonStyle={{ backgroundColor: "white", border: "black" }}
+        buttonStyle={styles.bottomButton}
         onPress={() => {
           handleRecipeSubmit();
           toggle(false);
@@ -204,6 +214,11 @@ const RecipeForm = ({ toggle }) => {
 };
 
 const styles = StyleSheet.create({
+  inputLabel: {
+    color: "white",
+    fontSize: 17,
+    paddingBottom: 7,
+  },
   headerView: {
     // backgroundColor: "#1f1e1e",
     marginBottom: 20,
@@ -230,8 +245,12 @@ const styles = StyleSheet.create({
     //paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
   },
   bottomButton: {
-    marginHorizontal: 30,
-    marginTop: 10,
+    backgroundColor: "white",
+    border: "black",
+    width: "50%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 30,
   },
   formTitle: {
     fontSize: 20,
@@ -246,27 +265,28 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: "#D9D9D9",
     paddingLeft: 5,
-    fontSize: 20,
+    fontSize: 17,
+    marginBottom: 10,
   },
   input: {
     color: "black",
-    fontSize: 20,
+    fontSize: 17,
     borderWidth: 1,
     backgroundColor: "#D9D9D9",
     //backgroundColor: "#D9D9D9",
     borderRadius: 7,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   largeInputContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     //color: "black",
-    fontSize: 20,
+    fontSize: 17,
   },
   largeInput: {
-    fontSize: 20,
+    fontSize: 17,
   },
 
   title: {
