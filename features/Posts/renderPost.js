@@ -5,6 +5,14 @@ import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolic
 const RenderPost = ({ post }) => {
   const { id, author, date, postType, postContent } = post;
 
+  const submitComment = () => {
+    console.log(`submit comment`);
+  };
+
+  const submitLike = () => {
+    console.log(`submit comment`);
+  };
+
   return (
     <View style={styles.mainView}>
       <View style={{ flexDirection: "row" }}>
@@ -32,29 +40,33 @@ const RenderPost = ({ post }) => {
           type="clear"
           // title="Like"
           buttonStyle={styles.bottomButton}
-          titleStyle={{ color: "grey" }}
+          titleStyle={{ color: "grey", fontSize: 15 }}
+          onPress={() => submitLike()}
         >
-          Like
           <Icon
             name="thumbs-o-up"
             type="font-awesome"
             color="grey"
-            iconStyle={{ paddingLeft: 5 }}
+            iconStyle={{ paddingRight: 5 }}
+            size={20}
           />
+          Like
         </Button>
         <Button
           type="clear"
           title="Comment"
-          titleStyle={{ color: "grey" }}
+          titleStyle={{ color: "grey", fontSize: 15 }}
           buttonStyle={styles.bottomButton}
+          onPress={() => submitComment()}
         >
-          Comment
           <Icon
             name="comment-o"
             type="font-awesome"
             color="grey"
-            iconStyle={{ paddingLeft: 5 }}
+            size={20}
+            iconStyle={{ paddingRight: 7 }}
           />
+          Comment
         </Button>
       </View>
     </View>
@@ -67,14 +79,17 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginBottom: 10,
     // flexDirection: "row",
-    padding: 5,
+    paddingHorizontal: 5,
+    paddingTop: 10,
+    //paddingBottom: 0,
   },
   textView: {
     paddingLeft: 10,
   },
   name: {
-    fontSize: 20,
+    fontSize: 17,
     paddingRight: 10,
+    fontWeight: "500",
   },
   headerView: {
     flexDirection: "row",
@@ -98,9 +113,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     //paddingTop: 10,
     marginTop: 5,
-    borderTopColor: "grey",
+    borderTopColor: "rgb(207, 207, 207)",
     borderTopWidth: 1,
-    paddingVertical: 2,
+    paddingVertical: 4,
   },
   bottomButton: {
     backgroundColor: "white",
