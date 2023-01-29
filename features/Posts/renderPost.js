@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     paddingHorizontal: 5,
     paddingTop: 10,
+
     //paddingBottom: 0,
   },
   textView: {

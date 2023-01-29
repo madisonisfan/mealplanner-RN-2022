@@ -60,7 +60,11 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
                 size={35}
                 // color="rgb(99, 97, 90, 0.5)"
 
-                iconStyle={styles.icon}
+                iconStyle={
+                  favorites.includes(recipe.id)
+                    ? styles.iconFilled
+                    : styles.iconEmpty
+                }
                 name={favorites.includes(recipe.id) ? "bookmark" : "bookmark-o"}
                 type="font-awesome"
                 onPress={() => {
@@ -86,26 +90,31 @@ const styles = StyleSheet.create({
     width: "50%",
     padding: 10,
     //borderWidth: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
+
   card: {
     margin: 1,
     padding: 0,
     borderWidth: 0,
     borderRadius: 7,
-    //backgroundColor: "blue",
   },
   image: {
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
   },
-  icon: {
-    //width: 30,
-    //height: 30,
-    //backgroundColor: "grey",
+  iconFilled: {
     padding: 0,
-    color: "orange",
-    //height: ,
+    color: "#04A804",
   },
+  iconEmpty: {
+    padding: 0,
+    color: "#02B102",
+  },
+
   textView: {
     flex: 1,
 

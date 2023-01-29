@@ -16,8 +16,8 @@ const Mealplan = ({ navigation }) => {
   const allDays = useSelector(selectAllDays);
   const firstDay = useSelector(selectFirstDay);
 
-  const [index, setIndex] = useState(0);
-  const currentDay = useSelector(selectDayByIndex(index));
+  const [currentIndex, setIndex] = useState(0);
+  const currentDay = useSelector(selectDayByIndex(currentIndex));
 
   const recipes = useSelector(selectAllRecipes);
   const days = [
@@ -32,7 +32,7 @@ const Mealplan = ({ navigation }) => {
 
   return (
     <>
-      <ScrollView horizontal style={{ backgroundColor: "white" }}>
+      <ScrollView horizontal style={{ backgroundColor: "#1f1e1e" }}>
         {days.map((day, index) => {
           return (
             <Button
@@ -43,7 +43,15 @@ const Mealplan = ({ navigation }) => {
               key={index}
               title={day}
               type="clear"
-              titleStyle={{ color: "black" }}
+              titleStyle={{
+                color: "white",
+                //textDecorationLine: "underline",
+                textDecorationLine:
+                  index === currentIndex ? "underline" : "none",
+                textDecorationColor: "#f0faeb",
+                textDecorationThickness: "3px",
+              }}
+              containerStyle={{ borderBottom: "solid 1px blue" }}
             />
           );
         })}
@@ -119,13 +127,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 15,
     marginLeft: 15,
-    color: "white",
+    fontWeight: "400",
+    //color: "white",
   },
   date: {
     textAlign: "center",
     marginTop: 20,
     fontSize: 20,
-    color: "white",
+    //color: "white",
   },
   dayButton: {},
 });

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Button } from "react-native-elements";
 import { useState } from "react";
-import { Icon } from "@rneui/themed";
+import { Icon, Card } from "@rneui/themed";
 
 import MealplanOptionsModal from "./MealplanOptionsModal";
 
@@ -13,17 +13,30 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
     return (
       <>
         <TouchableOpacity onPress={() => navigate("RecipeDetails", { recipe })}>
-          <Card containerStyle={styles.card}>
-            <View style={styles.cardView}>
-              <View style={styles.imageView}>
-                <Card.Image source={recipe.image} style={styles.image} />
+          <Card
+            containerStyle={styles.cardContainer}
+            wrapperStyle={styles.cardInner}
+          >
+            {/* <View style={styles.cardView}>*/}
+            {/* <View style={styles.imageView}>*/}
+            <Card.Image source={recipe.image} style={styles.image} />
+            {/* </View>*/}
+            <View style={styles.contentView}>
+              {/* <View style={styles.textView}>*/}
+              <Text style={styles.recipeName}>{recipe.name}</Text>
+              {/*</View>*/}
+
+              <View style={styles.iconView}>
+                <Icon name="pencil" type="font-awesome" />
+                <Icon
+                  color="grey"
+                  name={isCompleted ? "check-circle" : "check-circle-o"}
+                  type="font-awesome"
+                  size={30}
+                  onPress={() => toggleIsCompleted(!isCompleted)}
+                />
               </View>
-
-              <View style={styles.contentView}>
-                <View style={styles.textView}>
-                  <Text style={styles.recipeName}>{recipe.name}</Text>
-                </View>
-
+              {/*
                 <View style={styles.iconView}>
                   <Icon name="pencil" type="font-awesome" />
                   <Icon
@@ -34,8 +47,9 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
                     onPress={() => toggleIsCompleted(!isCompleted)}
                   />
                 </View>
-              </View>
+    */}
             </View>
+            {/*</View>*/}
           </Card>
         </TouchableOpacity>
         <Modal visible={isOptionsOpen}>
@@ -76,31 +90,44 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
 };
 
 const styles = StyleSheet.create({
-  card: {
+  cardContainer: {
     padding: 0,
+    height: 100,
     borderRadius: 7,
     borderWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
-  noRecipeView: {
+  cardInner: {
     flexDirection: "row",
-    justifyContent: "space-between",
   },
+
   cardView: {
-    flexDirection: "row",
+    // height: 100,
   },
   imageView: {
-    flex: 3,
+    //flex: 1,
     // backgroundColor: "grey",
   },
   image: {
-    borderBottomLeftRadius: 7,
-    borderTopLeftRadius: 7,
+    // borderBottomLeftRadius: 7,
+    //borderTopLeftRadius: 7,
+    borderRadius: 7,
+    width: 150,
+    height: 100,
+    //width: 150,
   },
   contentView: {
-    flex: 2,
-    padding: 10,
+    //flex: 2,
+    //padding: 10,
+    justifyContent: "space-between",
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    flexGrow: 1,
   },
-  textView: { justifyContent: "center", flexGrow: 1 },
+  // textView: { justifyContent: "center", flexGrow: 1 },
   recipeName: {
     fontSize: 18,
     textAlign: "center",
@@ -108,7 +135,10 @@ const styles = StyleSheet.create({
   },
 
   iconView: {
-    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  noRecipeView: {
     flexDirection: "row",
     justifyContent: "space-between",
   },

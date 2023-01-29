@@ -17,7 +17,8 @@ const MainRecipesDirectory = () => {
     <Stack.Navigator
       screenOptions={{
         cardStyle: {
-          backgroundColor: "#3C3C3C",
+          //backgroundColor: "#3C3C3C",
+          backgroundColor: "#f0faeb",
         },
       }}
     >
@@ -55,7 +56,7 @@ const MainRecipesDirectory = () => {
         }}
       />
       <Stack.Screen
-        name="Favorites"
+        name="Bookmarks"
         component={Favorites}
         options={{
           headerStyle: {
@@ -78,7 +79,8 @@ const MealplanDirectory = () => {
     <Stack.Navigator
       screenOptions={{
         cardStyle: {
-          backgroundColor: "#3C3C3C",
+          //backgroundColor: "#3C3C3C",
+          backgroundColor: "#f0faeb",
         },
       }}
     >
@@ -125,7 +127,8 @@ const BlogDirectory = () => {
     <Stack.Navigator
       screenOptions={{
         cardStyle: {
-          backgroundColor: "#3C3C3C",
+          // backgroundColor: "#3C3C3C",
+          backgroundColor: "#f0faeb",
         },
       }}
     >
@@ -154,7 +157,8 @@ const ProfileDirectory = () => {
     <Stack.Navigator
       screenOptions={{
         cardStyle: {
-          backgroundColor: "#3C3C3C",
+          //backgroundColor: "#3C3C3C",
+          backgroundColor: "#f0faeb",
         },
       }}
     >
@@ -183,7 +187,11 @@ const Main = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <Tab.Navigator screenOptions={{}}>
+      <Tab.Navigator
+        screenOptions={{
+          backgroundColor: "orange",
+        }}
+      >
         <Tab.Screen
           name="Recipes"
           component={MainRecipesDirectory}

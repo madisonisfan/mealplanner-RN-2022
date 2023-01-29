@@ -85,8 +85,8 @@ const MainRecipesTwo = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <ScrollView style={{ paddingTop: 20 }}>
         <Icon
-          size={35}
-          color="orange"
+          size={40}
+          color="#04A804"
           containerStyle={{
             position: "absolute",
             right: 10,
@@ -95,7 +95,7 @@ const MainRecipesTwo = ({ navigation }) => {
           name="bookmark"
           onPress={() => {
             console.log(`pressed favs`);
-            navigation.navigate("Favorites");
+            navigation.navigate("Bookmarks");
           }}
         />
 
@@ -113,6 +113,9 @@ const MainRecipesTwo = ({ navigation }) => {
             // type="solid"
             containerStyle={{
               backgroundColor: "white",
+              border: "black",
+              borderWidth: "1px",
+              borderRadius: "5px",
               //width: 150,
               //paddingLeft: 55,
               //paddingRight: 55,
