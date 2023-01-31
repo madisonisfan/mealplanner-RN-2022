@@ -17,14 +17,10 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
             containerStyle={styles.cardContainer}
             wrapperStyle={styles.cardInner}
           >
-            {/* <View style={styles.cardView}>*/}
-            {/* <View style={styles.imageView}>*/}
             <Card.Image source={recipe.image} style={styles.image} />
-            {/* </View>*/}
+
             <View style={styles.contentView}>
-              {/* <View style={styles.textView}>*/}
               <Text style={styles.recipeName}>{recipe.name}</Text>
-              {/*</View>*/}
 
               <View style={styles.iconView}>
                 <Icon name="pencil" type="font-awesome" />
@@ -36,20 +32,7 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
                   onPress={() => toggleIsCompleted(!isCompleted)}
                 />
               </View>
-              {/*
-                <View style={styles.iconView}>
-                  <Icon name="pencil" type="font-awesome" />
-                  <Icon
-                    color="grey"
-                    name={isCompleted ? "check-circle" : "check-circle-o"}
-                    type="font-awesome"
-                    size={30}
-                    onPress={() => toggleIsCompleted(!isCompleted)}
-                  />
-                </View>
-    */}
             </View>
-            {/*</View>*/}
           </Card>
         </TouchableOpacity>
       </>
@@ -61,11 +44,17 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
       <View>
         <Card>
           <View style={styles.noRecipeView}>
-            <Text>No Recipe Selected</Text>
+            <Text
+              style={{
+                fontSize: 17,
+              }}
+            >
+              No Recipe Selected
+            </Text>
             <Button
-              title="+"
               type="clear"
               buttonStyle={{ padding: 0 }}
+              icon={<Icon name="plus" color="grey" type="font-awesome" />}
               //onPress={() => toggleOptions(true)}
               onPress={() => navigate("MealplanOptionsModal")}
             />

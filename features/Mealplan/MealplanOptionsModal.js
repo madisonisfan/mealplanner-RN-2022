@@ -1,10 +1,9 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import Constants from "expo-constants";
-import { Button } from "@rneui/themed";
 import { selectAllFavorites } from "../Favorites/favoritesSlice";
 import { selectAllRecipes } from "../Recipes/recipesSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { Image } from "@rneui/themed";
+import { Image, Card, Icon, Button } from "@rneui/themed";
 import { addRecipeToDate } from "./mealplanSlice";
 import FavoriteScreen from "../../screens/FavoritesScreen";
 
@@ -30,19 +29,22 @@ const MealplanOptionsModal = ({
 
   const renderFavorite = ({ item: recipe }) => {
     return (
-      <View style={styles.recipeView}>
-        <Image source={recipe.image} />
-        <Text style={styles.recipeName}>{recipe.name}</Text>
-        <Button
-          style={{ flex: 1, justifyContent: "flex-end" }}
-          title="+"
-          onPress={() => {
-            handleAddingRecipe(recipe.id, mealplanId);
-            navigation.goBack();
-            //toggleModal(false);
-          }}
-        />
-      </View>
+      <Card
+        containerStyle={styles.cardContainer}
+        wrapperStyle={styles.cardInner}
+      >
+        <Card.Image source={recipe.image} style={styles.image} />
+
+        <View style={styles.contentView}>
+          <Text style={styles.recipeName}>{recipe.name}</Text>
+          <Button
+            type="clear"
+            icon={
+              <Icon size={23} name="plus" color="black" type="font-awesome" />
+            }
+          />
+        </View>
+      </Card>
     );
   };
 
@@ -56,7 +58,6 @@ const MealplanOptionsModal = ({
         <View
           style={{
             flex: 1,
-
             alignItems: "center",
             justifyContent: "center",
           }}
@@ -67,7 +68,7 @@ const MealplanOptionsModal = ({
               fontWeight: "500",
             }}
           >
-            No Favorites Added.
+            No Recipes Saved Yet.
           </Text>
         </View>
       }
@@ -123,11 +124,12 @@ const MealplanOptionsModal = ({
 
 const styles = StyleSheet.create({
   mainView: {
-    paddingTop: Constants.statusBarHeight,
+    //paddingTop: Constants.statusBarHeight,
     flex: 1,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     backgroundColor: "#f0faeb",
   },
+
   recipeView: {
     flexDirection: "row",
     paddingTop: 20,
@@ -148,6 +150,34 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
 
     flex: 1,
+  },
+  cardContainer: {
+    padding: 0,
+    height: 100,
+    borderRadius: 7,
+    borderWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+  cardInner: {
+    flexDirection: "row",
+  },
+  image: {
+    // borderBottomLeftRadius: 7,
+    //borderTopLeftRadius: 7,
+    borderRadius: 7,
+    width: 150,
+    height: 100,
+    //width: 150,
+  },
+
+  contentView: {
+    flexGrow: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
   },
 });
 

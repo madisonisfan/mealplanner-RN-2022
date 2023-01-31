@@ -94,8 +94,7 @@ const MainRecipesTwo = ({ navigation }) => {
           }}
           name="bookmark"
           onPress={() => {
-            console.log(`pressed favs`);
-            navigation.navigate("Bookmarks");
+            navigation.navigate("SavedRecipes");
           }}
         />
 

@@ -60,7 +60,11 @@ const MainRecipesDirectory = () => {
           headerBackTitle: "Cancel",
         }}
       />
-      <Stack.Screen name="Bookmarks" component={Favorites} options={{}} />
+      <Stack.Screen
+        name="SavedRecipes"
+        component={Favorites}
+        options={{ title: "Saved Recipes" }}
+      />
     </Stack.Navigator>
   );
 };
