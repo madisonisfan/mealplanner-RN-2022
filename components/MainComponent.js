@@ -21,6 +21,16 @@ const MainRecipesDirectory = () => {
           //backgroundColor: "#3C3C3C",
           backgroundColor: "#f0faeb",
         },
+        headerStyle: {
+          backgroundColor: "#1f1e1e",
+        },
+        headerTitleStyle: {
+          color: "white",
+          fontSize: 23,
+        },
+        headerBackTitleStyle: {
+          color: "grey",
+        },
       }}
     >
       <Stack.Screen
@@ -28,14 +38,6 @@ const MainRecipesDirectory = () => {
         component={MainRecipesTwo}
         options={{
           title: "Recipes",
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
         }}
       />
       <Stack.Screen
@@ -46,30 +48,9 @@ const MainRecipesDirectory = () => {
         })}*/
         options={{
           title: "Recipe Details",
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
         }}
       />
-      <Stack.Screen
-        name="Bookmarks"
-        component={Favorites}
-        options={{
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
-        }}
-      />
+      <Stack.Screen name="Bookmarks" component={Favorites} options={{}} />
     </Stack.Navigator>
   );
 };
@@ -83,40 +64,28 @@ const MealplanDirectory = () => {
           //backgroundColor: "#3C3C3C",
           backgroundColor: "#f0faeb",
         },
+        headerStyle: {
+          backgroundColor: "#1f1e1e",
+        },
+        //headerTintColor: "white",
+        headerTitleStyle: {
+          color: "white",
+          fontSize: 23,
+        },
+
+        headerBackTitleStyle: {
+          color: "grey",
+        },
       }}
     >
-      <Stack.Screen
-        name="Mealplan"
-        component={Mealplan}
-        options={{
-          title: "Mealplan",
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
-        }}
-      />
+      <Stack.Screen name="Mealplan" component={Mealplan} />
       <Stack.Screen
         name="RecipeDetails"
         component={RecipeDetails}
         /*options={({ route }) => ({
           title: route.params.recipe.name,
         })}*/
-        options={{
-          title: "Recipe Details",
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
-        }}
+        options={{}}
       />
     </Stack.Navigator>
   );
@@ -131,23 +100,17 @@ const BlogDirectory = () => {
           // backgroundColor: "#3C3C3C",
           backgroundColor: "#f0faeb",
         },
+        headerStyle: {
+          backgroundColor: "#1f1e1e",
+        },
+        //headerTintColor: "white",
+        headerTitleStyle: {
+          color: "white",
+          fontSize: 23,
+        },
       }}
     >
-      <Stack.Screen
-        name="Blog"
-        component={Blog}
-        options={{
-          title: "Blog",
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
-        }}
-      />
+      <Stack.Screen name="Blog" component={Blog} />
     </Stack.Navigator>
   );
 };
@@ -161,23 +124,17 @@ const ProfileDirectory = () => {
           //backgroundColor: "#3C3C3C",
           backgroundColor: "#f0faeb",
         },
+        headerStyle: {
+          backgroundColor: "#1f1e1e",
+        },
+        //headerTintColor: "white",
+        headerTitleStyle: {
+          color: "white",
+          fontSize: 23,
+        },
       }}
     >
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          title: "Profile",
-          headerStyle: {
-            backgroundColor: "#1f1e1e",
-          },
-          //headerTintColor: "white",
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 23,
-          },
-        }}
-      />
+      <Stack.Screen name="Profile" title="Profile" component={Profile} />
     </Stack.Navigator>
   );
 };

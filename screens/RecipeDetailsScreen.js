@@ -12,7 +12,10 @@ const RecipeDetails = ({ route }) => {
   const recipe = useSelector(selectRecipeById(recipeId));*/
 
   return (
-    <ScrollView style={styles.mainView}>
+    <ScrollView
+      style={styles.mainView}
+      contentContainerStyle={{ paddingVertical: 10 }}
+    >
       <Text style={styles.recipeName}>{recipe.name}</Text>
       <Text style={styles.description}>{recipe.description}</Text>
       <Image
@@ -92,8 +95,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   mainView: {
-    padding: 20,
-    backgroundColor: "white",
+    paddingHorizontal: 20,
+    //backgroundColor: "white",
   },
   recipeName: { fontSize: 25, fontWeight: "bold", marginBottom: 10 },
 
