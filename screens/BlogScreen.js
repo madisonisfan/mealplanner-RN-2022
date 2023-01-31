@@ -38,15 +38,11 @@ const Blog = ({ navigation }) => {
               alignSelf: "flex-end",
             }}
             onPress={() => {
-              console.log(`pressed`);
-              toggleCreateModal(true);
+              navigation.navigate("CreatePostModal");
             }}
           />
         </View>
       </View>
-      <Modal visible={isCreateModalOpen}>
-        <CreatePostModal toggleModal={toggleCreateModal} />
-      </Modal>
     </>
   );
 };

@@ -56,18 +56,6 @@ const RecipeForm = ({ toggle }) => {
 
   return (
     <ScrollView style={styles.mainView}>
-      <View style={styles.headerView}>
-        <Text style={styles.headerTitle}> Add Recipe</Text>
-        <Button
-          title="X"
-          type="clear"
-          titleStyle={{ color: "white" }}
-          onPress={() => {
-            resetForm();
-            toggle(false);
-          }}
-        />
-      </View>
       <View style={styles.inputContainerView}>
         <Text style={styles.inputLabel}>Recipe Name</Text>
         <TextInput
@@ -266,6 +254,7 @@ const styles = StyleSheet.create({
   },
   inputContainerView: {
     paddingHorizontal: 10,
+    paddingVertical: 10,
   },
   inputView: {
     backgroundColor: "white",

@@ -156,9 +156,6 @@ const MainRecipesTwo = ({ navigation }) => {
               />
             </View>
           </Modal>
-          <Modal visible={isRecipeFormOpen}>
-            <RecipeForm toggle={toggleRecipeForm} />
-          </Modal>
         </View>
         <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
           {recipes.map((recipe) => {
@@ -189,7 +186,8 @@ const MainRecipesTwo = ({ navigation }) => {
           }}
           onPress={() => {
             console.log(`pressed`);
-            toggleRecipeForm(!isRecipeFormOpen);
+            navigation.navigate("RecipeForm");
+            //toggleRecipeForm(!isRecipeFormOpen);
           }}
         />
       </View>
@@ -209,6 +207,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
 });
+
+/*
+ <Modal visible={isRecipeFormOpen}>
+            <RecipeForm toggle={toggleRecipeForm} />
+          </Modal>
+*/
 
 export default MainRecipesTwo;
 

@@ -14,7 +14,24 @@ const CreatePostModal = ({ toggleModal }) => {
 
   return (
     <View style={styles.mainView}>
-      <View style={styles.headerView}>
+      <TextInput
+        style={styles.content}
+        multiline
+        onChangeText={setPostContent}
+        value={postContent}
+        placeholder="post..."
+        placeholderTextColor={"grey"}
+      />
+    </View>
+  );
+};
+
+/* KEEP
+
+the header is currently being madde in the main component, in the Stack.Screen. 
+But not sure if i can have the post button by doing so, so may have to come back to this
+
+ <View style={styles.headerView}>
         <Button
           title="Cancel"
           onPress={() => toggleModal(false)}
@@ -34,37 +51,26 @@ const CreatePostModal = ({ toggleModal }) => {
         />
       </View>
 
-      <View style={{ width: "100%" }}>
-        <TextInput
-          style={styles.content}
-          multiline
-          onChangeText={setPostContent}
-          value={postContent}
-          placeholder="post..."
-          placeholderTextColor={"grey"}
-        />
-      </View>
-    </View>
-  );
-};
+*/
 
 const styles = StyleSheet.create({
   mainView: {
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#1f1e1e",
+    //paddingTop: Constants.statusBarHeight,
+    //backgroundColor: "#1f1e1e",
   },
+  /*
   headerView: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
     paddingHorizontal: 10,
-  },
+  },*/
   content: {
-    backgroundColor: "#1f1e1e",
-    borderWidth: 1,
-    borderTopColor: "grey",
-    color: "white",
-    height: "100%",
+    //backgroundColor: "#1f1e1e",
+    // borderWidth: 1,
+    //borderTopColor: "grey",
+    //color: "white",
+    //height: "100%",
     padding: 10,
     fontSize: 20,
   },

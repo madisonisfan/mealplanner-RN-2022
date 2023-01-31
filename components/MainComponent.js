@@ -5,7 +5,9 @@ import Mealplan from "../screens/MealplanScreen";
 import Profile from "../screens/ProfileScreen";
 import RecipeDetails from "../screens/RecipeDetailsScreen";
 import Favorites from "../screens/FavoritesScreen";
+import RecipeForm from "../features/Recipes/RecipeForm";
 import MealplanOptionsModal from "../features/Mealplan/MealplanOptionsModal";
+import CreatePostModal from "../features/Posts/createPostModal";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -51,6 +53,15 @@ const MainRecipesDirectory = () => {
           title: "Recipe Details",
         }}
       />
+      <Stack.Screen
+        name="RecipeForm"
+        component={RecipeForm}
+        options={{
+          presentation: "modal",
+          title: "Add Recipe",
+          headerBackTitle: "Cancel",
+        }}
+      />
       <Stack.Screen name="Bookmarks" component={Favorites} options={{}} />
     </Stack.Navigator>
   );
@@ -94,14 +105,6 @@ const MealplanDirectory = () => {
         options={{
           presentation: "modal",
           title: "Choose Meal",
-          /*
-          header: () => {
-            return (
-              <View>
-                <Text>Choose Meal</Text>
-              </View>
-            );
-          },*/
         }}
       />
     </Stack.Navigator>
@@ -128,6 +131,14 @@ const BlogDirectory = () => {
       }}
     >
       <Stack.Screen name="Blog" component={Blog} />
+      <Stack.Screen
+        name="CreatePostModal"
+        component={CreatePostModal}
+        options={{
+          presentation: "modal",
+          title: "Create post",
+        }}
+      />
     </Stack.Navigator>
   );
 };
