@@ -38,7 +38,8 @@ const MealplanOptionsModal = ({
           title="+"
           onPress={() => {
             handleAddingRecipe(recipe.id, mealplanId);
-            toggleModal(false);
+            navigation.goBack();
+            //toggleModal(false);
           }}
         />
       </View>
@@ -51,16 +52,74 @@ const MealplanOptionsModal = ({
       data={recipes.filter((recipe) => favorites.includes(recipe.id))}
       renderItem={renderFavorite}
       style={{ flex: 1 }}
-      ListEmptyComponent={<Text>No Favorites To Add.</Text>}
+      ListEmptyComponent={
+        <View
+          style={{
+            flex: 1,
+
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: "500",
+            }}
+          >
+            No Favorites Added.
+          </Text>
+        </View>
+      }
       //ListHeaderComponent={<Text style={styles.pageTitle}>Choose meal</Text>}
       //ListHeaderComponentStyle={styles.mainView}
       ListFooterComponent={
-        <Button title="Done" onPress={() => navigation.goBack()} />
+        favorites.length !== 0 && (
+          <Button
+            raised
+            radius={10}
+            title="Done"
+            color="white"
+            titleStyle={{
+              color: "black",
+            }}
+            containerStyle={{
+              //width: 100,
+              marginHorizontal: "30%",
+            }}
+            buttonStyle={{
+              borderWidth: "1px",
+              borderColor: "black",
+            }}
+            onPress={() => navigation.goBack()}
+          />
+        )
       }
       ListFooterComponentStyle={styles.footerStyle}
     />
   );
 };
+
+/*
+ <Button
+          raised
+          radius={10}
+          title="Done"
+          color="white"
+          titleStyle={{
+            color: "black",
+          }}
+          containerStyle={{
+            //width: 100,
+            marginHorizontal: "30%",
+          }}
+          buttonStyle={{
+            borderWidth: "1px",
+            borderColor: "black",
+          }}
+          onPress={() => navigation.goBack()}
+        />
+*/
 
 const styles = StyleSheet.create({
   mainView: {
