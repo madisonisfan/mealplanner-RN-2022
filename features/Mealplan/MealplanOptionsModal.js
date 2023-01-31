@@ -8,7 +8,12 @@ import { Image } from "@rneui/themed";
 import { addRecipeToDate } from "./mealplanSlice";
 import FavoriteScreen from "../../screens/FavoritesScreen";
 
-const MealplanOptionsModal = ({ toggleModal, mealplanId, mealType }) => {
+const MealplanOptionsModal = ({
+  toggleModal,
+  mealplanId,
+  mealType,
+  navigation,
+}) => {
   const favorites = useSelector(selectAllFavorites);
   const recipes = useSelector(selectAllRecipes);
   const dispatch = useDispatch();
@@ -47,10 +52,10 @@ const MealplanOptionsModal = ({ toggleModal, mealplanId, mealType }) => {
       renderItem={renderFavorite}
       style={{ flex: 1 }}
       ListEmptyComponent={<Text>No Favorites To Add.</Text>}
-      ListHeaderComponent={<Text style={styles.pageTitle}>Choose meal</Text>}
+      //ListHeaderComponent={<Text style={styles.pageTitle}>Choose meal</Text>}
       //ListHeaderComponentStyle={styles.mainView}
       ListFooterComponent={
-        <Button title="Done" onPress={() => toggleModal(false)} />
+        <Button title="Done" onPress={() => navigation.goBack()} />
       }
       ListFooterComponentStyle={styles.footerStyle}
     />
@@ -62,6 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: Constants.statusBarHeight,
     flex: 1,
     paddingHorizontal: 10,
+    backgroundColor: "#f0faeb",
   },
   recipeView: {
     flexDirection: "row",

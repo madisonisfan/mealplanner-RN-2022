@@ -5,6 +5,7 @@ import Mealplan from "../screens/MealplanScreen";
 import Profile from "../screens/ProfileScreen";
 import RecipeDetails from "../screens/RecipeDetailsScreen";
 import Favorites from "../screens/FavoritesScreen";
+import MealplanOptionsModal from "../features/Mealplan/MealplanOptionsModal";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -86,6 +87,22 @@ const MealplanDirectory = () => {
           title: route.params.recipe.name,
         })}*/
         options={{}}
+      />
+      <Stack.Screen
+        name="MealplanOptionsModal"
+        component={MealplanOptionsModal}
+        options={{
+          presentation: "modal",
+          title: "Choose Meal",
+          /*
+          header: () => {
+            return (
+              <View>
+                <Text>Choose Meal</Text>
+              </View>
+            );
+          },*/
+        }}
       />
     </Stack.Navigator>
   );

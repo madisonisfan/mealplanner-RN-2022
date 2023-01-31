@@ -52,13 +52,6 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
             {/*</View>*/}
           </Card>
         </TouchableOpacity>
-        <Modal visible={isOptionsOpen}>
-          <MealplanOptionsModal
-            toggleModal={toggleOptions}
-            mealplanId={mealplanId}
-            mealType={mealType}
-          />
-        </Modal>
       </>
     );
   }
@@ -73,21 +66,32 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
               title="+"
               type="clear"
               buttonStyle={{ padding: 0 }}
-              onPress={() => toggleOptions(true)}
+              //onPress={() => toggleOptions(true)}
+              onPress={() => navigate("MealplanOptionsModal")}
             />
           </View>
         </Card>
       </View>
-      <Modal visible={isOptionsOpen}>
+    </>
+  );
+};
+
+/*
+
+<Modal visible={isOptionsOpen}>
         <MealplanOptionsModal
           toggleModal={toggleOptions}
           mealplanId={mealplanId}
           mealType={mealType}
         />
       </Modal>
-    </>
-  );
-};
+        <Modal visible={isOptionsOpen}>
+          <MealplanOptionsModal
+            toggleModal={toggleOptions}
+            mealplanId={mealplanId}
+            mealType={mealType}
+          />
+        </Modal>*/
 
 const styles = StyleSheet.create({
   cardContainer: {
