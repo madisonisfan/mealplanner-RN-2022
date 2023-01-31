@@ -42,6 +42,10 @@ const MealplanOptionsModal = ({
             icon={
               <Icon size={23} name="plus" color="black" type="font-awesome" />
             }
+            onPress={() => {
+              //add functionalty to add/switch recipe
+              navigation.goBack();
+            }}
           />
         </View>
       </Card>

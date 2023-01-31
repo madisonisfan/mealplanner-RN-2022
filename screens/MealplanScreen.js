@@ -61,7 +61,7 @@ const Mealplan = ({ navigation }) => {
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
 
         <MealplanItem
-          navigate={navigation.navigate}
+          navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
           mealplanId={currentDay.id}
           mealType={"breakfast"}

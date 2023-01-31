@@ -3,7 +3,7 @@ import { Card, ListItem } from "react-native-elements";
 import RenderRecipe from "../features/Recipes/renderRecipe";
 import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
 import { RECIPES } from "../shared/recipes";
-import { Picker } from "@react-native-picker/picker";
+//import { Picker } from "@react-native-picker/picker";
 import Favorites from "./FavoritesScreen";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -13,8 +13,9 @@ import {
 } from "../features/Recipes/recipesSlice";
 import RecipeForm from "../features/Recipes/RecipeForm";
 import { ScrollView } from "react-native-gesture-handler";
-import { Icon } from "@rneui/themed";
-import { Button } from "@rneui/themed";
+import { Icon, Button } from "@rneui/themed";
+
+import DropDownPicker from "react-native-dropdown-picker";
 
 const recipeTypes = {
   all: "All Recipes",
@@ -68,7 +69,15 @@ const MainRecipesTwo = ({ navigation }) => {
   const [isTypeModalOpen, toggleTypeModal] = useState(false);
   const [isRecipeFormOpen, toggleRecipeForm] = useState(false);
   const [favoritesEnabled, toggleFavorites] = useState(false);
+  const [dropdownOpen, setDropdown] = useState(false);
   const recipes = useSelector(selectAllRecipes);
+  const mealtypes = [
+    { label: "All Recipes", value: "all" },
+    { label: "Breakfast", value: "breakfast" },
+    { label: "Lunch/Dinner", value: "lunchDinner" },
+    { label: "Drinks", value: "drinks" },
+    { label: "Snacks", value: "snacks" },
+  ];
   //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
   const renderRecipe = ({ item: recipe }) => {
@@ -98,64 +107,30 @@ const MainRecipesTwo = ({ navigation }) => {
           }}
         />
 
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            //marginTop: 300,
-            marginLeft: "auto",
-            marginRight: "auto",
-            width: 125,
+        <DropDownPicker
+          textStyle={{
+            fontSize: 17,
           }}
-        >
-          <Button
-            // type="solid"
-            containerStyle={{
-              backgroundColor: "white",
-              border: "black",
-              borderWidth: "1px",
-              borderRadius: "5px",
-              //width: 150,
-              //paddingLeft: 55,
-              //paddingRight: 55,
-              //paddingTop: 15,
-              //paddingBottom: 10,
-            }}
-            titleStyle={{ color: "black" }}
-            onPress={() => toggleTypeModal(!isTypeModalOpen)}
-            buttonStyle={{ backgroundColor: "white", paddingHorizontal: 17 }}
-          >
-            {recipeTypes[selectedRecipeType]}
-            <Icon
-              name="chevron-down"
-              type="font-awesome"
-              size={15}
-              iconStyle={{ paddingLeft: 10 }}
-            />
-          </Button>
-          <Modal visible={isTypeModalOpen}>
-            <View>
-              <Picker
-                mode="dropdown"
-                selectedValue={selectedRecipeType}
-                onValueChange={(type, index) => setType(type)}
-                style={{
-                  color: "blue",
-                }}
-              >
-                <Picker.Item label="All Recipes" value="all" />
-                <Picker.Item label="Breakfast" value="breakfast" />
-                <Picker.Item label="Lunch/Dinner" value="lunchDinner" />
-                <Picker.Item label="Drinks" value="drinks" />
-                <Picker.Item label="Snacks" value="snacks" />
-              </Picker>
-              <Button
-                title="Done"
-                onPress={() => toggleTypeModal(!isTypeModalOpen)}
-              />
-            </View>
-          </Modal>
-        </View>
+          labelStyle={{
+            fontSize: 17,
+          }}
+          containerStyle={{
+            width: 175,
+            marginRight: "auto",
+            marginLeft: "auto",
+          }}
+          style={{
+            width: 175,
+            marginRight: "auto",
+            marginLeft: "auto",
+          }}
+          open={dropdownOpen}
+          value={selectedRecipeType}
+          items={mealtypes}
+          setOpen={setDropdown}
+          setValue={setType}
+        />
+
         <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
           {recipes.map((recipe) => {
             console.log(`recipe`, recipe);
@@ -193,6 +168,70 @@ const MainRecipesTwo = ({ navigation }) => {
     </View>
   );
 };
+
+/*
+
+ <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            //marginTop: 300,
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: 125,
+          }}
+        >
+          <Button
+            // type="solid"
+            containerStyle={{
+              backgroundColor: "white",
+              border: "black",
+              borderWidth: "1px",
+              borderRadius: "5px",
+              //width: 150,
+              //paddingLeft: 55,
+              //paddingRight: 55,
+              //paddingTop: 15,
+              //paddingBottom: 10,
+            }}
+            titleStyle={{ color: "black" }}
+            onPress={() => toggleTypeModal(!isTypeModalOpen)}
+            buttonStyle={{ backgroundColor: "white", paddingHorizontal: 17 }}
+          >
+            {recipeTypes[selectedRecipeType]}
+            <Icon
+              name="chevron-down"
+              type="font-awesome"
+              size={15}
+              iconStyle={{ paddingLeft: 10 }}
+            />
+          </Button>
+        </View>
+
+          <Modal visible={isTypeModalOpen}>
+            <View>
+              <Picker
+                mode="dropdown"
+                selectedValue={selectedRecipeType}
+                onValueChange={(type, index) => setType(type)}
+                style={{
+                  color: "blue",
+                }}
+              >
+                <Picker.Item label="All Recipes" value="all" />
+                <Picker.Item label="Breakfast" value="breakfast" />
+                <Picker.Item label="Lunch/Dinner" value="lunchDinner" />
+                <Picker.Item label="Drinks" value="drinks" />
+                <Picker.Item label="Snacks" value="snacks" />
+              </Picker>
+              <Button
+                title="Done"
+                onPress={() => toggleTypeModal(!isTypeModalOpen)}
+              />
+            </View>
+          </Modal>
+
+*/
 
 const styles = StyleSheet.create({
   buttonView: {

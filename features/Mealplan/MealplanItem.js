@@ -5,14 +5,16 @@ import { Icon, Card } from "@rneui/themed";
 
 import MealplanOptionsModal from "./MealplanOptionsModal";
 
-const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
+const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
   const [isOptionsOpen, toggleOptions] = useState(false);
   const [isCompleted, toggleIsCompleted] = useState(false);
 
   if (recipe) {
     return (
       <>
-        <TouchableOpacity onPress={() => navigate("RecipeDetails", { recipe })}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("RecipeDetails", { recipe })}
+        >
           <Card
             containerStyle={styles.cardContainer}
             wrapperStyle={styles.cardInner}
@@ -23,7 +25,11 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
               <Text style={styles.recipeName}>{recipe.name}</Text>
 
               <View style={styles.iconView}>
-                <Icon name="pencil" type="font-awesome" />
+                <Icon
+                  name="pencil"
+                  type="font-awesome"
+                  onPress={() => navigation.navigate("MealplanOptionsModal")}
+                />
                 <Icon
                   color="grey"
                   name={isCompleted ? "check-circle" : "check-circle-o"}
@@ -56,7 +62,7 @@ const MealplanItem = ({ recipe, navigate, mealplanId, mealType }) => {
               buttonStyle={{ padding: 0 }}
               icon={<Icon name="plus" color="grey" type="font-awesome" />}
               //onPress={() => toggleOptions(true)}
-              onPress={() => navigate("MealplanOptionsModal")}
+              onPress={() => navigation.navigate("MealplanOptionsModal")}
             />
           </View>
         </Card>
