@@ -31,9 +31,7 @@ const MainRecipesDirectory = () => {
           color: "white",
           fontSize: 23,
         },
-        headerBackTitleStyle: {
-          color: "grey",
-        },
+        headerTintColor: "grey",
       }}
     >
       <Stack.Screen
@@ -85,9 +83,7 @@ const MealplanDirectory = () => {
           fontSize: 23,
         },
 
-        headerBackTitleStyle: {
-          color: "grey",
-        },
+        headerTintColor: "grey",
       }}
     >
       <Stack.Screen name="Mealplan" component={Mealplan} />
@@ -128,6 +124,14 @@ const BlogDirectory = () => {
           color: "white",
           fontSize: 23,
         },
+        headerBackTitleStyle: {
+          color: "grey",
+        },
+        headerBackTitle: "Cancel",
+        headerTintColor: "grey",
+        /*headerBackStyling: {
+          color: "grey",
+        },*/
       }}
     >
       <Stack.Screen name="Blog" component={Blog} />
