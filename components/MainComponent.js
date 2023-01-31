@@ -8,8 +8,9 @@ import Favorites from "../screens/FavoritesScreen";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Icon } from "@rneui/themed";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const MainRecipesDirectory = () => {
   const Stack = createStackNavigator();
@@ -183,13 +184,15 @@ const ProfileDirectory = () => {
 
 const Main = () => {
   //return <MainRecipes />;
-  const Tab = createBottomTabNavigator();
+  const Tab = createMaterialBottomTabNavigator();
 
   return (
     <View style={styles.mainContainer}>
       <Tab.Navigator
-        screenOptions={{
-          backgroundColor: "orange",
+        activeColor="#f0faeb"
+        inactiveColor="white"
+        barStyle={{
+          backgroundColor: "#1f1e1e",
         }}
       >
         <Tab.Screen
@@ -197,12 +200,9 @@ const Main = () => {
           component={MainRecipesDirectory}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon name="list" color={color} type="font-awesome" />
+              <MaterialCommunityIcons name="home" color={color} size={26} />
             ),
-            tabBarLabelStyle: {
-              backgroundColor: "red",
-              color: "blue",
-            },
+            //tabBarActiveBackgroundColor: "red",
           }}
         />
         <Tab.Screen

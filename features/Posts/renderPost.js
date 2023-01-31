@@ -33,21 +33,21 @@ const RenderPost = ({ post }) => {
           <Text style={styles.date}>{date}</Text>
         </View>
       </View>
-      <View style={styles.postConent}>
-        <Text>{postContent}</Text>
+      <View style={styles.postContent}>
+        <Text style={styles.postText}>{postContent}</Text>
       </View>
       <View style={styles.bottomButtonView}>
         <Button
           type="clear"
           // title="Like"
           buttonStyle={styles.bottomButton}
-          titleStyle={{ color: "grey", fontSize: 15 }}
+          titleStyle={{ color: "#1f1e1e", fontSize: 15 }}
           onPress={() => submitLike()}
         >
           <Icon
             name="thumbs-o-up"
             type="font-awesome"
-            color="grey"
+            color="#1f1e1e"
             iconStyle={{ paddingRight: 5 }}
             size={20}
           />
@@ -56,14 +56,14 @@ const RenderPost = ({ post }) => {
         <Button
           type="clear"
           title="Comment"
-          titleStyle={{ color: "grey", fontSize: 15 }}
+          titleStyle={{ color: "#1f1e1e", fontSize: 15 }}
           buttonStyle={styles.bottomButton}
           onPress={() => submitComment()}
         >
           <Icon
             name="comment-o"
             type="font-awesome"
-            color="grey"
+            color="#1f1e1e"
             size={20}
             iconStyle={{ paddingRight: 7 }}
           />
@@ -78,10 +78,13 @@ const styles = StyleSheet.create({
   mainView: {
     width: "100%",
     backgroundColor: "white",
-    marginBottom: 10,
+    // marginBottom: 10,
     // flexDirection: "row",
     paddingHorizontal: 5,
     paddingTop: 10,
+    paddingBottom: 10,
+    borderColor: "grey",
+    borderWidth: "1px",
 
     //paddingBottom: 0,
   },
@@ -97,8 +100,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
   },
-  postConent: {
+  postContent: {
     marginTop: 10,
+    paddingVertical: 5,
+  },
+  postText: {
+    fontSize: 16,
   },
   date: {
     color: "grey",
@@ -117,7 +124,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     borderTopColor: "rgb(207, 207, 207)",
     borderTopWidth: 1,
-    paddingVertical: 4,
+    paddingTop: 10,
   },
   bottomButton: {
     backgroundColor: "white",
