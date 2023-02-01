@@ -22,7 +22,8 @@ const MainRecipesDirectory = () => {
       screenOptions={{
         cardStyle: {
           //backgroundColor: "#3C3C3C",
-          backgroundColor: "#f0faeb",
+          // backgroundColor: "#f0faeb",
+          backgroundColor: "#e9f2d5",
         },
         headerStyle: {
           backgroundColor: "#1f1e1e",
@@ -76,7 +77,8 @@ const MealplanDirectory = () => {
       screenOptions={{
         cardStyle: {
           //backgroundColor: "#3C3C3C",
-          backgroundColor: "#f0faeb",
+          //backgroundColor: "#f0faeb",
+          backgroundColor: "#e9f2d5",
         },
         headerStyle: {
           backgroundColor: "#1f1e1e",
@@ -118,7 +120,8 @@ const BlogDirectory = () => {
       screenOptions={{
         cardStyle: {
           // backgroundColor: "#3C3C3C",
-          backgroundColor: "#f0faeb",
+          //backgroundColor: "#f0faeb",
+          backgroundColor: "#e9f2d5",
         },
         headerStyle: {
           backgroundColor: "#1f1e1e",
@@ -158,7 +161,8 @@ const ProfileDirectory = () => {
       screenOptions={{
         cardStyle: {
           //backgroundColor: "#3C3C3C",
-          backgroundColor: "#f0faeb",
+          //backgroundColor: "#f0faeb",
+          backgroundColor: "#e9f2d5",
         },
         headerStyle: {
           backgroundColor: "#1f1e1e",

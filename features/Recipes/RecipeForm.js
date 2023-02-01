@@ -44,6 +44,7 @@ const RecipeForm = ({ toggle }) => {
     resetForm();
   };
 
+  //Cant use clear method instead
   const resetForm = () => {
     setName("");
     setDescription("");
@@ -73,9 +74,10 @@ const RecipeForm = ({ toggle }) => {
           multiline={true}
           numberOfLines={3}
           rows={3}
+          maxLength={100}
           placeholder="brief description"
           placeholderTextColor="grey"
-          style={styles.input}
+          style={styles.descriptionBox}
           value={description}
           onChangeText={(text) => setDescription(text)}
         />
@@ -213,30 +215,16 @@ const RecipeForm = ({ toggle }) => {
 };
 
 const styles = StyleSheet.create({
-  headerView: {
-    // backgroundColor: "#1f1e1e",
-    marginBottom: 20,
-    textAlign: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#1f1e1e",
-    paddingTop: Constants.statusBarHeight,
-    // height: 20,
-    //flexDirection,
-  },
-  headerTitle: {
-    color: "white",
-    fontSize: 23,
-    fontWeight: "400",
-    textAlign: "center",
-  },
-
   mainView: {
     flex: 1,
-    backgroundColor: "#f0faeb",
+
     paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
   },
+  inputContainerView: {
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+
   bottomButton: {
     backgroundColor: "white",
     borderWidth: "1px",
@@ -246,21 +234,11 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     marginTop: 30,
   },
-  formTitle: {
-    fontSize: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    color: "white",
-  },
-  inputContainerView: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
+
   inputView: {
     backgroundColor: "white",
     borderWidth: 1,
     borderRadius: 7,
-
     paddingLeft: 5,
     fontSize: 17,
     marginBottom: 10,
@@ -276,9 +254,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     marginBottom: 20,
   },
+  descriptionBox: {
+    color: "black",
+    fontSize: 17,
+    borderWidth: 1,
+    backgroundColor: "white",
+    //backgroundColor: "#D9D9D9",
+    borderRadius: 7,
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    marginBottom: 20,
+    height: 75,
+  },
   inputLabel: {
     fontSize: 17,
     paddingBottom: 3,
+    fontWeight: "600",
   },
   largeInputContainer: {
     flexDirection: "row",

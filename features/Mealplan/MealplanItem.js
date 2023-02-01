@@ -8,6 +8,7 @@ import MealplanOptionsModal from "./MealplanOptionsModal";
 const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
   const [isOptionsOpen, toggleOptions] = useState(false);
   const [isCompleted, toggleIsCompleted] = useState(false);
+  console.log(`navigation`, navigation);
 
   if (recipe) {
     return (
@@ -28,10 +29,11 @@ const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
                 <Icon
                   name="pencil"
                   type="font-awesome"
+                  color="grey"
                   onPress={() => navigation.navigate("MealplanOptionsModal")}
                 />
                 <Icon
-                  color="grey"
+                  color="black"
                   name={isCompleted ? "check-circle" : "check-circle-o"}
                   type="font-awesome"
                   size={30}
@@ -46,28 +48,26 @@ const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
   }
 
   return (
-    <>
-      <View>
-        <Card>
-          <View style={styles.noRecipeView}>
-            <Text
-              style={{
-                fontSize: 17,
-              }}
-            >
-              No Recipe Selected
-            </Text>
-            <Button
-              type="clear"
-              buttonStyle={{ padding: 0 }}
-              icon={<Icon name="plus" color="grey" type="font-awesome" />}
-              //onPress={() => toggleOptions(true)}
-              onPress={() => navigation.navigate("MealplanOptionsModal")}
-            />
-          </View>
-        </Card>
-      </View>
-    </>
+    <View>
+      <Card>
+        <View style={styles.noRecipeView}>
+          <Text
+            style={{
+              fontSize: 17,
+            }}
+          >
+            No Recipe Selected
+          </Text>
+
+          <Icon
+            name="plus"
+            color="grey"
+            type="font-awesome"
+            onPress={() => navigation.navigate("MealplanOptionsModal")}
+          />
+        </View>
+      </Card>
+    </View>
   );
 };
 

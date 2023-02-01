@@ -169,6 +169,27 @@ const MainRecipesTwo = ({ navigation }) => {
   );
 };
 
+const styles = StyleSheet.create({
+  buttonView: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 15,
+  },
+  button: {
+    borderColor: "black",
+    color: "black",
+    backgroundColor: "white",
+  },
+});
+
+/*
+ <Modal visible={isRecipeFormOpen}>
+            <RecipeForm toggle={toggleRecipeForm} />
+          </Modal>
+*/
+
+export default MainRecipesTwo;
+
 /*
 
  <View
@@ -232,27 +253,6 @@ const MainRecipesTwo = ({ navigation }) => {
           </Modal>
 
 */
-
-const styles = StyleSheet.create({
-  buttonView: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginTop: 15,
-  },
-  button: {
-    borderColor: "black",
-    color: "black",
-    backgroundColor: "white",
-  },
-});
-
-/*
- <Modal visible={isRecipeFormOpen}>
-            <RecipeForm toggle={toggleRecipeForm} />
-          </Modal>
-*/
-
-export default MainRecipesTwo;
 
 /*
 
