@@ -56,155 +56,157 @@ const RecipeForm = ({ toggle }) => {
   };
 
   return (
-    <ScrollView style={styles.mainView}>
-      <View style={styles.inputContainerView}>
-        <Text style={styles.inputLabel}>Recipe Name</Text>
-        <TextInput
-          // containerStyle={styles.inputContainer}
-          //autofocus={true}
-          placeholderTextColor="grey"
-          style={styles.input}
-          placeholder="recipe name"
-          maxLength={20}
-          value={name}
-          onChangeText={(text) => setName(text)}
-        />
-        <Text style={styles.inputLabel}>Recipe Description</Text>
-        <TextInput
-          multiline={true}
-          numberOfLines={3}
-          rows={3}
-          maxLength={100}
-          placeholder="brief description"
-          placeholderTextColor="grey"
-          style={styles.descriptionBox}
-          value={description}
-          onChangeText={(text) => setDescription(text)}
-        />
-        <Text style={styles.inputLabel}>Preptime</Text>
-        <TextInput
-          placeholder="preptime in minutes"
-          placeholderTextColor="grey"
-          keyboardType="numeric"
-          style={styles.input}
-          value={preptime}
-          onChangeText={(text) => setPreptime(text)}
-        />
+    <ScrollView
+      style={styles.mainView}
+      contentContainerStyle={styles.inputContainerView}
+    >
+      <Text style={styles.inputLabel}>Recipe Name</Text>
+      <TextInput
+        // containerStyle={styles.inputContainer}
+        //autofocus={true}
+        placeholderTextColor="grey"
+        style={styles.input}
+        placeholder="recipe name"
+        maxLength={20}
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
+      <Text style={styles.inputLabel}>Recipe Description</Text>
+      <TextInput
+        multiline={true}
+        numberOfLines={3}
+        rows={3}
+        maxLength={100}
+        placeholder="brief description"
+        placeholderTextColor="grey"
+        style={styles.descriptionBox}
+        value={description}
+        onChangeText={(text) => setDescription(text)}
+      />
+      <Text style={styles.inputLabel}>Preptime</Text>
+      <TextInput
+        placeholder="preptime in minutes"
+        placeholderTextColor="grey"
+        keyboardType="numeric"
+        style={styles.input}
+        value={preptime}
+        onChangeText={(text) => setPreptime(text)}
+      />
 
-        <Text style={styles.inputLabel}>Cooktime</Text>
-        <TextInput
-          placeholder="cooktime in minutes"
-          placeholderTextColor="grey"
-          keyboardType="numeric"
-          style={styles.input}
-          value={cooktime}
-          onChangeText={(text) => setCooktime(text)}
-        />
-        <Text style={styles.inputLabel}>Servings</Text>
-        <TextInput
-          placeholder="servings"
-          value={servings}
-          placeholderTextColor="grey"
-          keyboardType="numeric"
-          style={styles.input}
-          onChangeText={(text) => setServings(text)}
-        />
-        <Text style={styles.inputLabel}>Ingredients</Text>
-        <View style={styles.inputView}>
-          {ingredients.map((i, index) => {
-            return (
-              <ListItem key={index} containerStyle={{ padding: 0 }}>
-                <ListItem.Content
-                  style={{ paddingTop: 5, justifyContent: "center" }}
+      <Text style={styles.inputLabel}>Cooktime</Text>
+      <TextInput
+        placeholder="cooktime in minutes"
+        placeholderTextColor="grey"
+        keyboardType="numeric"
+        style={styles.input}
+        value={cooktime}
+        onChangeText={(text) => setCooktime(text)}
+      />
+      <Text style={styles.inputLabel}>Servings</Text>
+      <TextInput
+        placeholder="servings"
+        value={servings}
+        placeholderTextColor="grey"
+        keyboardType="numeric"
+        style={styles.input}
+        onChangeText={(text) => setServings(text)}
+      />
+      <Text style={styles.inputLabel}>Ingredients</Text>
+      <View style={styles.largeInputView}>
+        {ingredients.map((i, index) => {
+          return (
+            <ListItem key={index} containerStyle={{ padding: 0 }}>
+              <ListItem.Content
+                style={{ paddingTop: 5, justifyContent: "center" }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
                 >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Icon
-                      name="circle"
-                      type="font-awesome"
-                      size={10}
-                      iconStyle={{ paddingRight: 3 }}
-                    />
-                    <Text style={{ fontSize: 20 }}>{i}</Text>
-                  </View>
-                </ListItem.Content>
-              </ListItem>
-            );
-          })}
-          <View style={styles.largeInputContainer}>
-            <TextInput
-              style={styles.largeInput}
-              //containerStyle={{ width: "80%" }}
-              placeholder="Add Ingredient"
-              placeholderTextColor="grey"
-              value={currentIngredient}
-              onChangeText={(text) => setCI(text)}
-            />
-            <Button
-              title="+"
-              titleStyle={{
-                color: "black",
-                fontSize: 20,
-                fontWeight: "medium",
-              }}
-              type="clear"
-              //color="black"
-              onPress={() => {
-                setIngredients([...ingredients, currentIngredient]);
-                setCI("");
-              }}
-            />
-          </View>
-        </View>
-        <Text style={styles.inputLabel}>Directions</Text>
-        <View style={styles.inputView}>
-          {directions.map((d, index) => {
-            return (
-              <ListItem key={index} containerStyle={{ padding: 0 }}>
-                <ListItem.Content style={{ paddingTop: 5 }}>
-                  <ListItem.Title style={{ fontSize: 20 }}>
-                    <Icon name="circle" type="font-awesome" /> {index + 1}. {d}
-                  </ListItem.Title>
-                </ListItem.Content>
-              </ListItem>
-            );
-          })}
-
-          <View style={styles.largeInputContainer}>
-            <TextInput
-              style={styles.largeInput}
-              //containerStyle={{ width: "80%" }}
-              placeholder="Add Direction"
-              placeholderTextColor="grey"
-              value={currentDirection}
-              onChangeText={(text) => setCD(text)}
-            />
-            <Button
-              title="+"
-              titleStyle={{
-                color: "black",
-                fontSize: 20,
-                fontWeight: "medium",
-              }}
-              containerStyle={{ padding: 0 }}
-              type="clear"
-              onPress={() => {
-                setDirections([...directions, currentDirection]);
-                setCD("");
-              }}
-            />
-          </View>
+                  <Icon
+                    name="circle"
+                    type="font-awesome"
+                    size={10}
+                    iconStyle={{ paddingRight: 3 }}
+                  />
+                  <Text style={{ fontSize: 17 }}>{i}</Text>
+                </View>
+              </ListItem.Content>
+            </ListItem>
+          );
+        })}
+        <View style={styles.largeInputContainer}>
+          <TextInput
+            style={styles.largeInput}
+            //containerStyle={{ width: "80%" }}
+            placeholder="Add Ingredient"
+            placeholderTextColor="grey"
+            value={currentIngredient}
+            onChangeText={(text) => setCI(text)}
+          />
+          <Button
+            title="+"
+            titleStyle={{
+              color: "black",
+              fontSize: 20,
+              fontWeight: "medium",
+            }}
+            type="clear"
+            //color="black"
+            onPress={() => {
+              setIngredients([...ingredients, currentIngredient]);
+              setCI("");
+            }}
+          />
         </View>
       </View>
+      <Text style={styles.inputLabel}>Directions</Text>
+      <View style={styles.largeInputView}>
+        {directions.map((d, index) => {
+          return (
+            <ListItem key={index} containerStyle={{ padding: 0 }}>
+              <ListItem.Content style={{ paddingTop: 5 }}>
+                <ListItem.Title style={{ fontSize: 17 }}>
+                  <Icon name="circle" type="font-awesome" /> {index + 1}. {d}
+                </ListItem.Title>
+              </ListItem.Content>
+            </ListItem>
+          );
+        })}
+
+        <View style={styles.largeInputContainer}>
+          <TextInput
+            style={styles.largeInput}
+            //containerStyle={{ width: "80%" }}
+            placeholder="Add Direction"
+            placeholderTextColor="grey"
+            value={currentDirection}
+            onChangeText={(text) => setCD(text)}
+          />
+          <Button
+            title="+"
+            titleStyle={{
+              color: "black",
+              fontSize: 20,
+              fontWeight: "medium",
+            }}
+            containerStyle={{ padding: 0 }}
+            type="clear"
+            onPress={() => {
+              setDirections([...directions, currentDirection]);
+              setCD("");
+            }}
+          />
+        </View>
+      </View>
+
       <Button
         title="Submit"
         radius={9}
         titleStyle={{ color: "black", fontWeight: "500" }}
-        buttonStyle={styles.bottomButton}
+        buttonStyle={styles.submitButton}
         onPress={() => {
           handleRecipeSubmit();
           toggle(false);
@@ -216,34 +218,41 @@ const RecipeForm = ({ toggle }) => {
 
 const styles = StyleSheet.create({
   mainView: {
+    //surrounds everything
     flex: 1,
-
-    paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+    // paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
   },
   inputContainerView: {
+    //inside mainView, includes everything except submit button??
     paddingHorizontal: 10,
     paddingVertical: 10,
   },
 
-  bottomButton: {
+  submitButton: {
     backgroundColor: "white",
     borderWidth: "1px",
     borderColor: "black",
     width: "50%",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 30,
+    marginTop: 20,
   },
 
-  inputView: {
+  largeInputView: {
+    //View around lists and input boxes for ingredients and directions
     backgroundColor: "white",
     borderWidth: 1,
     borderRadius: 7,
     paddingLeft: 5,
     fontSize: 17,
     marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   input: {
+    //applied to all small textInputs
     color: "black",
     fontSize: 17,
     borderWidth: 1,
@@ -253,6 +262,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     marginBottom: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   descriptionBox: {
     color: "black",
@@ -265,26 +278,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     marginBottom: 20,
     height: 75,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   inputLabel: {
+    //label above input box
     fontSize: 17,
     paddingBottom: 3,
     fontWeight: "600",
   },
   largeInputContainer: {
+    //surrounds the input section of the large inputs
     flexDirection: "row",
     justifyContent: "space-between",
-    //backgroundColor: "white",
-    fontSize: 17,
   },
   largeInput: {
     fontSize: 17,
-  },
-  title: {
-    fontSize: 25,
-    textAlign: "left",
-    fontWeight: "600",
-    paddingBottom: 20,
   },
 });
 

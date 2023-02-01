@@ -91,14 +91,18 @@ const MainRecipesTwo = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <ScrollView style={{ paddingTop: 20 }}>
+    <>
+      <ScrollView
+        style={styles.mainView}
+        contentContainerstyle={styles.containerStyle}
+      >
         <Icon
           size={40}
           color="#04A804"
           containerStyle={{
             position: "absolute",
             right: 10,
+            marginTop: 10,
             //width: 50,
           }}
           name="bookmark"
@@ -118,6 +122,7 @@ const MainRecipesTwo = ({ navigation }) => {
             width: 175,
             marginRight: "auto",
             marginLeft: "auto",
+            marginTop: 10,
           }}
           style={{
             width: 175,
@@ -132,11 +137,11 @@ const MainRecipesTwo = ({ navigation }) => {
         />
 
         <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
-          {recipes.map((recipe) => {
+          {recipes.map((recipe, index) => {
             console.log(`recipe`, recipe);
             return (
               <RenderRecipeTwo
-                //key={index}
+                key={recipe.id}
                 recipe={recipe}
                 navigate={navigation.navigate}
               />
@@ -144,32 +149,39 @@ const MainRecipesTwo = ({ navigation }) => {
           })}
         </View>
       </ScrollView>
-      <View>
-        <Icon
-          raised
-          reverse
-          name="plus"
-          type="font-awesome"
-          color="white"
-          iconStyle={{ color: "black" }}
-          containerStyle={{
-            position: "absolute",
-            right: 10,
-            bottom: 3,
-            alignSelf: "flex-end",
-          }}
-          onPress={() => {
-            console.log(`pressed`);
-            navigation.navigate("RecipeForm");
-            //toggleRecipeForm(!isRecipeFormOpen);
-          }}
-        />
-      </View>
-    </View>
+
+      <Icon
+        raised
+        reverse
+        name="plus"
+        type="font-awesome"
+        color="white"
+        iconStyle={{ color: "black" }}
+        containerStyle={{
+          position: "absolute",
+          right: 10,
+          bottom: 3,
+          alignSelf: "flex-end",
+        }}
+        onPress={() => {
+          console.log(`pressed`);
+          navigation.navigate("RecipeForm");
+          //toggleRecipeForm(!isRecipeFormOpen);
+        }}
+      />
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  mainView: {
+    flex: 1,
+  },
+  containerStyle: {
+    paddingTop: 10,
+    paddingHorizontal: 10,
+    //paddingBottom: 20,
+  },
   buttonView: {
     flexDirection: "row",
     justifyContent: "space-evenly",

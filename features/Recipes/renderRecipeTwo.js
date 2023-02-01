@@ -36,7 +36,6 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
       <>
         <TouchableOpacity
           onPress={() => navigate("RecipeDetails", { recipe })}
-          key={recipe.id}
           style={styles.parentContainer}
           //onPress={() => toggleDetails(true)}
         >

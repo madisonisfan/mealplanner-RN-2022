@@ -56,7 +56,7 @@ const Mealplan = ({ navigation }) => {
           );
         })}
       </ScrollView>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 10 }}>
         <Text style={styles.date}>{currentDay.date}</Text>
         <Text style={styles.mealtypeTitle}>Breakfast</Text>
 
