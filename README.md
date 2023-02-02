@@ -1,9 +1,9 @@
 
 # Meal Planner React Native app 
 
-This app was built from scratch with React Native. I have always had a passion for healthy living and fitness. With improving my health, I found that meal planning was always the most challenging part. No meal planning apps fit what I was looking for, so I built one. 
+This app was built from scratch with React Native. 
 
-The feature I am most excited about is the blog. Integrating a community into the app will encourage users to continue using the app and will help people motivate each other. 
+For almost my entire life I've had a passion for health and fitness. Like most people, I found it difficult to find healthy foods that I enjoy and to stay consistent with healthy eating. My goal is to create a place for people to go where they can organize their weekly meal plans, and be motivated by the community integrated with the site. To help with finding food options for everyone, I created a feature that allows anyone to add a recipe to the site. With everyone adding recipes, there would be an extensive list of food.
 
 ## Features: 
 - Recipes: Here, users can scroll through a list of recipes. They can filter by meal type and save recipes they enjoy
