@@ -25,52 +25,14 @@ const recipeTypes = {
   drinks: "Drinks",
 };
 
-/*
-<Button
-        type="outline"
-        title="F"
-        containerStyle={{
-          position: "absolute",
-          width: 75,
-          borderWidth: 1,
-          borderColor: "red",
-        }}
-        titleStyle={{ color: "black" }}
-        buttonStyle={styles.button}
-        onPress={() => {
-          console.log(`pressed favs`);
-          navigation.navigate("Favorites");
-        }}
-      />
-
-      <Button
-        buttonStyle={styles.button}
-        containerStyle={{
-          position: "absolute",
-          right: 0,
-          marginRight: 10,
-          //marginTop: 10,
-          borderRadius: 10,
-        }}
-        titleStyle={{ color: "black" }}
-        type="outline"
-        title="+"
-        onPress={() => {
-          console.log(`pressed`);
-          toggleRecipeForm(!isRecipeFormOpen);
-        }}
-      />
-
-
-*/
-
 const MainRecipesTwo = ({ navigation }) => {
   const [selectedRecipeType, setType] = useState("all");
   const [isTypeModalOpen, toggleTypeModal] = useState(false);
   const [isRecipeFormOpen, toggleRecipeForm] = useState(false);
   const [favoritesEnabled, toggleFavorites] = useState(false);
   const [dropdownOpen, setDropdown] = useState(false);
-  const recipes = useSelector(selectAllRecipes);
+  // const recipes = useSelector(selectAllRecipes);
+  const recipes = useSelector((state) => state.recipes);
   const mealtypes = [
     { label: "All Recipes", value: "all" },
     { label: "Breakfast", value: "breakfast" },
@@ -78,8 +40,27 @@ const MainRecipesTwo = ({ navigation }) => {
     { label: "Drinks", value: "drinks" },
     { label: "Snacks", value: "snacks" },
   ];
+  console.log(`recipes, in recipe page`, recipes.recipeArray);
+
   //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
+  /*
+  if (recipes.isLoading) {
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    );
+  }
+  if (recipes.errMess) {
+    return (
+      <View>
+        <Text>{campsites.errMess}</Text>
+      </View>
+    );
+  }*/
+
+  /*
   const renderRecipe = ({ item: recipe }) => {
     return (
       <RenderRecipeTwo
@@ -88,7 +69,7 @@ const MainRecipesTwo = ({ navigation }) => {
         toAdd={false}
       />
     );
-  };
+  };*/
 
   return (
     <>
@@ -137,7 +118,7 @@ const MainRecipesTwo = ({ navigation }) => {
         />
 
         <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
-          {recipes.map((recipe, index) => {
+          {recipes.recipesArray.map((recipe, index) => {
             console.log(`recipe`, recipe);
             return (
               <RenderRecipeTwo
@@ -201,6 +182,45 @@ const styles = StyleSheet.create({
 */
 
 export default MainRecipesTwo;
+
+/*
+<Button
+        type="outline"
+        title="F"
+        containerStyle={{
+          position: "absolute",
+          width: 75,
+          borderWidth: 1,
+          borderColor: "red",
+        }}
+        titleStyle={{ color: "black" }}
+        buttonStyle={styles.button}
+        onPress={() => {
+          console.log(`pressed favs`);
+          navigation.navigate("Favorites");
+        }}
+      />
+
+      <Button
+        buttonStyle={styles.button}
+        containerStyle={{
+          position: "absolute",
+          right: 0,
+          marginRight: 10,
+          //marginTop: 10,
+          borderRadius: 10,
+        }}
+        titleStyle={{ color: "black" }}
+        type="outline"
+        title="+"
+        onPress={() => {
+          console.log(`pressed`);
+          toggleRecipeForm(!isRecipeFormOpen);
+        }}
+      />
+
+
+*/
 
 /*
 

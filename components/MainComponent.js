@@ -14,6 +14,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Icon } from "@rneui/themed";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { fetchRecipes } from "../features/Recipes/recipesSlice";
 
 const MainRecipesDirectory = () => {
   const Stack = createStackNavigator();
@@ -181,6 +185,12 @@ const ProfileDirectory = () => {
 
 const Main = () => {
   //return <MainRecipes />;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecipes());
+  }, [dispatch]);
+
   const Tab = createMaterialBottomTabNavigator();
 
   return (
