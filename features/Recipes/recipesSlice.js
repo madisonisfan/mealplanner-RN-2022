@@ -8,13 +8,14 @@ import { collection, getDocs } from "firebase/firestore";
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
   async () => {
+    console.log(`fetching recipes`);
     const querySnapshot = await getDocs(collection(db, "recipes"));
     const recipes = [];
     querySnapshot.forEach((doc) => {
       console.log(`doc`, doc);
       recipes.push(doc.data());
     });
-    console.log(`after fetching recipes: `, recipes.recipesArray);
+    console.log(`recipes after fetching, `, recipes);
     return recipes;
   }
 );

@@ -41,7 +41,7 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
         >
           <Card containerStyle={styles.card}>
             <Card.Image source={recipe.image} style={styles.image} />
-            <Card.Title style={styles.name}>{recipe.name}</Card.Title>
+            <Card.Title style={styles.name}>{recipe.recipeName}</Card.Title>
 
             <View
               style={{

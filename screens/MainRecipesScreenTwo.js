@@ -40,11 +40,12 @@ const MainRecipesTwo = ({ navigation }) => {
     { label: "Drinks", value: "drinks" },
     { label: "Snacks", value: "snacks" },
   ];
-  console.log(`recipes, in recipe page`, recipes.recipeArray);
+  console.log(`recipes, in recipe page`, recipes.recipesArray);
+  console.log(`isLoading: `, recipes.isLoading);
+  console.log(`errMess: `, recipes.errMess);
 
   //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
-  /*
   if (recipes.isLoading) {
     return (
       <View>
@@ -58,7 +59,7 @@ const MainRecipesTwo = ({ navigation }) => {
         <Text>{campsites.errMess}</Text>
       </View>
     );
-  }*/
+  }
 
   /*
   const renderRecipe = ({ item: recipe }) => {
@@ -122,7 +123,8 @@ const MainRecipesTwo = ({ navigation }) => {
             console.log(`recipe`, recipe);
             return (
               <RenderRecipeTwo
-                key={recipe.id}
+                //key={recipe.id}
+                key={index}
                 recipe={recipe}
                 navigate={navigation.navigate}
               />
