@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { db } from "../../firebase.config";
 import { collection, getDocs } from "firebase/firestore";
 
-//import { mapImageURL } from "../../utils/mapImageURL";
+import { mapImageURL } from "../../utils/mapImageURL";
 
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
@@ -31,7 +31,7 @@ const recipesSlice = createSlice({
     [fetchRecipes.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.errMsg = "";
-      state.recipesArray = action.payload; //mapImageURL(action.payload);
+      state.recipesArray = mapImageURL(action.payload);
     },
     [fetchRecipes.rejected]: (state, action) => {
       state.isLoading = false;
