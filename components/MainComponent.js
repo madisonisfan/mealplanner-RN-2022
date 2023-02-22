@@ -189,7 +189,7 @@ const Main = () => {
     <View style={styles.mainContainer}>
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: "#f0faeb",
+          activeTintColor: "#e9f2d5",
           inactiveTintColor: "white",
           style: {
             backgroundColor: "#1f1e1e",
@@ -204,8 +204,8 @@ const Main = () => {
               backgroundColor: "#1f1e1e",
             },
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home" color={color} size={26} />
-              //<FontAwesome5 name={"home"} color={color} />
+              //  <MaterialCommunityIcons name="home" color={color} size={30} />
+              <FontAwesome5 name={"list"} color={color} size={23} />
             ),
             //tabBarActiveBackgroundColor: "red",
           }}
@@ -215,7 +215,7 @@ const Main = () => {
           component={MealplanDirectory}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon name="cutlery" color={color} type="font-awesome" />
+              <FontAwesome5 name={"utensils"} color={color} size={23} />
             ),
           }}
         />
@@ -224,7 +224,8 @@ const Main = () => {
           component={BlogDirectory}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon name="comment" color={color} type="font-awesome" />
+              // <Icon name="comment" color={color} type="font-awesome" />
+              <FontAwesome5 name={"comment"} size={23} color={color} solid />
             ),
           }}
         />
@@ -233,7 +234,8 @@ const Main = () => {
           component={ProfileDirectory}
           options={{
             tabBarIcon: ({ color }) => (
-              <Icon name="user" color={color} type="font-awesome" />
+              // <Icon name="user" color={color} type="font-awesome" />
+              <FontAwesome5 name={"user"} color={color} size={23} solid />
             ),
           }}
         />
