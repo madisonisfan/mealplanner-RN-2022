@@ -11,9 +11,11 @@ import CreatePostModal from "../features/Posts/createPostModal";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+//import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "@rneui/themed";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const MainRecipesDirectory = () => {
   const Stack = createStackNavigator();
@@ -181,23 +183,29 @@ const ProfileDirectory = () => {
 
 const Main = () => {
   //return <MainRecipes />;
-  const Tab = createMaterialBottomTabNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
     <View style={styles.mainContainer}>
       <Tab.Navigator
-        activeColor="#f0faeb"
-        inactiveColor="white"
-        barStyle={{
-          backgroundColor: "#1f1e1e",
+        tabBarOptions={{
+          activeTintColor: "#f0faeb",
+          inactiveTintColor: "white",
+          style: {
+            backgroundColor: "#1f1e1e",
+          },
         }}
       >
         <Tab.Screen
           name="Recipes"
           component={MainRecipesDirectory}
           options={{
+            tabBarStyle: {
+              backgroundColor: "#1f1e1e",
+            },
             tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />
+              //<FontAwesome5 name={"home"} color={color} />
             ),
             //tabBarActiveBackgroundColor: "red",
           }}
