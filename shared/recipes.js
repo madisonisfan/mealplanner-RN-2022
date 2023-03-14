@@ -4,7 +4,7 @@ export const RECIPES = [
     name: "Creamy Pasta",
     mealType: "lunchDinner",
     description: "yummy pasta",
-    image: require("../assets/images/food1.jpg"),
+    image: require("../assets/images/food/pasta.jpg"),
     cooktime: "20 mins",
     preptime: "10 mins",
     servings: 4,
@@ -32,7 +32,7 @@ export const RECIPES = [
     preptime: "10 mins",
     servings: 4,
     totaltime: "30 mins",
-    image: require("../assets/images/food2.jpg"),
+    image: require("../assets/images/food/salad.jpg"),
     ingredients: [
       "ingredient",
       "ingredient",
@@ -52,7 +52,7 @@ export const RECIPES = [
     preptime: "10 mins",
     servings: 4,
     totaltime: "30 mins",
-    image: require("../assets/images/food4.jpg"),
+    image: require("../assets/images/food/pancakes.jpg"),
     ingredients: [
       "ingredient",
       "ingredient",
@@ -72,7 +72,7 @@ export const RECIPES = [
     servings: 4,
     totaltime: "30 mins",
     description: "yummy sandwhich",
-    image: require("../assets/images/food4.jpg"),
+    image: require("../assets/images/food/sandwich.jpg"),
     ingredients: [
       "ingredient",
       "ingredient",
@@ -92,7 +92,7 @@ export const RECIPES = [
     servings: 4,
     totaltime: "30 mins",
     description: "fruity smoothie",
-    image: require("../assets/images/food4.jpg"),
+    image: require("../assets/images/food/smoothie.jpg"),
     ingredients: [
       "ingredient",
       "ingredient",

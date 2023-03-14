@@ -2,9 +2,10 @@ import { View, Text, StyleSheet } from "react-native";
 import { Avatar, Button, Icon } from "@rneui/themed";
 
 import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const RenderPost = ({ post }) => {
-  const { id, author, date, postType, postContent } = post;
+  const { id, author, date, postType, postContent, avatar } = post;
 
   const submitComment = () => {
     console.log(`submit comment`);
@@ -19,7 +20,10 @@ const RenderPost = ({ post }) => {
       <View style={{ flexDirection: "row" }}>
         <View style={{ justifyContent: "center" }}>
           <Avatar
-            size={"medium"}
+            size={"small"}
+            source={{
+              uri: avatar,
+            }}
             rounded
             title="P"
             containerStyle={{ backgroundColor: "#BDBDBD" }}
@@ -41,13 +45,13 @@ const RenderPost = ({ post }) => {
           type="clear"
           // title="Like"
           buttonStyle={styles.bottomButton}
-          titleStyle={{ color: "#1f1e1e", fontSize: 15 }}
+          titleStyle={{ color: "#545151", fontSize: 15, fontWeight: "500" }}
           onPress={() => submitLike()}
         >
           <Icon
             name="thumbs-o-up"
             type="font-awesome"
-            color="#1f1e1e"
+            color="#545151"
             iconStyle={{ paddingRight: 5 }}
             size={20}
           />
@@ -56,14 +60,14 @@ const RenderPost = ({ post }) => {
         <Button
           type="clear"
           title="Comment"
-          titleStyle={{ color: "#1f1e1e", fontSize: 15 }}
+          titleStyle={{ color: "#545151", fontSize: 15, fontWeight: "500" }}
           buttonStyle={styles.bottomButton}
           onPress={() => submitComment()}
         >
           <Icon
             name="comment-o"
             type="font-awesome"
-            color="#1f1e1e"
+            color="#545151"
             size={20}
             iconStyle={{ paddingRight: 7 }}
           />
@@ -80,11 +84,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     // marginBottom: 10,
     // flexDirection: "row",
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
     paddingTop: 10,
     paddingBottom: 10,
-    borderColor: "grey",
-    borderWidth: "1px",
+    borderColor: "#c5c6c7",
+    borderBottomWidth: "5px",
 
     //paddingBottom: 0,
   },
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   name: {
-    fontSize: 17,
+    fontSize: 16,
     paddingRight: 10,
     fontWeight: "500",
   },
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
   date: {
     color: "grey",
     paddingTop: 2,
-    fontSize: 15,
+    fontSize: 14,
   },
   postType: {
     color: "grey",
