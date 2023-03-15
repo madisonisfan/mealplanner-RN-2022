@@ -1,11 +1,21 @@
 import { View, Text, StyleSheet } from "react-native";
-import { Avatar, Button, Icon } from "@rneui/themed";
+import { Avatar, Button, Icon, Image } from "@rneui/themed";
 
 import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const RenderPost = ({ post }) => {
-  const { id, author, date, postType, postContent, avatar_url } = post;
+  const {
+    id,
+    author,
+    date,
+    postType,
+    postContent,
+    avatar_url,
+    images,
+    likes,
+    comments,
+  } = post;
 
   const submitComment = () => {
     console.log(`submit comment`);
@@ -15,11 +25,11 @@ const RenderPost = ({ post }) => {
     console.log(`submit comment`);
   };
 
-  console.log(`avatart uri`, avatar_url);
+  console.log(`images`, images[0]);
 
   return (
     <View style={styles.mainView}>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
         <View style={{ justifyContent: "center" }}>
           <Avatar
             size={"small"}
@@ -34,7 +44,9 @@ const RenderPost = ({ post }) => {
         <View style={styles.textView}>
           <View style={styles.headerView}>
             <Text style={styles.name}>{author}</Text>
-            <Text style={styles.postType}>{postType}</Text>
+            {postType === "question" && (
+              <Text style={styles.postType}>Question</Text>
+            )}
           </View>
           <Text style={styles.date}>{date}</Text>
         </View>
@@ -42,39 +54,90 @@ const RenderPost = ({ post }) => {
       <View style={styles.postContent}>
         <Text style={styles.postText}>{postContent}</Text>
       </View>
+
+      {images.length !== 0 && (
+        <Image
+          resizeMode="cover"
+          containerStyle={{
+            aspectRatio: 1.7,
+            // width: "100%",
+            // padding: 0,
+          }}
+          style={{}}
+          // containerStyle={{}}
+          source={{
+            uri: images[0],
+          }}
+          //source={require("../../assets/images/food/pasta.jpg")}
+        />
+      )}
+
       <View style={styles.bottomButtonView}>
-        <Button
-          type="clear"
-          // title="Like"
-          buttonStyle={styles.bottomButton}
-          titleStyle={{ color: "#545151", fontSize: 15, fontWeight: "500" }}
-          onPress={() => submitLike()}
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
         >
-          <Icon
-            name="thumbs-o-up"
-            type="font-awesome"
-            color="#545151"
-            iconStyle={{ paddingRight: 5 }}
-            size={20}
-          />
-          Like
-        </Button>
-        <Button
-          type="clear"
-          title="Comment"
-          titleStyle={{ color: "#545151", fontSize: 15, fontWeight: "500" }}
-          buttonStyle={styles.bottomButton}
-          onPress={() => submitComment()}
+          <Button
+            type="clear"
+            // title="Like"
+            buttonStyle={styles.bottomButton}
+            titleStyle={{ color: "#545151", fontSize: 15, fontWeight: "500" }}
+            onPress={() => submitLike()}
+          >
+            <Icon
+              name="thumbs-o-up"
+              type="font-awesome"
+              color="#545151"
+              iconStyle={{ paddingRight: 5 }}
+              size={20}
+            />
+            Like
+          </Button>
+          <Text
+            style={{
+              color: "#545151",
+              fontSize: 15,
+              fontWeight: "500",
+            }}
+          >
+            {likes}
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
         >
-          <Icon
-            name="comment-o"
-            type="font-awesome"
-            color="#545151"
-            size={20}
-            iconStyle={{ paddingRight: 7 }}
-          />
-          Comment
-        </Button>
+          <Button
+            type="clear"
+            title="Comment"
+            titleStyle={{ color: "#545151", fontSize: 15, fontWeight: "500" }}
+            buttonStyle={styles.bottomButton}
+            onPress={() => submitComment()}
+          >
+            <Icon
+              name="comment-o"
+              type="font-awesome"
+              color="#545151"
+              size={20}
+              iconStyle={{ paddingRight: 7 }}
+            />
+            Comment
+          </Button>
+          <Text
+            style={{
+              color: "#545151",
+              fontSize: 15,
+              fontWeight: "500",
+            }}
+          >
+            {" "}
+            {comments.length}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -86,7 +149,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     // marginBottom: 10,
     // flexDirection: "row",
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     paddingTop: 10,
     paddingBottom: 10,
     borderColor: "#c5c6c7",
@@ -109,6 +172,7 @@ const styles = StyleSheet.create({
   postContent: {
     marginTop: 10,
     paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   postText: {
     fontSize: 16,
