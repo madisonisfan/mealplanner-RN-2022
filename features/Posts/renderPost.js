@@ -5,7 +5,7 @@ import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolic
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const RenderPost = ({ post }) => {
-  const { id, author, date, postType, postContent, avatar } = post;
+  const { id, author, date, postType, postContent, avatar_url } = post;
 
   const submitComment = () => {
     console.log(`submit comment`);
@@ -15,6 +15,8 @@ const RenderPost = ({ post }) => {
     console.log(`submit comment`);
   };
 
+  console.log(`avatart uri`, avatar_url);
+
   return (
     <View style={styles.mainView}>
       <View style={{ flexDirection: "row" }}>
@@ -22,11 +24,11 @@ const RenderPost = ({ post }) => {
           <Avatar
             size={"small"}
             source={{
-              uri: avatar,
+              uri: avatar_url,
             }}
             rounded
-            title="P"
-            containerStyle={{ backgroundColor: "#BDBDBD" }}
+            // title="P"
+            //containerStyle={{ backgroundColor: "#BDBDBD" }}
           />
         </View>
         <View style={styles.textView}>
