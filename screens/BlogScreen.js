@@ -30,12 +30,15 @@ const Blog = ({ navigation }) => {
             name="plus"
             type="font-awesome"
             color="white"
-            iconStyle={{ color: "black" }}
+            reverseColor="black"
+            // containerStyle={{ backgroundColor: "black" }}
+            //iconStyle={{ backgroundColor: "black" }}
             containerStyle={{
               position: "absolute",
               right: 10,
               bottom: 3,
               alignSelf: "flex-end",
+              backgroundColor: "black",
             }}
             onPress={() => {
               navigation.navigate("CreatePostModal");

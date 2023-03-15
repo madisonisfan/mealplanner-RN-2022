@@ -44,7 +44,9 @@ const RenderPost = ({ post }) => {
         <View style={styles.textView}>
           <View style={styles.headerView}>
             <Text style={styles.name}>{author}</Text>
-            <Text style={styles.postType}>{postType}</Text>
+            {postType === "question" && (
+              <Text style={styles.postType}>Question</Text>
+            )}
           </View>
           <Text style={styles.date}>{date}</Text>
         </View>
