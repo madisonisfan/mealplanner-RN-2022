@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   mainView: {
     height: 100,
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: "#e9f2d5",
     //width: "100%",
     marginHorizontal: 11,
     marginVertical: 10,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     width: "35%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: "rgba(31, 30, 30, 0.8)",
     borderBottomLeftRadius: 7,
     borderTopLeftRadius: 7,
     borderWidth: 0,
@@ -88,12 +88,16 @@ const styles = StyleSheet.create({
   mealtypeTitle: {
     fontSize: 18,
     fontWeight: "500",
+    color: "white",
   },
 
   //RIGHT
   rightView: {
-    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    backgroundColor: "rgba(31, 30, 30, 0.8)",
     flexGrow: 1,
+    borderBottomRightRadius: 7,
+    borderTopRightRadius: 7,
+    borderWidth: 0,
   },
   imageBG: {
     flex: 1,
