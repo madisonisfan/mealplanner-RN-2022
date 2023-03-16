@@ -18,7 +18,8 @@ import RenderRecipe from "../features/Recipes/renderRecipe";
 import MealplanItem from "../features/Mealplan/MealplanItem";
 import MealplanItemTwo from "../features/Mealplan/MealplanItemTwo";
 import MealplanItemTesting from "../features/Mealplan/MealplanItemTesting";
-//import { Icon, Card } from "@rneui/themed";
+import MealplanItemTestingTwo from "../features/Mealplan/MealplanItemTestingTwo";
+import { Icon, Card } from "@rneui/themed";
 
 const Mealplan = ({ navigation }) => {
   const allDays = useSelector(selectAllDays);
@@ -69,35 +70,39 @@ const Mealplan = ({ navigation }) => {
       <ScrollView contentContainerStyle={{ paddingBottom: 10, paddingTop: 20 }}>
         {/*<Text style={styles.date}>{currentDay.date}</Text>*/}
 
-        <MealplanItemTesting
+        <MealplanTitle title="Breakfast" />
+        <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
           mealplanId={currentDay.id}
           mealType={"Breakfast"}
         />
 
-        <MealplanItemTesting
+        <MealplanTitle title="Lunch" />
+        <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
           mealplanId={currentDay.id}
           mealType={"Lunch"}
         />
-
-        <MealplanItemTesting
+        <MealplanTitle title="Dinner" />
+        <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
           mealplanId={currentDay.id}
           mealType={"Dinner"}
         />
 
-        <MealplanItemTesting
+        <MealplanTitle title="Snacks" />
+        <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
           mealplanId={currentDay.id}
           mealType={"Snacks"}
         />
 
-        <MealplanItemTesting
+        <MealplanTitle title="Drinks" />
+        <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
           mealplanId={currentDay.id}
@@ -105,6 +110,37 @@ const Mealplan = ({ navigation }) => {
         />
       </ScrollView>
     </>
+  );
+};
+
+const MealplanTitle = ({ title }) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        marginHorizontal: 11,
+        marginTop: 10,
+        justifyContent: "space-between",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "500",
+          paddingRight: 10,
+          paddingBottom: 10,
+        }}
+      >
+        {title}
+      </Text>
+      <Icon
+        name="plus"
+        color="black"
+        type="font-awesome"
+
+        //onPress={() => navigation.navigate("MealplanOptionsModal")}
+      />
+    </View>
   );
 };
 

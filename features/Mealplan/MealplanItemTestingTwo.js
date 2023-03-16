@@ -11,24 +11,34 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 // <FontAwesome5 name={"list"} color={color} size={23} />
 
-const MealplanItemTesting = ({ recipe, mealType }) => {
+const MealplanItemTestingTwo = ({ recipe, mealType }) => {
   console.log(`RECIPE for ${mealType}`, recipe);
 
   if (recipe) {
-    const { image, name, totaltime, calories } = recipe;
+    const { image, name, totaltime, calories, servings } = recipe;
     return (
       <View style={styles.mainView}>
         <View style={styles.leftView}>
-          <Text style={styles.mealtypeTitle}>{mealType}</Text>
-        </View>
-        <View style={styles.rightView}>
           <ImageBackground style={styles.imageBG} source={image}>
             <View style={styles.blackOverlay}>
               <Text style={styles.recipeName}>{name}</Text>
-              <Text style={styles.recipeInfoText}>{totaltime} total </Text>
-              <Text style={styles.recipeInfoText}>{calories} calories</Text>
             </View>
+            <Icon
+              name="minus"
+              color="white"
+              type="font-awesome"
+              containerStyle={{
+                position: "absolute",
+                bottom: 3,
+                left: 8,
+              }}
+            />
           </ImageBackground>
+        </View>
+        <View style={styles.rightView}>
+          <Text style={styles.recipeInfoText}>Total Time: {totaltime}</Text>
+          <Text style={styles.recipeInfoText}> {calories} calories</Text>
+          <Text style={styles.recipeInfoText}> {servings} servings</Text>
         </View>
       </View>
     );
@@ -75,28 +85,33 @@ const styles = StyleSheet.create({
     bottom: 5,
   },
 
-  //LEFT
-  leftView: {
-    width: "35%",
+  //RIGHT
+  rightView: {
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(31, 30, 30, 0.5)",
-    borderBottomLeftRadius: 7,
-    borderTopLeftRadius: 7,
+    //backgroundColor: "rgba(31, 30, 30, 0.5)",
+    backgroundColor: "white",
+    borderBottomRightRadius: 7,
+    borderTopRightRadius: 7,
     borderWidth: 0,
   },
   mealtypeTitle: {
     fontSize: 18,
     fontWeight: "600",
-    color: "white",
+    color: "black",
+  },
+  recipeInfoText: {
+    color: "black",
+    fontSize: 14,
+    fontWeight: "600",
   },
 
-  //RIGHT
-  rightView: {
+  //LEFT
+  leftView: {
+    width: "55%",
     backgroundColor: "rgba(31, 30, 30, 0.5)",
-    flexGrow: 1,
-    borderBottomRightRadius: 7,
-    borderTopRightRadius: 7,
+    borderRadius: 7,
     borderWidth: 0,
   },
   imageBG: {
@@ -116,11 +131,6 @@ const styles = StyleSheet.create({
   recipeName: {
     color: "white",
     fontSize: 18,
-    fontWeight: "600",
-  },
-  recipeInfoText: {
-    color: "white",
-    fontSize: 14,
     fontWeight: "600",
   },
 
@@ -190,4 +200,4 @@ const styles = StyleSheet.create({
     */
 }
 
-export default MealplanItemTesting;
+export default MealplanItemTestingTwo;
