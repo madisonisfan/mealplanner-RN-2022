@@ -8,7 +8,7 @@ import MealplanOptionsModal from "./MealplanOptionsModal";
 const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
   const [isOptionsOpen, toggleOptions] = useState(false);
   const [isCompleted, toggleIsCompleted] = useState(false);
-  console.log(`navigation`, navigation);
+  console.log(`navigation in`, navigation);
 
   if (recipe) {
     return (
@@ -24,8 +24,8 @@ const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
 
             <View style={styles.contentView}>
               <Text style={styles.recipeName}>{recipe.name}</Text>
-
-              <View style={styles.iconView}>
+              {/*
+<View style={styles.iconView}>
                 <Icon
                   name="pencil"
                   type="font-awesome"
@@ -40,6 +40,7 @@ const MealplanItem = ({ recipe, navigation, mealplanId, mealType }) => {
                   onPress={() => toggleIsCompleted(!isCompleted)}
                 />
               </View>
+*/}
             </View>
           </Card>
         </TouchableOpacity>
@@ -121,7 +122,8 @@ const styles = StyleSheet.create({
   contentView: {
     //flex: 2,
     //padding: 10,
-    justifyContent: "space-between",
+    //justifyContent: "space-between", //JUST REMOVED
+    justifyContent: "center",
     paddingHorizontal: 5,
     paddingVertical: 5,
     flexGrow: 1,
@@ -130,7 +132,7 @@ const styles = StyleSheet.create({
   recipeName: {
     fontSize: 18,
     textAlign: "center",
-    fontWeight: "500",
+    fontWeight: "600",
   },
 
   iconView: {
