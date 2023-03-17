@@ -8,56 +8,63 @@ import {
 } from "react-native";
 import { Icon } from "@rneui/themed";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import { useState } from "react";
 
 // <FontAwesome5 name={"list"} color={color} size={23} />
 
-const MealplanItemTestingTwo = ({ recipe, mealType }) => {
+const MealplanItemTestingTwo = ({ recipe, mealType, navigation }) => {
   console.log(`RECIPE for ${mealType}`, recipe);
-
+  const [isCompleted, toggleIsCompleted] = useState(false);
   if (recipe) {
     const { image, name, totaltime, calories, servings } = recipe;
     return (
-      <View style={styles.mainView}>
-        <View style={styles.leftView}>
-          <ImageBackground style={styles.imageBG} source={image}>
-            <View style={styles.blackOverlay}>
-              <Text style={styles.recipeName}>{name}</Text>
-            </View>
-            <Icon
-              name="minus"
-              color="white"
-              type="font-awesome"
-              containerStyle={{
-                position: "absolute",
-                bottom: 3,
-                left: 8,
-              }}
-            />
-          </ImageBackground>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("RecipeDetails", { recipe })}
+      >
+        <View style={styles.mainView}>
+          <View style={styles.leftView}>
+            <ImageBackground style={styles.imageBG} source={image}>
+              <View style={styles.blackOverlay}>
+                <Text style={styles.recipeName}>{name}</Text>
+              </View>
+              <Icon
+                name="minus"
+                color="#b51714"
+                type="font-awesome"
+                containerStyle={{
+                  position: "absolute",
+                  bottom: 3,
+                  left: 8,
+                }}
+              />
+
+              <Icon
+                color="white"
+                name={isCompleted ? "check-circle" : "check-circle-o"}
+                type="font-awesome"
+                size={28}
+                onPress={() => toggleIsCompleted(!isCompleted)}
+                containerStyle={{
+                  position: "absolute",
+                  top: 3,
+                  left: 8,
+                }}
+              />
+            </ImageBackground>
+          </View>
+          <View style={styles.rightView}>
+            <Text style={styles.recipeInfoText}>Total Time: {totaltime}</Text>
+            <Text style={styles.recipeInfoText}> {calories} calories</Text>
+            <Text style={styles.recipeInfoText}> {servings} servings</Text>
+          </View>
         </View>
-        <View style={styles.rightView}>
-          <Text style={styles.recipeInfoText}>Total Time: {totaltime}</Text>
-          <Text style={styles.recipeInfoText}> {calories} calories</Text>
-          <Text style={styles.recipeInfoText}> {servings} servings</Text>
-        </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 
   return (
     <View style={styles.noRecipeView}>
-      <View style={styles.leftView}>
-        <Text style={styles.mealtypeTitle}> {mealType}</Text>
-      </View>
-      <View style={styles.rightEmptyView}>
-        {/* <Text style={styles.addRecipeText}>Add Recipe</Text>*/}
-        <Icon
-          name="plus"
-          color="white"
-          type="font-awesome"
-          onPress={() => navigation.navigate("MealplanOptionsModal")}
-        />
-      </View>
+      <Text style={styles.noRecipeText}>No Recipe Added</Text>
     </View>
   );
 };
@@ -148,16 +155,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.5,
     shadowRadius: 3,
-  },
-  rightEmptyView: {
-    borderRadius: 8,
-    borderWidth: 0,
-    flexGrow: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
     justifyContent: "center",
+    alignItems: "center",
   },
-  addRecipeText: {
-    fontSize: 18,
+
+  noRecipeText: {
+    fontSize: 17,
     fontWeight: "500",
   },
 });

@@ -70,7 +70,7 @@ const Mealplan = ({ navigation }) => {
       <ScrollView contentContainerStyle={{ paddingBottom: 10, paddingTop: 20 }}>
         {/*<Text style={styles.date}>{currentDay.date}</Text>*/}
 
-        <MealplanTitle title="Breakfast" />
+        <MealplanTitle title="Breakfast" navigation={navigation} />
         <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
@@ -78,14 +78,14 @@ const Mealplan = ({ navigation }) => {
           mealType={"Breakfast"}
         />
 
-        <MealplanTitle title="Lunch" />
+        <MealplanTitle title="Lunch" navigation={navigation} />
         <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
           mealplanId={currentDay.id}
           mealType={"Lunch"}
         />
-        <MealplanTitle title="Dinner" />
+        <MealplanTitle title="Dinner" navigation={navigation} />
         <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
@@ -93,7 +93,7 @@ const Mealplan = ({ navigation }) => {
           mealType={"Dinner"}
         />
 
-        <MealplanTitle title="Snacks" />
+        <MealplanTitle title="Snacks" navigation={navigation} />
         <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
@@ -101,7 +101,7 @@ const Mealplan = ({ navigation }) => {
           mealType={"Snacks"}
         />
 
-        <MealplanTitle title="Drinks" />
+        <MealplanTitle title="Drinks" navigation={navigation} />
         <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
@@ -113,7 +113,7 @@ const Mealplan = ({ navigation }) => {
   );
 };
 
-const MealplanTitle = ({ title }) => {
+const MealplanTitle = ({ title, navigation }) => {
   return (
     <View
       style={{
@@ -137,8 +137,7 @@ const MealplanTitle = ({ title }) => {
         name="plus"
         color="black"
         type="font-awesome"
-
-        //onPress={() => navigation.navigate("MealplanOptionsModal")}
+        onPress={() => navigation.navigate("MealplanOptionsModal")}
       />
     </View>
   );
