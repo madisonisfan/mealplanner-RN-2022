@@ -7,11 +7,16 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
+import { useState, useCallback, useMemo, useRef } from "react";
 import Constants from "expo-constants";
 import { addRecipe } from "./recipesSlice";
 import { useDispatch } from "react-redux";
 import { Input, Button, Icon, ListItem } from "@rneui/themed";
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
+import IngredientModal from "./RecipeIngredientModal";
 
 const RecipeForm = ({ toggle }) => {
   const [name, setName] = useState("");
@@ -26,6 +31,25 @@ const RecipeForm = ({ toggle }) => {
   const [directions, setDirections] = useState([]);
   const [currentDirection, setCD] = useState("");
   const dispatch = useDispatch();
+
+  // bottom sheet modal
+  //const bottomSheetModalRef = useRef < BottomSheetModal > null;
+  const bottomSheetModalRef = useRef(null);
+  const snapPoints = useMemo(() => ["25%", "60%"], []);
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log("handleSheetChanges", index);
+  }, []);
+
+  const addIngredient = (ingredient) => {
+    console.log("adding ingredient ");
+    setIngredients([...ingredients, ingredient]);
+    bottomSheetModalRef.current.close();
+
+    console.log(`ref`, bottomSheetModalRef);
+  };
 
   const handleRecipeSubmit = () => {
     console.log(`handle submit`);
@@ -56,165 +80,203 @@ const RecipeForm = ({ toggle }) => {
   };
 
   return (
-    <ScrollView
-      style={styles.mainView}
-      contentContainerStyle={styles.inputContainerView}
-    >
-      <Text style={styles.inputLabel}>Recipe Name</Text>
-      <TextInput
-        // containerStyle={styles.inputContainer}
-        //autofocus={true}
-        placeholderTextColor="grey"
-        style={styles.input}
-        placeholder="recipe name"
-        maxLength={20}
-        value={name}
-        onChangeText={(text) => setName(text)}
-      />
-      <Text style={styles.inputLabel}>Recipe Description</Text>
-      <TextInput
-        multiline={true}
-        numberOfLines={3}
-        rows={3}
-        maxLength={100}
-        placeholder="brief description"
-        placeholderTextColor="grey"
-        style={styles.descriptionBox}
-        value={description}
-        onChangeText={(text) => setDescription(text)}
-      />
-      <Text style={styles.inputLabel}>Preptime</Text>
-      <TextInput
-        placeholder="preptime in minutes"
-        placeholderTextColor="grey"
-        keyboardType="numeric"
-        style={styles.input}
-        value={preptime}
-        onChangeText={(text) => setPreptime(text)}
-      />
-
-      <Text style={styles.inputLabel}>Cooktime</Text>
-      <TextInput
-        placeholder="cooktime in minutes"
-        placeholderTextColor="grey"
-        keyboardType="numeric"
-        style={styles.input}
-        value={cooktime}
-        onChangeText={(text) => setCooktime(text)}
-      />
-      <Text style={styles.inputLabel}>Servings</Text>
-      <TextInput
-        placeholder="servings"
-        value={servings}
-        placeholderTextColor="grey"
-        keyboardType="numeric"
-        style={styles.input}
-        onChangeText={(text) => setServings(text)}
-      />
-      <Text style={styles.inputLabel}>Ingredients</Text>
-      <View style={styles.largeInputView}>
-        {ingredients.map((i, index) => {
-          return (
-            <ListItem key={index} containerStyle={{ padding: 0 }}>
-              <ListItem.Content
-                style={{ paddingTop: 5, justifyContent: "center" }}
-              >
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <Icon
-                    name="circle"
-                    type="font-awesome"
-                    size={10}
-                    iconStyle={{ paddingRight: 3 }}
-                  />
-                  <Text style={{ fontSize: 17 }}>{i}</Text>
-                </View>
-              </ListItem.Content>
-            </ListItem>
-          );
-        })}
-        <View style={styles.largeInputContainer}>
+    <>
+      <BottomSheetModalProvider>
+        <ScrollView
+          style={styles.mainView}
+          contentContainerStyle={styles.inputContainerView}
+        >
+          <Text style={styles.inputLabel}>Recipe Name</Text>
           <TextInput
-            style={styles.largeInput}
-            //containerStyle={{ width: "80%" }}
-            placeholder="Add Ingredient"
+            // containerStyle={styles.inputContainer}
+            //autofocus={true}
             placeholderTextColor="grey"
-            value={currentIngredient}
-            onChangeText={(text) => setCI(text)}
+            style={styles.input}
+            placeholder="recipe name"
+            maxLength={20}
+            value={name}
+            onChangeText={(text) => setName(text)}
           />
-          <Button
-            title="+"
-            titleStyle={{
-              color: "black",
-              fontSize: 20,
-              fontWeight: "medium",
-            }}
-            type="clear"
-            //color="black"
-            onPress={() => {
-              setIngredients([...ingredients, currentIngredient]);
-              setCI("");
-            }}
-          />
-        </View>
-      </View>
-      <Text style={styles.inputLabel}>Directions</Text>
-      <View style={styles.largeInputView}>
-        {directions.map((d, index) => {
-          return (
-            <ListItem key={index} containerStyle={{ padding: 0 }}>
-              <ListItem.Content style={{ paddingTop: 5 }}>
-                <ListItem.Title style={{ fontSize: 17 }}>
-                  <Icon name="circle" type="font-awesome" /> {index + 1}. {d}
-                </ListItem.Title>
-              </ListItem.Content>
-            </ListItem>
-          );
-        })}
-
-        <View style={styles.largeInputContainer}>
+          <Text style={styles.inputLabel}>Recipe Description</Text>
           <TextInput
-            style={styles.largeInput}
-            //containerStyle={{ width: "80%" }}
-            placeholder="Add Direction"
+            multiline={true}
+            numberOfLines={3}
+            rows={3}
+            maxLength={100}
+            placeholder="brief description"
             placeholderTextColor="grey"
-            value={currentDirection}
-            onChangeText={(text) => setCD(text)}
+            style={styles.descriptionBox}
+            value={description}
+            onChangeText={(text) => setDescription(text)}
           />
-          <Button
-            title="+"
-            titleStyle={{
-              color: "black",
-              fontSize: 20,
-              fontWeight: "medium",
-            }}
-            containerStyle={{ padding: 0 }}
-            type="clear"
-            onPress={() => {
-              setDirections([...directions, currentDirection]);
-              setCD("");
-            }}
+          <Text style={styles.inputLabel}>Preptime</Text>
+          <TextInput
+            placeholder="preptime in minutes"
+            placeholderTextColor="grey"
+            keyboardType="numeric"
+            style={styles.input}
+            value={preptime}
+            onChangeText={(text) => setPreptime(text)}
           />
-        </View>
-      </View>
 
-      <Button
-        title="Submit"
-        radius={9}
-        titleStyle={{ color: "black", fontWeight: "500" }}
-        buttonStyle={styles.submitButton}
-        onPress={() => {
-          handleRecipeSubmit();
-          toggle(false);
-        }}
-      />
-    </ScrollView>
+          <Text style={styles.inputLabel}>Cooktime</Text>
+          <TextInput
+            placeholder="cooktime in minutes"
+            placeholderTextColor="grey"
+            keyboardType="numeric"
+            style={styles.input}
+            value={cooktime}
+            onChangeText={(text) => setCooktime(text)}
+          />
+          <Text style={styles.inputLabel}>Servings</Text>
+          <TextInput
+            placeholder="servings"
+            value={servings}
+            placeholderTextColor="grey"
+            keyboardType="numeric"
+            style={styles.input}
+            onChangeText={(text) => setServings(text)}
+          />
+          <Text style={styles.inputLabel}>Ingredients</Text>
+
+          <View style={styles.largeInputView}>
+            {ingredients.map((i, index) => {
+              return (
+                <ListItem key={index} containerStyle={{ padding: 0 }}>
+                  <ListItem.Content
+                    style={{ paddingTop: 5, justifyContent: "center" }}
+                  >
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Icon
+                        name="circle"
+                        type="font-awesome"
+                        size={10}
+                        iconStyle={{ paddingRight: 3 }}
+                      />
+                      <Text style={{ fontSize: 17 }}>{i}</Text>
+                    </View>
+                  </ListItem.Content>
+                </ListItem>
+              );
+            })}
+          </View>
+          <Button
+            onPress={handlePresentModalPress}
+            title="Add Ingredient"
+            color="black"
+          />
+          <Text style={styles.inputLabel}>Directions</Text>
+          <View style={styles.largeInputView}>
+            {directions.map((d, index) => {
+              return (
+                <ListItem key={index} containerStyle={{ padding: 0 }}>
+                  <ListItem.Content style={{ paddingTop: 5 }}>
+                    <ListItem.Title style={{ fontSize: 17 }}>
+                      <Icon name="circle" type="font-awesome" /> {index + 1}.{" "}
+                      {d}
+                    </ListItem.Title>
+                  </ListItem.Content>
+                </ListItem>
+              );
+            })}
+
+            <View style={styles.largeInputContainer}>
+              <TextInput
+                style={styles.largeInput}
+                //containerStyle={{ width: "80%" }}
+                placeholder="Add Direction"
+                placeholderTextColor="grey"
+                value={currentDirection}
+                onChangeText={(text) => setCD(text)}
+              />
+              <Button
+                title="+"
+                titleStyle={{
+                  color: "black",
+                  fontSize: 20,
+                  fontWeight: "medium",
+                }}
+                containerStyle={{ padding: 0 }}
+                type="clear"
+                onPress={() => {
+                  setDirections([...directions, currentDirection]);
+                  setCD("");
+                }}
+              />
+            </View>
+          </View>
+
+          <Button
+            title="Submit"
+            radius={9}
+            titleStyle={{ color: "black", fontWeight: "500" }}
+            buttonStyle={styles.submitButton}
+            onPress={() => {
+              handleRecipeSubmit();
+              toggle(false);
+            }}
+          />
+        </ScrollView>
+
+        <BottomSheetModal
+          ref={bottomSheetModalRef}
+          index={1}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}
+        >
+          <IngredientModal addIngredient={addIngredient} />
+        </BottomSheetModal>
+      </BottomSheetModalProvider>
+    </>
   );
 };
+
+/*
+ <View style={styles.largeInputContainer}>
+              <TextInput
+                style={styles.largeInput}
+                //containerStyle={{ width: "80%" }}
+                placeholder="Add Ingredient"
+                placeholderTextColor="grey"
+                value={currentIngredient}
+                onChangeText={(text) => setCI(text)}
+              />
+              <Button
+                title="+"
+                titleStyle={{
+                  color: "black",
+                  fontSize: 20,
+                  fontWeight: "medium",
+                }}
+                type="clear"
+                //color="black"
+                onPress={handlePresentModalPress}
+              />
+
+              {
+                <Button
+                  title="+"
+                  titleStyle={{
+                    color: "black",
+                    fontSize: 20,
+                    fontWeight: "medium",
+                  }}
+                  type="clear"
+                  //color="black"
+                  onPress={() => {
+                    setIngredients([...ingredients, currentIngredient]);
+                    setCI("");
+                  }}
+                />
+              }
+            </View>
+
+*/
 
 const styles = StyleSheet.create({
   mainView: {
