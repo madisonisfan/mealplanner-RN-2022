@@ -17,6 +17,7 @@ import {
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
 import IngredientModal from "./RecipeIngredientModal";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const RecipeForm = ({ toggle }) => {
   const [name, setName] = useState("");
@@ -136,9 +137,24 @@ const RecipeForm = ({ toggle }) => {
             style={styles.input}
             onChangeText={(text) => setServings(text)}
           />
-          <Text style={styles.inputLabel}>Ingredients</Text>
+          <View style={styles.headerView}>
+            <Text style={styles.inputLabel}>Ingredients</Text>
 
-          <View style={styles.largeInputView}>
+            <Button
+              type="outline"
+              onPress={handlePresentModalPress}
+              title="+ Add"
+              titleStyle={styles.addButtonTitleStyle}
+              buttonStyle={styles.addButtonStyle}
+              color="black"
+              style={{ padding: 0 }}
+            />
+          </View>
+
+          <View style={styles.largeInputSurroundingView}>
+            {ingredients.length === 0 && (
+              <Text style={styles.ingredientItem}>No ingredients added</Text>
+            )}
             {ingredients.map((ingredient, index) => {
               console.log(ingredient);
               return (
@@ -172,23 +188,27 @@ const RecipeForm = ({ toggle }) => {
               );
             })}
           </View>
-          <Button
-            onPress={handlePresentModalPress}
-            title="Add Ingredient"
-            color="black"
-          />
-          <Text style={styles.inputLabel}>Directions</Text>
-          <View style={styles.largeInputView}>
-            {directions.map((d, index) => {
+
+          <View style={styles.headerView}>
+            <Text style={styles.inputLabel}>Directions</Text>
+
+            <Button
+              type="outline"
+              //onPress={handlePresentModalPress}
+              title="+ Add"
+              titleStyle={styles.addButtonTitleStyle}
+              buttonStyle={styles.addButtonStyle}
+              color="black"
+              style={{ padding: 0 }}
+            />
+          </View>
+          <View style={styles.largeInputSurroundingView}>
+            {directions.map((direction, index) => {
               return (
-                <ListItem key={index} containerStyle={{ padding: 0 }}>
-                  <ListItem.Content style={{ paddingTop: 5 }}>
-                    <ListItem.Title style={{ fontSize: 17 }}>
-                      <Icon name="circle" type="font-awesome" /> {index + 1}.{" "}
-                      {d}
-                    </ListItem.Title>
-                  </ListItem.Content>
-                </ListItem>
+                <View style={styles.itemView}>
+                  <Icon name="circle" type="font-awesome" /> {index + 1}.{" "}
+                  {direction}
+                </View>
               );
             })}
 
@@ -200,20 +220,6 @@ const RecipeForm = ({ toggle }) => {
                 placeholderTextColor="grey"
                 value={currentDirection}
                 onChangeText={(text) => setCD(text)}
-              />
-              <Button
-                title="+"
-                titleStyle={{
-                  color: "black",
-                  fontSize: 20,
-                  fontWeight: "medium",
-                }}
-                containerStyle={{ padding: 0 }}
-                type="clear"
-                onPress={() => {
-                  setDirections([...directions, currentDirection]);
-                  setCD("");
-                }}
               />
             </View>
           </View>
@@ -268,20 +274,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  largeInputView: {
-    //View around lists and input boxes for ingredients and directions
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderRadius: 7,
-    padding: 10,
-    //paddingLeft: 5,
-    fontSize: 17,
-    marginBottom: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
   input: {
     //applied to all small textInputs
     color: "black",
@@ -316,9 +308,25 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     //label above input box
-    fontSize: 17,
+    fontSize: 18,
     paddingBottom: 3,
     fontWeight: "600",
+  },
+
+  //INGREDIENTS & DIRECTIONS
+  largeInputSurroundingView: {
+    //View around lists and input boxes for ingredients and directions
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderRadius: 7,
+    padding: 10,
+    //paddingLeft: 5,
+    fontSize: 17,
+    marginBottom: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   largeInputContainer: {
     //surrounds the input section of the large inputs
@@ -328,10 +336,22 @@ const styles = StyleSheet.create({
   largeInput: {
     fontSize: 17,
   },
-
   ingredientItem: {
     fontSize: 17,
     paddingHorizontal: 3,
+  },
+  itemView: {},
+  addButtonStyle: {
+    borderColor: "black",
+    paddingVertical: 3,
+    backgroundColor: "white",
+  },
+  addButtonTitleStyle: { color: "black", fontSize: 17 },
+  headerView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 5,
   },
 });
 
