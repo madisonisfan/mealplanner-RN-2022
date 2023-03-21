@@ -35,7 +35,7 @@ const RecipeForm = ({ toggle }) => {
   // bottom sheet modal
   //const bottomSheetModalRef = useRef < BottomSheetModal > null;
   const bottomSheetModalRef = useRef(null);
-  const snapPoints = useMemo(() => ["25%", "60%"], []);
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
@@ -45,10 +45,9 @@ const RecipeForm = ({ toggle }) => {
 
   const addIngredient = (ingredient) => {
     console.log("adding ingredient ");
+
     setIngredients([...ingredients, ingredient]);
     bottomSheetModalRef.current.close();
-
-    console.log(`ref`, bottomSheetModalRef);
   };
 
   const handleRecipeSubmit = () => {
@@ -140,28 +139,36 @@ const RecipeForm = ({ toggle }) => {
           <Text style={styles.inputLabel}>Ingredients</Text>
 
           <View style={styles.largeInputView}>
-            {ingredients.map((i, index) => {
+            {ingredients.map((ingredient, index) => {
+              console.log(ingredient);
               return (
-                <ListItem key={index} containerStyle={{ padding: 0 }}>
-                  <ListItem.Content
-                    style={{ paddingTop: 5, justifyContent: "center" }}
-                  >
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Icon
-                        name="circle"
-                        type="font-awesome"
-                        size={10}
-                        iconStyle={{ paddingRight: 3 }}
-                      />
-                      <Text style={{ fontSize: 17 }}>{i}</Text>
-                    </View>
-                  </ListItem.Content>
-                </ListItem>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingVertical: 2,
+                  }}
+                >
+                  <Icon
+                    name="circle"
+                    type="font-awesome"
+                    size={10}
+                    iconStyle={{ paddingRight: 3 }}
+                  />
+
+                  {ingredient.wholeValue !== "0" && (
+                    <Text style={styles.ingredientItem}>
+                      {ingredient.wholeValue}
+                    </Text>
+                  )}
+                  {ingredient.fractionValue !== "0" && (
+                    <Text style={styles.ingredientItem}>
+                      {ingredient.fractionValue}
+                    </Text>
+                  )}
+                  <Text style={styles.ingredientItem}>{ingredient.unit}</Text>
+                  <Text style={styles.ingredientItem}>{ingredient.name}</Text>
+                </View>
               );
             })}
           </View>
@@ -228,6 +235,9 @@ const RecipeForm = ({ toggle }) => {
           index={1}
           snapPoints={snapPoints}
           onChange={handleSheetChanges}
+          backgroundStyle={{
+            backgroundColor: "#f0f0f0",
+          }}
         >
           <IngredientModal addIngredient={addIngredient} />
         </BottomSheetModal>
@@ -235,48 +245,6 @@ const RecipeForm = ({ toggle }) => {
     </>
   );
 };
-
-/*
- <View style={styles.largeInputContainer}>
-              <TextInput
-                style={styles.largeInput}
-                //containerStyle={{ width: "80%" }}
-                placeholder="Add Ingredient"
-                placeholderTextColor="grey"
-                value={currentIngredient}
-                onChangeText={(text) => setCI(text)}
-              />
-              <Button
-                title="+"
-                titleStyle={{
-                  color: "black",
-                  fontSize: 20,
-                  fontWeight: "medium",
-                }}
-                type="clear"
-                //color="black"
-                onPress={handlePresentModalPress}
-              />
-
-              {
-                <Button
-                  title="+"
-                  titleStyle={{
-                    color: "black",
-                    fontSize: 20,
-                    fontWeight: "medium",
-                  }}
-                  type="clear"
-                  //color="black"
-                  onPress={() => {
-                    setIngredients([...ingredients, currentIngredient]);
-                    setCI("");
-                  }}
-                />
-              }
-            </View>
-
-*/
 
 const styles = StyleSheet.create({
   mainView: {
@@ -305,7 +273,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 1,
     borderRadius: 7,
-    paddingLeft: 5,
+    padding: 10,
+    //paddingLeft: 5,
     fontSize: 17,
     marginBottom: 10,
     shadowColor: "#000",
@@ -359,9 +328,56 @@ const styles = StyleSheet.create({
   largeInput: {
     fontSize: 17,
   },
+
+  ingredientItem: {
+    fontSize: 17,
+    paddingHorizontal: 3,
+  },
 });
 
 export default RecipeForm;
+
+/*
+ <View style={styles.largeInputContainer}>
+              <TextInput
+                style={styles.largeInput}
+                //containerStyle={{ width: "80%" }}
+                placeholder="Add Ingredient"
+                placeholderTextColor="grey"
+                value={currentIngredient}
+                onChangeText={(text) => setCI(text)}
+              />
+              <Button
+                title="+"
+                titleStyle={{
+                  color: "black",
+                  fontSize: 20,
+                  fontWeight: "medium",
+                }}
+                type="clear"
+                //color="black"
+                onPress={handlePresentModalPress}
+              />
+
+              {
+                <Button
+                  title="+"
+                  titleStyle={{
+                    color: "black",
+                    fontSize: 20,
+                    fontWeight: "medium",
+                  }}
+                  type="clear"
+                  //color="black"
+                  onPress={() => {
+                    setIngredients([...ingredients, currentIngredient]);
+                    setCI("");
+                  }}
+                />
+              }
+            </View>
+
+*/
 
 /*
 

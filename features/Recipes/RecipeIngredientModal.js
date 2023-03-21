@@ -41,9 +41,13 @@ const IngredientModal = ({ addIngredient }) => {
   const [isFractionDropdownOpen, setFractionDropdown] = useState(false);
 
   const formIngredient = () => {
-    let ingredientStr =
-      ingredientName + selectedWhole + selectedFraction + selectedUnit;
-    addIngredient(ingredientStr);
+    const ingredientObject = {
+      name: ingredientName,
+      wholeValue: selectedWhole,
+      fractionValue: selectedFraction,
+      unit: selectedUnit,
+    };
+    addIngredient(ingredientObject);
   };
 
   const clearForm = () => {
@@ -55,15 +59,17 @@ const IngredientModal = ({ addIngredient }) => {
 
   return (
     <View style={styles.modalView}>
-      <Text style={styles.inputLabel}>Ingredient Name</Text>
-      <TextInput
-        style={styles.input}
-        //containerStyle={{ width: "80%" }}
-        placeholder="Ingredient Name"
-        placeholderTextColor="grey"
-        value={ingredientName}
-        onChangeText={(text) => setIngredientName(text)}
-      />
+      <View style={{}}>
+        <Text style={styles.inputLabel}>Ingredient Name</Text>
+        <TextInput
+          style={styles.input}
+          //containerStyle={{ width: "80%" }}
+          placeholder="Ingredient Name"
+          placeholderTextColor="grey"
+          value={ingredientName}
+          onChangeText={(text) => setIngredientName(text)}
+        />
+      </View>
 
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View style={{}}>
@@ -80,6 +86,7 @@ const IngredientModal = ({ addIngredient }) => {
             setValue={setWhole}
             // zIndex={1000}
             closeAfterSelecting={true}
+            dropDownContainerStyle={{ height: 125 }}
           />
         </View>
 
@@ -96,6 +103,7 @@ const IngredientModal = ({ addIngredient }) => {
             setOpen={setFractionDropdown}
             setValue={setFraction}
             closeAfterSelecting={true}
+            dropDownContainerStyle={{ height: 125 }}
             // dropDownDirection="TOP"
 
             //dropDownContainerStyle={{ zIndex: 1000 }}
@@ -114,6 +122,7 @@ const IngredientModal = ({ addIngredient }) => {
             setOpen={setUnitDropdown}
             setValue={setUnit}
             closeAfterSelecting={true}
+            dropDownContainerStyle={{ height: 125 }}
           />
         </View>
       </View>
