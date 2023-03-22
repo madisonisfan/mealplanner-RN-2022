@@ -18,6 +18,7 @@ import {
 } from "@gorhom/bottom-sheet";
 import IngredientModal from "./RecipeIngredientModal";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import DirectionModal from "./RecipeDirectionModal";
 
 const RecipeForm = ({ toggle }) => {
   const [name, setName] = useState("");
@@ -26,18 +27,13 @@ const RecipeForm = ({ toggle }) => {
   const [preptime, setPreptime] = useState(null);
   //const [totaltime, setTotaltime] = useState(null);
   const [servings, setServings] = useState(null);
+  const [calories, setCalories] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const [currentIngredient, setCI] = useState("");
 
   const [directions, setDirections] = useState([]);
   const [currentDirection, setCD] = useState("");
   const dispatch = useDispatch();
-
-  //USED TO DETERMINE WHAT SHOWS IN THE MODAL
-  //DOESN'T ACTUALLY OPEN AND CLOSE THE MODAL
-  const [showingIngredientsModal, toggleIngredientsModalValue] =
-    useState(false);
-  const [showingDirectionsModal, toggleDirectionsModalValue] = useState(false);
 
   // INGRREDIENTS: bottom sheet modal
   //const bottomSheetModalRef = useRef < BottomSheetModal > null;
@@ -60,22 +56,15 @@ const RecipeForm = ({ toggle }) => {
     console.log("handleSheetChanges", index);
   }, []);
 
-  //UNSURE
-  const toggleModalValue = (isIngredients) => {
-    if (isIngredients) {
-      toggleIngredientsModalValue(true);
-      toggleDirectionsModalValue(false);
-    } else {
-      toggleIngredientsModalValue(false);
-      toggleDirectionsModalValue(true);
-    }
-  };
-
   const addIngredient = (ingredient) => {
     console.log("adding ingredient ");
-
     setIngredients([...ingredients, ingredient]);
     bottomSheetModalRef.current.close();
+  };
+
+  const addDirection = (direction) => {
+    setDirections([...directions, direction]);
+    bottomSheetModalRefDirections.current.close();
   };
 
   const handleRecipeSubmit = () => {
@@ -164,6 +153,15 @@ const RecipeForm = ({ toggle }) => {
             style={styles.input}
             onChangeText={(text) => setServings(text)}
           />
+          <Text style={styles.inputLabel}>Calories</Text>
+          <TextInput
+            placeholder="calories per serving"
+            value={calories}
+            placeholderTextColor="grey"
+            keyboardType="numeric"
+            style={styles.input}
+            onChangeText={(text) => setCalories(text)}
+          />
           <View style={styles.headerView}>
             <Text style={styles.inputLabel}>Ingredients</Text>
 
@@ -189,6 +187,7 @@ const RecipeForm = ({ toggle }) => {
               console.log(ingredient);
               return (
                 <View
+                  key={index}
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
@@ -236,25 +235,24 @@ const RecipeForm = ({ toggle }) => {
             />
           </View>
           <View style={styles.largeInputSurroundingView}>
+            {directions.length === 0 && (
+              <Text style={styles.directionItem}>No directions added</Text>
+            )}
             {directions.map((direction, index) => {
               return (
-                <View style={styles.itemView}>
-                  <Icon name="circle" type="font-awesome" /> {index + 1}.{" "}
-                  {direction}
+                <View
+                  key={index}
+                  style={{
+                    flexDirection: "row",
+                    // alignItems: "center",
+                    //paddingVertical: 2,
+                  }}
+                >
+                  <Text style={styles.directionNum}> {index + 1}.</Text>
+                  <Text style={styles.directionItem}>{direction}</Text>
                 </View>
               );
             })}
-
-            <View style={styles.largeInputContainer}>
-              <TextInput
-                style={styles.largeInput}
-                //containerStyle={{ width: "80%" }}
-                placeholder="Add Direction"
-                placeholderTextColor="grey"
-                value={currentDirection}
-                onChangeText={(text) => setCD(text)}
-              />
-            </View>
           </View>
 
           <Button
@@ -274,9 +272,11 @@ const RecipeForm = ({ toggle }) => {
           index={1}
           snapPoints={snapPoints}
           onChange={handleSheetChanges}
-          backgroundStyle={{
-            backgroundColor: "#f0f0f0",
-          }}
+          backgroundStyle={
+            {
+              //backgroundColor: "#f0f0f0",
+            }
+          }
         >
           <IngredientModal addIngredient={addIngredient} />
         </BottomSheetModal>
@@ -285,13 +285,13 @@ const RecipeForm = ({ toggle }) => {
           index={1}
           snapPoints={snapPointsDirections}
           onChange={handleSheetChangesDirections}
-          backgroundStyle={{
-            backgroundColor: "#f0f0f0",
-          }}
+          backgroundStyle={
+            {
+              //backgroundColor: "#f0f0f0",
+            }
+          }
         >
-          <View>
-            <Text>Add Direction</Text>
-          </View>
+          <DirectionModal addDirection={addDirection} />
         </BottomSheetModal>
       </BottomSheetModalProvider>
     </>
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
   largeInputContainer: {
     //surrounds the input section of the large inputs
     flexDirection: "row",
-    justifyContent: "space-between",
+    //justifyContent: "space-between",
   },
   largeInput: {
     fontSize: 17,
@@ -385,6 +385,17 @@ const styles = StyleSheet.create({
   ingredientItem: {
     fontSize: 17,
     paddingHorizontal: 3,
+  },
+  directionItem: {
+    fontSize: 17,
+    paddingLeft: 3,
+  },
+  directionNum: {
+    fontSize: 17,
+    width: 20,
+  },
+  directionItemView: {
+    //flexDirection: "row",
   },
   itemView: {},
   addButtonStyle: {
