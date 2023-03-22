@@ -33,7 +33,13 @@ const RecipeForm = ({ toggle }) => {
   const [currentDirection, setCD] = useState("");
   const dispatch = useDispatch();
 
-  // bottom sheet modal
+  //USED TO DETERMINE WHAT SHOWS IN THE MODAL
+  //DOESN'T ACTUALLY OPEN AND CLOSE THE MODAL
+  const [showingIngredientsModal, toggleIngredientsModalValue] =
+    useState(false);
+  const [showingDirectionsModal, toggleDirectionsModalValue] = useState(false);
+
+  // INGRREDIENTS: bottom sheet modal
   //const bottomSheetModalRef = useRef < BottomSheetModal > null;
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ["25%", "50%"], []);
@@ -43,6 +49,27 @@ const RecipeForm = ({ toggle }) => {
   const handleSheetChanges = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
   }, []);
+
+  // DIRECTIONS: bottom sheet modal
+  const bottomSheetModalRefDirections = useRef(null);
+  const snapPointsDirections = useMemo(() => ["25%", "50%"], []);
+  const handlePresentModalPressDirections = useCallback(() => {
+    bottomSheetModalRefDirections.current?.present();
+  }, []);
+  const handleSheetChangesDirections = useCallback((index: number) => {
+    console.log("handleSheetChanges", index);
+  }, []);
+
+  //UNSURE
+  const toggleModalValue = (isIngredients) => {
+    if (isIngredients) {
+      toggleIngredientsModalValue(true);
+      toggleDirectionsModalValue(false);
+    } else {
+      toggleIngredientsModalValue(false);
+      toggleDirectionsModalValue(true);
+    }
+  };
 
   const addIngredient = (ingredient) => {
     console.log("adding ingredient ");
@@ -142,7 +169,10 @@ const RecipeForm = ({ toggle }) => {
 
             <Button
               type="outline"
-              onPress={handlePresentModalPress}
+              onPress={() => {
+                bottomSheetModalRefDirections.current?.close();
+                handlePresentModalPress();
+              }}
               title="+ Add"
               titleStyle={styles.addButtonTitleStyle}
               buttonStyle={styles.addButtonStyle}
@@ -194,7 +224,10 @@ const RecipeForm = ({ toggle }) => {
 
             <Button
               type="outline"
-              //onPress={handlePresentModalPress}
+              onPress={() => {
+                bottomSheetModalRef.current?.close();
+                handlePresentModalPressDirections();
+              }}
               title="+ Add"
               titleStyle={styles.addButtonTitleStyle}
               buttonStyle={styles.addButtonStyle}
@@ -246,6 +279,19 @@ const RecipeForm = ({ toggle }) => {
           }}
         >
           <IngredientModal addIngredient={addIngredient} />
+        </BottomSheetModal>
+        <BottomSheetModal
+          ref={bottomSheetModalRefDirections}
+          index={1}
+          snapPoints={snapPointsDirections}
+          onChange={handleSheetChangesDirections}
+          backgroundStyle={{
+            backgroundColor: "#f0f0f0",
+          }}
+        >
+          <View>
+            <Text>Add Direction</Text>
+          </View>
         </BottomSheetModal>
       </BottomSheetModalProvider>
     </>
