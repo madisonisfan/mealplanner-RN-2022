@@ -71,6 +71,8 @@ const MainRecipesTwo = ({ navigation }) => {
   const [favoritesEnabled, toggleFavorites] = useState(false);
   const [dropdownOpen, setDropdown] = useState(false);
   const recipes = useSelector(selectAllRecipes);
+  const isLoading = useSelector((state) => state.recipes.isLoading);
+  const errMsg = useSelector((state) => state.recipes.errMsg);
   const mealtypes = [
     { label: "All Recipes", value: "all" },
     { label: "Breakfast", value: "breakfast" },
@@ -89,6 +91,22 @@ const MainRecipesTwo = ({ navigation }) => {
       />
     );
   };
+
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    );
+  }
+
+  if (errMsg) {
+    return (
+      <View>
+        <Text>Error: {errMsg}</Text>
+      </View>
+    );
+  }
 
   return (
     <>
@@ -141,7 +159,7 @@ const MainRecipesTwo = ({ navigation }) => {
             console.log(`recipe`, recipe);
             return (
               <RenderRecipeTwo
-                key={recipe.id}
+                key={index}
                 recipe={recipe}
                 navigate={navigation.navigate}
               />

@@ -49,7 +49,9 @@ const recipesSlice = createSlice({
     },
     [fetchRecipes.rejected]: (state, action) => {
       state.isLoading = false;
-      state.errMsg = ation.error ? action.error.message : "Recipe fetch failed";
+      state.errMsg = action.error
+        ? action.error.message
+        : "Recipe fetch failed";
     },
   },
 });
