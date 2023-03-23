@@ -1,9 +1,24 @@
 import { RECIPES } from "../../shared/recipes";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { baseUrl } from "../../shared/baseUrl";
 
 const initialState = {
-  recipesArray: RECIPES,
+  recipesArray: [],
+  isLoading: true,
+  errMsg: "",
 };
+
+export const fetchRecipes = createAsyncThunk(
+  "recipes/fetchRecipes",
+  async () => {
+    const response = await fetch(baseUrl + "recipes");
+    if (!response.ok) {
+      return Promise.reject("Unable to fetch, status: " + response.status);
+    }
+    const data = await response.json();
+    return data;
+  }
+);
 
 const recipesSlice = createSlice({
   name: "recipes",
@@ -12,7 +27,6 @@ const recipesSlice = createSlice({
     addRecipe: (state, action) => {
       console.log(`add comment action.payload`, action.payload);
       console.log(`add comemnet state.comments`, state.recipesArray);
-
       const newRecipe = {
         id: state.recipesArray.length + 1,
         date: new Date(Date.now()).toISOString(),
@@ -20,10 +34,22 @@ const recipesSlice = createSlice({
         ...action.payload,
         //image: require("../../assets/images/food1.jpg"),
       };
-
       console.log(`new recipe`, newRecipe);
-
       state.recipesArray.push(newRecipe);
+    },
+  },
+  extraReducers: {
+    [fetchRecipes.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchRecipes.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.errMsg = "";
+      state.recipesArray = action.payload;
+    },
+    [fetchRecipes.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.errMsg = ation.error ? action.error.message : "Recipe fetch failed";
     },
   },
 });
