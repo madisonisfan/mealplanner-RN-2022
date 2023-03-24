@@ -10,7 +10,7 @@ export const mapImageURL = (arr) => {
       case "pancakes.jpg":
         img = require("../assets/images/food/pancakes.jpg");
         break;
-      case "salas.jpg":
+      case "salad.jpg":
         img = require("../assets/images/food/salad.jpg");
         break;
       case "sandwich.jpg":
