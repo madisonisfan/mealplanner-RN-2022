@@ -1,8 +1,9 @@
-# Mealplanner - React Native
+# Mealplanner - React Native - 2022
 
-In 2020 I participated in Nucamp's Full-Stack bootcamp. In the 3rd course, we created mobile apps with React Native. This project was my submission for the course. 
 
-As part of the React course, I created a web app to go along with this mobile app. [View app repository here](https://github.com/madisonisfan/mealplanner-react)
+In 2021 I participated in Nucamp's Full-Stack bootcamp. In the 3rd course, we created mobile apps with React Native. For the course project, I developed a Meal Planner mobile app. At the end of 2022, I began recreating this app with newer technology and improved skills. 
+
+I recently developed a Rest API server that responds to data requests from the app. [View app repository here](https://github.com/madisonisfan/mealplanner_RN_2022_Server)
 
 # Table Of Contents
 - [My Inspiration](#my-inspiration)
