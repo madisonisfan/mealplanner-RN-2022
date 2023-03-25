@@ -45,15 +45,15 @@ Profile: This feature has a tab and screen, but it is not developed yet
 
 
 ## Technology 
-- React Native: The framework used for the app. Used many of their components such as Text and View.
-- Expo: used to scaffold out the project, install packages, run and test the app. 
+- React Native: This is the framework used for the app. I used many of their components, such as Text and View.
+- Expo: used to scaffold the project, install packages, and run and test the app. 
 - Redux: the app's state management system 
-- React Navigation: Used for navigating through entire app. Used to create a bottom tab navigator, stacks, and navigators. 
-- react-native-dropdown-picker: Wherever a drop down picker is needed, this package is used 
-- @gorhom/bottom-sheet : Used to create bottom sheet modals. This was used in the recipe form to enter ingredients and directions
-- @rneui/base and @rneui/themed : Used many components from this Cross Platform React Native UI toolkit
+- React Navigation: Used for navigating through the entire app. I used it to create a bottom tab navigator and stacks and navigators. 
+- react-native-dropdown-picker: Wherever a drop-down picker is needed, this package is used 
+- @gorhom/bottom-sheet : Used to create bottom sheet modals. It is in the recipe form to enter ingredients and directions
+- @rneui/base and @rneui/themed : Used many components from this Cross Platform React Native UI toolkit such as Icon and Card
 - react-native-gesture-handler : Used the ScrollView component for two of the screens
-- Font Awesome: Using many of their icons. Occasionaly implement using thier Font Awesome 5 component, but also using Icon from react native elements UI toolkit
+- Font Awesome: Using many of their icons. Occasionally implemented using their Font Awesome 5 component, but also using Icon from react native elements UI toolkit
 
 
 ## Installation and Usage
