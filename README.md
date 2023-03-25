@@ -52,10 +52,10 @@ I've been passionate about health and fitness for almost my entire life. Like mo
 - Font Awesome: Using many of their icons. Occasionally implemented using their Font Awesome 5 component, but also using Icon from react native elements UI toolkit
 
 ## Images
-
-<img width="200" src="https://user-images.githubusercontent.com/69568402/227747462-ef89ed60-c6b3-4933-ba05-43812a358de2.jpg">
 <img width="200" src="https://user-images.githubusercontent.com/69568402/227747413-6abf6a94-cad9-49ec-8953-8de661c27da7.jpg">
 <img width="200" src="https://user-images.githubusercontent.com/69568402/227747246-a4896c82-2dd9-4994-bbe2-a56839c69196.PNG">
+<img width="200" src="https://user-images.githubusercontent.com/69568402/227747462-ef89ed60-c6b3-4933-ba05-43812a358de2.jpg">
+
 
 ## Installation and Usage
 In the project directory, you can run:
