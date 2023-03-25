@@ -52,7 +52,8 @@ Profile: There is a tab and screen for this feature but it is not yet developed.
 - react-native-dropdown-picker: Wherever a drop down picker is needed, this package is used 
 - @gorhom/bottom-sheet : Used to create bottom sheet modals. This was used in the recipe form to enter ingredients and directions
 - @rneui/base and @rneui/themed : Used many components from this Cross Platform React Native UI toolkit
-- react-native-gesture-handler : Used the ScrollView component for two of the screensr
+- react-native-gesture-handler : Used the ScrollView component for two of the screens
+- Font Awesome: Using many of their icons. Occasionaly implement using thier Font Awesome 5 component, but also using Icon from react native elements UI toolkit
 
 
 ## Installation and Usage
