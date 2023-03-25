@@ -29,19 +29,18 @@ Saved Recipes: Users can view all their saved recipes.
 
 Recipe Details: All of the recipe information is displayed, including calories, servings, prep time, cook time, total time, ingredients, directions, and the image
 
-Mealplan: Here users can view, create, and edit their mealplan for the week ahead. 
+Meal plan: Users can view, create, and edit their meal plan for the week ahead. 
   - Users can switch between days by clicking the buttons in the scrollbar above
-  - The meal chosen for each mealtype are all displayed on the same screen
+  - The meal chosen for each meal type are all displayed on the same screen
   - Users can add any number of recipes for each meal type. 
-  - Each recipe has 2 buttons: check mark to say they have completed the meal and a minus to remove the recipe from their plan
-  - By pressing on the meal card, users will be brought to the recipe details sreen
-  - Each mealtype has a plus button that brings users to their list of saved recipes and they can choose a meal to add to their plan
+  - Each recipe has two buttons: a check mark to say they have completed the meal and a minus button to remove the recipe from their plan
+  - By pressing on the meal card, users are brought to the recipe details screen
+  - Each meal type has a plus button that brings users to their list of saved recipes, and here they can choose a meal to add to their plan
 
-Blog: Users can post content to the blog. They can also like and comment on posts created from other users. 
-  - In the bottom right corner there is a plus button that brings users to a screen that allows them to create their post content 
+Blog: Users can post content to the blog. They can also like and comment on posts created by other users. 
+  - In the bottom right corner, there is a plus button that brings users to a screen to create a post
 
-
-Profile: There is a tab and screen for this feature but it is not yet developed. 
+Profile: This feature has a tab and screen, but it is not developed yet
  
 
 
