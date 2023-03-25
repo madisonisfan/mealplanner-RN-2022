@@ -17,17 +17,17 @@ I recently developed a Rest API server that responds to data requests from the a
 
 
 ## My Inspiration
-I've had a passion for health and fitness for almost my entire life. Like most people, I find it challenging to find healthy foods I enjoy and stay consistent with healthy eating. To help find food options for everyone, I created a feature allowing anyone to add a recipe. With everyone adding recipes, there would be an extensive list of food. My goal is to create a place for people to go where they can organize their weekly meal plans and be motivated by the integrated app community.
+I've been passionate about health and fitness for almost my entire life. Like most people, I find it challenging to find healthy foods I enjoy and stay consistent with healthy eating. To help find food options for everyone, I created a feature allowing anyone to add a recipe. With everyone adding recipes, there would be an extensive list of food. My goal is to create a place for people to go where they can organize their weekly meal plans and be motivated by the integrated app community.
 
 ## Screens and Features: 
 Recipes: Here, users can view all recipes and sort the recipes by meal type (ex: Breakfast). 
-  - Each recipe a has a bookmark icon in the top right corner that allows users to save/unsave recipes
-  - By pressing the recipe card's user will be directed to a recipe details screen
-  - In the bottome right corner there is a plus button that brings users to a recipe form that allows them to add their own recipes to the app. 
+  - Each recipe has a bookmark icon in the top right corner that allows users to save/unsave recipes
+  - By pressing the recipe card, users are brought to a recipe details screen
+  - In the bottom right corner, there is a plus button that brings users to a recipe form that allows them to add their recipes to the app. 
   
-Saved Recipes: Users can view all their saved recipes and can unsave them here as well. 
+Saved Recipes: Users can view all their saved recipes.
 
-Recipe Details: All of the recipe informtaiton is displayed inlcuding calories, servings, preptime, cooktime, totaltime, ingredients, directions, and image
+Recipe Details: All of the recipe information is displayed, including calories, servings, prep time, cook time, total time, ingredients, directions, and the image
 
 Mealplan: Here users can view, create, and edit their mealplan for the week ahead. 
   - Users can switch between days by clicking the buttons in the scrollbar above
