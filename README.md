@@ -16,6 +16,12 @@ I recently developed a Rest API server that responds to data requests from the a
 ## My Inspiration
 I've had a passion for health and fitness for almost my entire life. Like most people, I find it challenging to find healthy foods I enjoy and stay consistent with healthy eating. To help find food options for everyone, I created a feature allowing anyone to add a recipe. With everyone adding recipes, there would be an extensive list of food. My goal is to create a place for people to go where they can organize their weekly meal plans and be motivated by the integrated app community.
 
+## Screens and Features: 
+• Recipe Screen: Here, users can view all recipes and sort the recipes by meal type (ex: Breakfast). 
+  - Each recipe a has a bookmark icon in the top right corner that allows users to save/unsave recipes
+  - By pressing the recipe card's user will be directed to a recipe details screen
+• Saved Recipes: Users can view all their saved recipes and can unsave them here as well.  
+
 
 ## Features
 - Recipe Page: Here, users can view all recipes and sort the recipes by meal type (ex: Breakfast). From here, users can also choose to add a recipe to the site, and favorite recipes from the lists. 
