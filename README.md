@@ -9,8 +9,8 @@ I recently developed a Rest API server that responds to data requests from the a
 
 # Table Of Contents
 - [My Inspiration](#my-inspiration)
-- [Features](#features)
-- [Technologies](#technologies)
+- [Features](#screens-and-features)
+- [Technology](#technology)
 - [Installation and Usage](#installation-and-usage)
 
 
