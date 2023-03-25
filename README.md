@@ -12,6 +12,7 @@ I recently developed a Rest API server that responds to data requests from the a
 - [My Inspiration](#my-inspiration)
 - [Features](#screens-and-features)
 - [Technology](#technology)
+- [Images](#images)
 - [Installation and Usage](#installation-and-usage)
 
 
@@ -50,6 +51,9 @@ I've been passionate about health and fitness for almost my entire life. Like mo
 - react-native-gesture-handler : Used the ScrollView component for two of the screens
 - Font Awesome: Using many of their icons. Occasionally implemented using their Font Awesome 5 component, but also using Icon from react native elements UI toolkit
 
+## Images
+
+<img width="200" src="https://user-images.githubusercontent.com/69568402/227747246-a4896c82-2dd9-4994-bbe2-a56839c69196.PNG">
 
 ## Installation and Usage
 In the project directory, you can run:
