@@ -14,7 +14,7 @@ I recently developed a Rest API server that responds to data requests from the a
 
 
 ## My Inspiration
-For almost my entire life I've had a passion for health and fitness. Like most people, I found it difficult to find healthy foods that I enjoy and to stay consistent with healthy eating. My goal is to create a place for people to go where they can organize their weekly meal plans, and be motivated by the app community. To help with finding food options for everyone, I created a feature that allows anyone to add a recipe. With everyone adding recipes, there would be an extensive list of food. 
+I've had a passion for health and fitness for almost my entire life. Like most people, I find it challenging to find healthy foods I enjoy and stay consistent with healthy eating. To help find food options for everyone, I created a feature allowing anyone to add a recipe. With everyone adding recipes, there would be an extensive list of food. My goal is to create a place for people to go where they can organize their weekly meal plans and be motivated by the integrated app community.
 
 
 ## Features
