@@ -51,6 +51,7 @@ Profile: There is a tab and screen for this feature but it is not yet developed.
 - React Navigation: Used for navigating through entire app. Used to create a bottom tab navigator, stacks, and navigators. 
 - react-native-dropdown-picker: Wherever a drop down picker is needed, this package is used 
 - @gorhom/bottom-sheet : Used to create bottom sheet modals. This was used in the recipe form to enter ingredients and directions
+- @rneui/base and @rneui/themed : Used many components from this Cross Platform React Native UI toolkit
 
 
 ## Installation and Usage
