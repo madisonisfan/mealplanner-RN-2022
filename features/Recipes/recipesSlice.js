@@ -9,6 +9,28 @@ const initialState = {
   errMsg: "",
 };
 
+export const postRecipe = createAsyncThunk(
+  "recipes/postRecipe",
+  async (recipe) => {
+    const recipe = await fetch(baseUrl + "recipes/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipe),
+    });
+
+    if (!response.ok) {
+      return Promise.reject(response.status);
+    }
+
+    let data = await response.json();
+    // Add recipeId to returned comment data for storing in application state
+    //data = { ...data, recipeId: recipe.id };
+    return data;
+  }
+);
+
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
   async () => {
@@ -53,6 +75,15 @@ const recipesSlice = createSlice({
       state.errMsg = action.error
         ? action.error.message
         : "Recipe fetch failed";
+    },
+    [postRecipe.fulfilled]: (state, action) => {
+      state.recipesArray.push(action.payload);
+    },
+    [postRecipe.rejected]: (state, action) => {
+      alert(
+        "Your recipe could not be posted\nError: " +
+          (action.error ? action.error.message : "Fetch failed")
+      );
     },
   },
 });
