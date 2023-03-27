@@ -5,8 +5,13 @@ import { Button } from "@rneui/themed";
 
 const units = [
   { label: "cup", value: "cup" },
-  { label: "tsp", value: "tsp" },
-  { label: "tbsp", value: "tbsp" },
+  { label: "teaspoon", value: "teaspoon" },
+  { label: "tablespoon", value: "tablespoon" },
+  { label: "ounce", value: "ounce" },
+  { label: "pint", value: "pint" },
+  { label: "milliliter", value: "milliliter" },
+  { label: "quart", value: "quart" },
+  { label: "gallon", value: "gallon" },
 ];
 
 const wholeValues = [
