@@ -22,6 +22,7 @@ import { Icon } from "@rneui/themed";
 import { useState } from "react";
 import RecipeDetailsModal from "./recipeDetailsModal";
 import { Card } from "@rneui/themed";
+import { mapImageURL } from "../../utils/mapImageUrl";
 
 const RenderRecipeTwo = ({ recipe, navigate }) => {
   // const recipe = useSelector(selectRecipeById(recipeId));
@@ -40,7 +41,10 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
           //onPress={() => toggleDetails(true)}
         >
           <Card containerStyle={styles.card}>
-            <Card.Image source={recipe.image} style={styles.image} />
+            <Card.Image
+              source={mapImageURL(recipe.image)}
+              style={styles.image}
+            />
             <Card.Title style={styles.name}>{recipe.name}</Card.Title>
 
             <View

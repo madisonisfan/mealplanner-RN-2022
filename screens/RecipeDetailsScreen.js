@@ -2,6 +2,7 @@ import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import { Card } from "react-native-elements";
 import { useSelector } from "react-redux";
 import { selectRecipeById } from "../features/Recipes/recipesSlice";
+import { mapImageURL } from "../utils/mapImageUrl";
 
 //<Image source={recipe.image} style={{ resizeMode: "contain" }} />
 const RecipeDetails = ({ route }) => {
@@ -60,7 +61,7 @@ const RecipeDetails = ({ route }) => {
       <Text style={styles.recipeName}>{name}</Text>
       <Text style={styles.description}>{description}</Text>
       <Image
-        source={recipe.image}
+        source={mapImageURL(recipe.image)}
         style={{ flex: 1, width: null, height: 200 }}
       />
       <Card containerStyle={styles.card}>

@@ -1,7 +1,5 @@
-import { RECIPES } from "../../shared/recipes";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { baseUrl } from "../../shared/baseUrl";
-import { mapImageURL } from "../../utils/mapImageUrl";
 
 const initialState = {
   recipesArray: [],
@@ -12,6 +10,7 @@ const initialState = {
 export const postRecipe = createAsyncThunk(
   "recipes/postRecipe",
   async (recipe) => {
+    console.log(`POST RECIPE: `, recipe);
     const response = await fetch(baseUrl + "recipes", {
       method: "POST",
       headers: {
@@ -23,12 +22,14 @@ export const postRecipe = createAsyncThunk(
     console.log(`recipe to post`, recipe);
 
     if (!response.ok) {
+      console.log(`RESPONSE NOT OKAY`);
       return Promise.reject(response.status);
     }
 
     let data = await response.json();
     // Add recipeId to returned comment data for storing in application state
     //data = { ...data, recipeId: recipe.id };
+    console.log(`data`, data);
     return data;
   }
 );
@@ -48,21 +49,7 @@ export const fetchRecipes = createAsyncThunk(
 const recipesSlice = createSlice({
   name: "recipes",
   initialState,
-  reducers: {
-    addRecipe: (state, action) => {
-      console.log(`add comment action.payload`, action.payload);
-      console.log(`add comemnet state.comments`, state.recipesArray);
-      const newRecipe = {
-        id: state.recipesArray.length + 1,
-        date: new Date(Date.now()).toISOString(),
-        totaltime: action.payload.preptime + action.payload.cooktime,
-        ...action.payload,
-        //image: require("../../assets/images/food1.jpg"),
-      };
-      console.log(`new recipe`, newRecipe);
-      state.recipesArray.push(newRecipe);
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchRecipes.pending]: (state) => {
       state.isLoading = true;
@@ -70,7 +57,8 @@ const recipesSlice = createSlice({
     [fetchRecipes.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.errMsg = "";
-      state.recipesArray = mapImageURL(action.payload);
+      // state.recipesArray = mapImageURL(action.payload);
+      state.recipesArray = action.payload;
     },
     [fetchRecipes.rejected]: (state, action) => {
       state.isLoading = false;
@@ -113,3 +101,18 @@ export const selectRecipesByType = (type) => (state) => {
     ? state.recipes.recipesArray
     : state.recipes.recipesArray.filter((recipe) => recipe.mealType === type);*/
 };
+
+/*
+    addRecipe: (state, action) => {
+      const newRecipe = {
+        id: state.recipesArray.length + 1,
+        date: new Date(Date.now()).toISOString(),
+        totaltime: action.payload.preptime + action.payload.cooktime,
+        ...action.payload,
+        //image: require("../../assets/images/food1.jpg"),
+      };
+      console.log(`new recipe`, newRecipe);
+      state.recipesArray.push(newRecipe);
+    },
+  },
+*/

@@ -31,9 +31,9 @@ const RecipeForm = ({ navigation }) => {
   const [calories, setCalories] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const [currentIngredient, setCI] = useState("");
-
   const [directions, setDirections] = useState([]);
   const [currentDirection, setCD] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const dispatch = useDispatch();
 
   // INGRREDIENTS: bottom sheet modal
@@ -76,8 +76,9 @@ const RecipeForm = ({ navigation }) => {
       preptime,
       servings,
       calories,
-      //ingredients,
+      ingredients,
       directions,
+      image: imageUrl,
     };
 
     dispatch(postRecipe(newRecipe));
