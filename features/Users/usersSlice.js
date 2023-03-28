@@ -20,8 +20,19 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: [],
-  extraReducers: [],
+  reducers: {},
+  extraReducers: {
+    [fetchUsers.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchUsers.rejected]: (state, action) => {
+      state.isLoading = false;
+      errMsg = action.error ? action.error.message : "Error: User Fetch failed";
+    },
+    [fetchUsers.fulfilled]: (state, action) => {
+      state.usersArray = action.payload;
+    },
+  },
 });
 
 export const usersReducers = usersSlice.reducer;
