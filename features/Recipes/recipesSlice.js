@@ -12,13 +12,15 @@ const initialState = {
 export const postRecipe = createAsyncThunk(
   "recipes/postRecipe",
   async (recipe) => {
-    const recipe = await fetch(baseUrl + "recipes/", {
+    const response = await fetch(baseUrl + "recipes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(recipe),
     });
+
+    console.log(`recipe to post`, recipe);
 
     if (!response.ok) {
       return Promise.reject(response.status);

@@ -98,20 +98,7 @@ const RecipeDetails = ({ route }) => {
           style={{ flexDirection: "row", alignItems: "center" }}
         >
           <Text style={styles.ingredient}>•</Text>
-          {ingredient.wholeValue && (
-            <Text style={styles.ingredient}>{ingredient.wholeValue}</Text>
-          )}
-          {ingredient.fractionValue && (
-            <Text style={styles.ingredient}>{ingredient.fractionValue}</Text>
-          )}
-          {ingredient.unit && (
-            <Text style={styles.ingredient}>
-              {ingredient.unit}
-              {unitFormat(ingredient.wholeValue, ingredient.fractionValue)}
-            </Text>
-          )}
-
-          <Text style={styles.ingredient}>{ingredient.ingredientName}</Text>
+          <Text style={styles.ingredient}>{ingredient}</Text>
         </View>
       ))}
       <Text style={styles.title}>Instructions</Text>
@@ -166,3 +153,22 @@ const styles = StyleSheet.create({
 });
 
 export default RecipeDetails;
+
+/*
+
+          {ingredient.wholeValue && (
+            <Text style={styles.ingredient}>{ingredient.wholeValue}</Text>
+          )}
+          {ingredient.fractionValue && (
+            <Text style={styles.ingredient}>{ingredient.fractionValue}</Text>
+          )}
+          {ingredient.unit && (
+            <Text style={styles.ingredient}>
+              {ingredient.unit}
+              {unitFormat(ingredient.wholeValue, ingredient.fractionValue)}
+            </Text>
+          )}
+
+          <Text style={styles.ingredient}>{ingredient.ingredientName}</Text>
+
+*/

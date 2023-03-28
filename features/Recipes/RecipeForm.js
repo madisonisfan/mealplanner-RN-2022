@@ -19,8 +19,9 @@ import {
 import IngredientModal from "./RecipeIngredientModal";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DirectionModal from "./RecipeDirectionModal";
+import { postRecipe } from "./recipesSlice";
 
-const RecipeForm = ({ toggle }) => {
+const RecipeForm = ({ navigation }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [cooktime, setCooktime] = useState(null);
@@ -67,21 +68,24 @@ const RecipeForm = ({ toggle }) => {
     bottomSheetModalRefDirections.current.close();
   };
 
-  const handleRecipeSubmit = () => {
-    console.log(`handle submit`);
-
+  const submitRecipe = () => {
     const newRecipe = {
       name,
       description,
       cooktime,
       preptime,
       servings,
-      ingredients,
+      calories,
+      //ingredients,
       directions,
     };
 
-    dispatch(addRecipe(newRecipe));
+    dispatch(postRecipe(newRecipe));
     resetForm();
+  };
+
+  const handleRecipeSubmit = () => {
+    console.log(`handle submit`);
   };
 
   //Cant use clear method instead
@@ -201,18 +205,7 @@ const RecipeForm = ({ toggle }) => {
                     iconStyle={{ paddingRight: 3 }}
                   />
 
-                  {ingredient.wholeValue !== "0" && (
-                    <Text style={styles.ingredientItem}>
-                      {ingredient.wholeValue}
-                    </Text>
-                  )}
-                  {ingredient.fractionValue !== "0" && (
-                    <Text style={styles.ingredientItem}>
-                      {ingredient.fractionValue}
-                    </Text>
-                  )}
-                  <Text style={styles.ingredientItem}>{ingredient.unit}</Text>
-                  <Text style={styles.ingredientItem}>{ingredient.name}</Text>
+                  <Text style={styles.ingredientItem}>{ingredient}</Text>
                 </View>
               );
             })}
@@ -261,8 +254,8 @@ const RecipeForm = ({ toggle }) => {
             titleStyle={{ color: "black", fontWeight: "500" }}
             buttonStyle={styles.submitButton}
             onPress={() => {
-              handleRecipeSubmit();
-              toggle(false);
+              submitRecipe();
+              navigation.navigate("MainRecipes");
             }}
           />
         </ScrollView>
