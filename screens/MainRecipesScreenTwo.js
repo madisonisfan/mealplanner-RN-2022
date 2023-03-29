@@ -17,6 +17,8 @@ import { Icon, Button } from "@rneui/themed";
 
 import DropDownPicker from "react-native-dropdown-picker";
 
+const userId = "6423b3f146c37541574900bd";
+
 const recipeTypes = {
   all: "All Recipes",
   breakfast: "Breakfast",
@@ -70,9 +72,14 @@ const MainRecipesTwo = ({ navigation }) => {
   const [isRecipeFormOpen, toggleRecipeForm] = useState(false);
   const [favoritesEnabled, toggleFavorites] = useState(false);
   const [dropdownOpen, setDropdown] = useState(false);
-  const recipes = useSelector(selectAllRecipes);
-  const isLoading = useSelector((state) => state.recipes.isLoading);
-  const errMsg = useSelector((state) => state.recipes.errMsg);
+  //const recipes = useSelector(selectAllRecipes);
+  const allUsers = useSelector((state) => state.users.usersArray);
+  const usersLoading = useSelector((state) => state.users.isLoading);
+  const usersErrMsg = useSelector((state) => state.users.errMsg);
+
+  const recipes = useSelector((state) => state.recipes.recipesArray);
+  const recipesLoading = useSelector((state) => state.recipes.isLoading);
+  const recipesErrMsg = useSelector((state) => state.recipes.errMsg);
   const mealtypes = [
     { label: "All Recipes", value: "all" },
     { label: "Breakfast", value: "breakfast" },
@@ -80,8 +87,22 @@ const MainRecipesTwo = ({ navigation }) => {
     { label: "Drinks", value: "drinks" },
     { label: "Snacks", value: "snacks" },
   ];
-  //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
 
+  //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
+  /*
+  console.log(
+    `MAIN RECIPES, USERS`,
+    allUsers
+    //allUsers.filter((user) => user._id === userId)
+  );*/
+  /*
+  console.log(
+    `MAIN RECIPES, RECIPES`,
+    recipes
+    //allUsers.filter((user) => user._id === userId)
+  );*/
+
+  /*
   const renderRecipe = ({ item: recipe }) => {
     return (
       <RenderRecipeTwo
@@ -90,9 +111,9 @@ const MainRecipesTwo = ({ navigation }) => {
         toAdd={false}
       />
     );
-  };
+  };*/
 
-  if (isLoading) {
+  if (recipesLoading || usersLoading) {
     return (
       <View>
         <Text>Loading</Text>
@@ -100,10 +121,11 @@ const MainRecipesTwo = ({ navigation }) => {
     );
   }
 
-  if (errMsg) {
+  if (recipesErrMsg || usersErrMsg) {
     return (
       <View>
-        <Text>Error: {errMsg}</Text>
+        <Text>Recipes Error: {recipesErrMsg}</Text>
+        <Text>Recipes Error: {usersErrMsg}</Text>
       </View>
     );
   }
@@ -162,6 +184,7 @@ const MainRecipesTwo = ({ navigation }) => {
                 key={index}
                 recipe={recipe}
                 navigate={navigation.navigate}
+                //favorites={[]}
               />
             );
           })}

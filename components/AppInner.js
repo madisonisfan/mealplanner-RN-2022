@@ -9,8 +9,8 @@ const AppInner = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRecipes());
     dispatch(fetchUsers());
+    dispatch(fetchRecipes());
   }, [dispatch]);
 
   return (

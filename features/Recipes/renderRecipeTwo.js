@@ -23,39 +23,37 @@ import { useState } from "react";
 import RecipeDetailsModal from "./recipeDetailsModal";
 import { Card } from "@rneui/themed";
 import { mapImageURL } from "../../utils/mapImageUrl";
-import { addFavorites, putFavorites } from "../Users/usersSlice";
+import { addFavorites, putFavorites, fetchUsers } from "../Users/usersSlice";
 
 const RenderRecipeTwo = ({ recipe, navigate }) => {
   // const recipe = useSelector(selectRecipeById(recipeId));
   //const favorites = useSelector(selectAllFavorites);
-  const user = useSelector((state) => state.users.usersArray[0]);
+  const allUsers = useSelector((state) => state.users.usersArray);
   const dispatch = useDispatch();
   const [isFavModalOpen, toggleFavModal] = useState(false);
   const [isDetailsOpen, toggleDetails] = useState(false);
   console.log(`recipe being displayed: `, recipe);
-  console.log(`USER`, user);
-
-  /*
-  const handleSavingRecipe = () => {
-    dispatch(hadnle);
-  };*/
 
   const handleSavingRecipe = () => {
     console.log("HANDLE SAVING: ", recipe._id);
-    let newFavorites = user.favorites.concat(recipe._id);
+    let newFavorites = []; // allUsers[0].favorites.concat(recipe._id);
     console.log("new favorites", newFavorites);
 
     /*
     let tempFavorites = [...users[0].favorites, recipe.id];
     let newFavorites = [];
+    */
 
-    if (user.favorites.includes(recipe.id)) {
-      newFavorites = tempFavorites.filter((recipeId) => recipeId !== recipe.id);
+    if (allUsers[0].favorites.includes(recipe._id)) {
+      newFavorites = allUsers[0].favorites.filter(
+        (recipeId) => recipeId !== recipe._id
+      );
     } else {
-      newFavorites = tempFavorites.concat(recipe.id);
-    }*/
+      newFavorites = allUsers[0].favorites.concat(recipe._id);
+    }
 
     dispatch(putFavorites(newFavorites));
+    dispatch(fetchUsers());
   };
 
   if (recipe) {
@@ -90,18 +88,18 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
                 // color="rgb(99, 97, 90, 0.5)"
 
                 iconStyle={
-                  styles.iconEmpty
-                  /*
-                  user.favorites.includes(recipe._id)
+                  //styles.iconEmpty
+
+                  allUsers[0].favorites.includes(recipe._id)
                     ? styles.iconFilled
-                    : styles.iconEmpty*/
+                    : styles.iconEmpty
                 }
                 name={
-                  "bookmark"
-                  /*
-                  user.favorites.includes(recipe._id)
+                  ///"bookmark"
+
+                  allUsers[0].favorites.includes(recipe._id)
                     ? "bookmark"
-                    : "bookmark-o"*/
+                    : "bookmark-o"
                 }
                 type="font-awesome"
                 onPress={() => {

@@ -11,9 +11,10 @@ import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
 const Favorites = ({ navigation }) => {
   //const favorites = useSelector(selectAllFavorites);
   const favorites = useSelector((state) => state.users.usersArray[0].favorites);
+  //const allUsers = useSelector((state) => state.users.usersArray);
   const recipes = useSelector(selectAllRecipes);
 
-  console.log(`FAVORITES`, favorites);
+  //console.log(`FAVORITES`, allUsers[0].favorites);
 
   if (favorites.length === 0) {
     return (
@@ -29,7 +30,13 @@ const Favorites = ({ navigation }) => {
         {recipes
           .filter((recipe) => favorites.includes(recipe._id))
           .map((recipe) => {
-            return <RenderRecipeTwo recipe={recipe} />;
+            return (
+              <RenderRecipeTwo
+                recipe={recipe}
+                key={recipe._id}
+                //favorites={[]}
+              />
+            );
           })}
       </View>
     </ScrollView>

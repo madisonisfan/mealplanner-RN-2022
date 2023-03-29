@@ -37,6 +37,7 @@ export const postRecipe = createAsyncThunk(
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
   async () => {
+    console.log(`fetch recipes`);
     const response = await fetch(baseUrl + "recipes");
     if (!response.ok) {
       return Promise.reject("Unable to fetch, status: " + response.status);
