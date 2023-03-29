@@ -1,0 +1,3 @@
+const USER = {
+  name: "Madison",
+};

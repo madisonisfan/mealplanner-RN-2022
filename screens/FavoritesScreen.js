@@ -9,15 +9,25 @@ import RenderRecipe from "../features/Recipes/renderRecipe";
 import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
 
 const Favorites = ({ navigation }) => {
-  const favorites = useSelector(selectAllFavorites);
+  //const favorites = useSelector(selectAllFavorites);
+  const favorites = useSelector((state) => state.users.usersArray[0].favorites);
   const recipes = useSelector(selectAllRecipes);
 
-  console.log(`favorites screen`);
+  console.log(`FAVORITES`, favorites);
+
+  if (favorites.length === 0) {
+    return (
+      <View>
+        <Text>No recipes saved</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView>
       <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
         {recipes
-          .filter((r) => favorites.includes(r.id))
+          .filter((recipe) => favorites.includes(recipe._id))
           .map((recipe) => {
             return <RenderRecipeTwo recipe={recipe} />;
           })}
