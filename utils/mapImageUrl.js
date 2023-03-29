@@ -1,5 +1,6 @@
 // Note: React Native does not allow dynamic values for require, hence the static mapping here
 
+/*
 export const mapImageURL = (imageName) => {
   let img;
   switch (imageName) {
@@ -16,9 +17,8 @@ export const mapImageURL = (imageName) => {
     default:
       return require("../assets/images/food1.jpg");
   }
-};
+};*/
 
-/*KEEEEP!
 export const mapImageURL = (arr) => {
   return arr.map((item) => {
     let img;
@@ -38,7 +38,7 @@ export const mapImageURL = (arr) => {
       case "smoothie.jpg":
         img = require("../assets/images/food/smoothie.jpg");
         break;
-      
+
       default:
         img = require("../assets/images/food1.jpg");
     }
@@ -48,4 +48,3 @@ export const mapImageURL = (arr) => {
     };
   });
 };
-*/

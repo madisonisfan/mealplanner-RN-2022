@@ -35,21 +35,16 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
   console.log(`recipe being displayed: `, recipe);
 
   const handleSavingRecipe = () => {
-    console.log("HANDLE SAVING: ", recipe._id);
-    let newFavorites = []; // allUsers[0].favorites.concat(recipe._id);
-    console.log("new favorites", newFavorites);
-
-    /*
-    let tempFavorites = [...users[0].favorites, recipe.id];
     let newFavorites = [];
-    */
 
-    if (allUsers[0].favorites.includes(recipe._id)) {
-      newFavorites = allUsers[0].favorites.filter(
+    let currentFavorites = allUsers[0].favorites;
+
+    if (currentFavorites.includes(recipe._id)) {
+      newFavorites = currentFavorites.filter(
         (recipeId) => recipeId !== recipe._id
       );
     } else {
-      newFavorites = allUsers[0].favorites.concat(recipe._id);
+      newFavorites = currentFavorites.concat(recipe._id);
     }
 
     dispatch(putFavorites(newFavorites));
@@ -66,7 +61,8 @@ const RenderRecipeTwo = ({ recipe, navigate }) => {
         >
           <Card containerStyle={styles.card}>
             <Card.Image
-              source={mapImageURL(recipe.image)}
+              //source={mapImageURL(recipe.image)}
+              source={recipe.image}
               style={styles.image}
             />
             <Card.Title style={styles.name}>{recipe.name}</Card.Title>

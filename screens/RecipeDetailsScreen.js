@@ -61,7 +61,8 @@ const RecipeDetails = ({ route }) => {
       <Text style={styles.recipeName}>{name}</Text>
       <Text style={styles.description}>{description}</Text>
       <Image
-        source={mapImageURL(recipe.image)}
+        //source={mapImageURL(recipe.image)}
+        source={recipe.image}
         style={{ flex: 1, width: null, height: 200 }}
       />
       <Card containerStyle={styles.card}>
