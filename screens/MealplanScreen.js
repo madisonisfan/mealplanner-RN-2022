@@ -14,19 +14,12 @@ import {
   selectDayByIndex,
 } from "../features/Mealplan/mealplanSlice";
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
-
-import MealplanItem from "../features/Mealplan/MealplanItem";
-import EmptyMealplanItem from "../features/Mealplan/EmptyMealplanItem";
-import { Icon, Card } from "@rneui/themed";
+import MealplanItemSection from "../features/Mealplan/MeaplanItemSection";
 
 const Mealplan = ({ navigation }) => {
-  const allDays = useSelector(selectAllDays);
-  const firstDay = useSelector(selectFirstDay);
-
   const [currentIndex, setIndex] = useState(0);
-  const currentDay = useSelector(selectDayByIndex(currentIndex));
-
-  const recipes = useSelector(selectAllRecipes);
+  //const currentDay = useSelector(selectDayByIndex(currentIndex));
+  //const recipes = useSelector(selectAllRecipes);
   const days = [
     "Monday",
     "Tuesday",
@@ -37,8 +30,6 @@ const Mealplan = ({ navigation }) => {
     "Sunday",
   ];
 
-  console.log(`navigation in mealplan`, navigation);
-
   return (
     <>
       <ScrollView horizontal style={{ backgroundColor: "#1f1e1e" }}>
@@ -46,7 +37,6 @@ const Mealplan = ({ navigation }) => {
           return (
             <Button
               onPress={() => {
-                console.log(`button pressed, ${index}, ${day}`);
                 setIndex(index);
               }}
               key={index}
@@ -54,11 +44,9 @@ const Mealplan = ({ navigation }) => {
               type="clear"
               titleStyle={{
                 color: "white",
-                //textDecorationLine: "underline",
                 textDecorationLine:
                   index === currentIndex ? "underline" : "none",
                 textDecorationColor: "#f0faeb",
-                //textDecorationThickness: "3px",
               }}
               containerStyle={{ borderBottom: "solid 1px blue" }}
             />
@@ -66,160 +54,39 @@ const Mealplan = ({ navigation }) => {
         })}
       </ScrollView>
       <ScrollView contentContainerStyle={{ paddingBottom: 10, paddingTop: 20 }}>
-        {/*<Text style={styles.date}>{currentDay.date}</Text>*/}
-
-        <MealplanTitle
+        <MealplanItemSection
           navigation={navigation}
-          mealplanId={currentDay.id}
           mealType={"Breakfast"}
+          currentIndex={currentIndex}
         />
-        {/*
-          EACH MEAL HAS AN ARRAY OF IDS
-          SECTION NEEDS THIS ARRAY 
-          MEALPLAN SECTION WILL THEN RENDER MEALPLAN ITEM
-          */}
-        {currentDay.breakfast.length === 0 && <EmptyMealplanItem />}
-        {currentDay.breakfast.map((recipeId) => {
-          return (
-            <MealplanItem
-              navigation={navigation}
-              recipe={recipes.find((recipe) => recipe.id === recipeId)}
-              mealplanId={currentDay.id}
-              mealType={"Breakfast"}
-            />
-          );
-        })}
-
-        <MealplanTitle
+        <MealplanItemSection
           navigation={navigation}
-          mealplanId={currentDay.id}
           mealType={"Lunch"}
+          currentIndex={currentIndex}
         />
-        {currentDay.lunch.length === 0 && <EmptyMealplanItem />}
-
-        {currentDay.lunch.map((recipeId) => {
-          return (
-            <MealplanItem
-              navigation={navigation}
-              recipe={recipes.find((recipe) => recipe.id === recipeId)}
-              mealplanId={currentDay.id}
-              mealType={"Lunch"}
-            />
-          );
-        })}
-
-        <MealplanTitle
+        <MealplanItemSection
           navigation={navigation}
-          mealplanId={currentDay.id}
           mealType={"Dinner"}
+          currentIndex={currentIndex}
         />
-        {currentDay.dinner.length === 0 && <EmptyMealplanItem />}
-        {currentDay.dinner.map((recipeId) => {
-          return (
-            <MealplanItem
-              navigation={navigation}
-              recipe={recipes.find((recipe) => recipe.id === recipeId)}
-              mealplanId={currentDay.id}
-              mealType={"Dinner"}
-            />
-          );
-        })}
-
-        <MealplanTitle
+        <MealplanItemSection
           navigation={navigation}
-          mealplanId={currentDay.id}
           mealType={"Snacks"}
+          currentIndex={currentIndex}
         />
-        {currentDay.snacks.length === 0 && <EmptyMealplanItem />}
-        {currentDay.snacks.map((recipeId) => {
-          return (
-            <MealplanItem
-              navigation={navigation}
-              recipe={recipes.find((recipe) => recipe.id === recipeId)}
-              mealplanId={currentDay.id}
-              mealType={"Snacks"}
-            />
-          );
-        })}
-
-        <MealplanTitle
+        <MealplanItemSection
           navigation={navigation}
-          mealplanId={currentDay.id}
           mealType={"Drinks"}
+          currentIndex={currentIndex}
         />
-        {currentDay.drinks.length === 0 && <EmptyMealplanItem />}
-        {currentDay.drinks.map((recipeId) => {
-          return (
-            <MealplanItem
-              navigation={navigation}
-              recipe={recipes.find((recipe) => recipe.id === recipeId)}
-              mealplanId={currentDay.id}
-              mealType={"Drinks"}
-            />
-          );
-        })}
       </ScrollView>
     </>
   );
 };
 
-const MealplanTitle = ({ navigation, mealType, mealplanId }) => {
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        marginHorizontal: 11,
-        marginTop: 10,
-        justifyContent: "space-between",
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: "500",
-          paddingRight: 10,
-          paddingBottom: 10,
-        }}
-      >
-        {mealType}
-      </Text>
-      <Icon
-        name="plus"
-        color="black"
-        type="font-awesome"
-        onPress={() =>
-          navigation.navigate("MealplanOptionsModal", {
-            mealplanId,
-            mealType,
-            navigation,
-          })
-        }
-      />
-    </View>
-  );
-};
-
-const AddRecipe = () => {
-  return (
-    <View style={styles.emptyContainer}>
-      <Button title="+" />
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   emptyContainer: {
-    //justifyContent: "center",
     height: "100%",
-
-    /*
-    width: "50%",
-    backgroundColor: "grey",
-    //margin: 1,
-    marginTop: margi
-    marginVertical: 1,
-    borderWidth: 0,
-    borderRadius: 7,*/
   },
 
   mealtypeTitle: {
@@ -236,7 +103,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     //color: "white",
   },
-  dayButton: {},
 });
 
 export default Mealplan;
