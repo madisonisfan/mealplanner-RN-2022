@@ -1,4 +1,10 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { useState } from "react";
 import { Button } from "react-native-elements";
 import { useSelector } from "react-redux";
@@ -11,6 +17,9 @@ import { selectAllRecipes } from "../features/Recipes/recipesSlice";
 import RenderRecipe from "../features/Recipes/renderRecipe";
 import MealplanItem from "../features/Mealplan/MealplanItem";
 import MealplanItemTwo from "../features/Mealplan/MealplanItemTwo";
+import MealplanItemTesting from "../features/Mealplan/MealplanItemTesting";
+import MealplanItemTestingTwo from "../features/Mealplan/MealplanItemTestingTwo";
+import { Icon, Card } from "@rneui/themed";
 
 const Mealplan = ({ navigation }) => {
   const allDays = useSelector(selectAllDays);
@@ -29,6 +38,8 @@ const Mealplan = ({ navigation }) => {
     "Saturday",
     "Sunday",
   ];
+
+  console.log(`navigation in mealplan`, navigation);
 
   return (
     <>
@@ -56,47 +67,79 @@ const Mealplan = ({ navigation }) => {
           );
         })}
       </ScrollView>
-      <ScrollView contentContainerStyle={{ paddingBottom: 10 }}>
-        <Text style={styles.date}>{currentDay.date}</Text>
-        <Text style={styles.mealtypeTitle}>Breakfast</Text>
+      <ScrollView contentContainerStyle={{ paddingBottom: 10, paddingTop: 20 }}>
+        {/*<Text style={styles.date}>{currentDay.date}</Text>*/}
 
-        <MealplanItem
+        <MealplanTitle title="Breakfast" navigation={navigation} />
+        <MealplanItemTestingTwo
           navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
           mealplanId={currentDay.id}
-          mealType={"breakfast"}
+          mealType={"Breakfast"}
         />
 
-        <Text style={styles.mealtypeTitle}>Lunch</Text>
-        <MealplanItem
-          navigate={navigation.navigate}
+        <MealplanTitle title="Lunch" navigation={navigation} />
+        <MealplanItemTestingTwo
+          navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
           mealplanId={currentDay.id}
-          mealType={"lunch"}
+          mealType={"Lunch"}
         />
-        <Text style={styles.mealtypeTitle}>Dinner</Text>
-        <MealplanItem
-          navigate={navigation.navigate}
+        <MealplanTitle title="Dinner" navigation={navigation} />
+        <MealplanItemTestingTwo
+          navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
           mealplanId={currentDay.id}
-          mealType={"dinner"}
+          mealType={"Dinner"}
         />
-        <Text style={styles.mealtypeTitle}>Snacks</Text>
-        <MealplanItem
-          navigate={navigation.navigate}
+
+        <MealplanTitle title="Snacks" navigation={navigation} />
+        <MealplanItemTestingTwo
+          navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
           mealplanId={currentDay.id}
-          mealType={"snacks"}
+          mealType={"Snacks"}
         />
-        <Text style={styles.mealtypeTitle}>Drinks</Text>
-        <MealplanItem
-          navigate={navigation.navigate}
+
+        <MealplanTitle title="Drinks" navigation={navigation} />
+        <MealplanItemTestingTwo
+          navigation={navigation}
           recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
           mealplanId={currentDay.id}
-          mealType={"drinks"}
+          mealType={"Drinks"}
         />
       </ScrollView>
     </>
+  );
+};
+
+const MealplanTitle = ({ title, navigation }) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        marginHorizontal: 11,
+        marginTop: 10,
+        justifyContent: "space-between",
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 20,
+          fontWeight: "500",
+          paddingRight: 10,
+          paddingBottom: 10,
+        }}
+      >
+        {title}
+      </Text>
+      <Icon
+        name="plus"
+        color="black"
+        type="font-awesome"
+        onPress={() => navigation.navigate("MealplanOptionsModal")}
+      />
+    </View>
   );
 };
 
@@ -127,13 +170,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 15,
     marginLeft: 15,
-    fontWeight: "400",
+    fontWeight: "500",
     //color: "white",
   },
   date: {
     textAlign: "center",
     marginTop: 20,
-    fontSize: 20,
+    fontSize: 24,
+    fontWeight: "500",
     //color: "white",
   },
   dayButton: {},

@@ -80,7 +80,8 @@ const MealplanDirectory = () => {
         cardStyle: {
           //backgroundColor: "#3C3C3C",
           //backgroundColor: "#f0faeb",
-          backgroundColor: "#e9f2d5",
+          backgroundColor: "#e9f2d5", //USING
+          //backgroundColor: "rgba(73, 74, 74, 0.1)",
         },
         headerStyle: {
           backgroundColor: "#1f1e1e",

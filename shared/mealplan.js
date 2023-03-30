@@ -1,7 +1,7 @@
 export const USERMEALPLAN = [
   {
     id: 0,
-    date: "Monday, January 1, 2021",
+    date: "Monday",
     breakfast: 2,
     lunch: 1,
     dinner: 1,
@@ -10,7 +10,7 @@ export const USERMEALPLAN = [
   },
   {
     id: 1,
-    date: "Tuesday, January 2, 2021",
+    date: "Tuesday",
     breakfast: 3,
     lunch: 2,
     dinner: 0,
@@ -19,7 +19,7 @@ export const USERMEALPLAN = [
   },
   {
     id: 2,
-    date: "Wednesday, January 3, 2021",
+    date: "Wednesday",
     breakfast: 4,
     lunch: null,
     dinner: 1,
