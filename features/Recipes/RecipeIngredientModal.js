@@ -2,34 +2,9 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { useState } from "react";
 import { Button } from "@rneui/themed";
-
-const units = [
-  { label: "cup", value: "cup" },
-  { label: "tsp", value: "tsp" },
-  { label: "tbsp", value: "tbsp" },
-];
-
-const wholeValues = [
-  { label: "0", value: "0" },
-  { label: "1", value: "1" },
-  { label: "2", value: "2" },
-  { label: "3", value: "3" },
-  { label: "4", value: "4" },
-  { label: "5", value: "5" },
-  { label: "6", value: "6" },
-  { label: "7", value: "7" },
-  { label: "8", value: "8" },
-  { label: "9", value: "9" },
-];
-
-const fractionValues = [
-  { label: "0", value: "0" },
-  { label: "1/4", value: "1/4" },
-  { label: "1/2", value: "1/2" },
-  { label: "3/4", value: "3/4" },
-  { label: "1/3", value: "1/3" },
-  { label: "2/3", value: "2/3" },
-];
+import { units } from "../../shared/extra data/units";
+import { wholeValues } from "../../shared/extra data/wholeValues";
+import { fractionValues } from "../../shared/extra data/fractionValues";
 
 const IngredientModal = ({ addIngredient }) => {
   const [ingredientName, setIngredientName] = useState("");
@@ -41,27 +16,16 @@ const IngredientModal = ({ addIngredient }) => {
   const [isFractionDropdownOpen, setFractionDropdown] = useState(false);
 
   const formIngredient = () => {
-    /*
-    const ingredientObject = {
-      name: ingredientName,
-      wholeValue: selectedWhole,
-      fractionValue: selectedFraction,
-      unit: selectedUnit,
-    };*/
     const correctUnit = unitFormat();
     const ingredientStr = `${selectedWhole !== "0" ? selectedWhole : ""} ${
       selectedFraction !== "0" ? selectedFraction : ""
     } ${correctUnit} ${ingredientName}`;
 
-    console.log(`ingredient str`, ingredientStr);
-
-    //addIngredient(ingredientObject);
     addIngredient(ingredientStr);
   };
 
   const unitFormat = () => {
     if (selectedWhole && selectedWhole > 1) return selectedUnit + "s";
-
     return selectedUnit;
   };
 
@@ -78,7 +42,6 @@ const IngredientModal = ({ addIngredient }) => {
         <Text style={styles.inputLabel}>Ingredient Name</Text>
         <TextInput
           style={styles.input}
-          //containerStyle={{ width: "80%" }}
           placeholder="Ingredient Name"
           placeholderTextColor="grey"
           value={ingredientName}
@@ -99,7 +62,6 @@ const IngredientModal = ({ addIngredient }) => {
             items={wholeValues}
             setOpen={setWholeDropdown}
             setValue={setWhole}
-            // zIndex={1000}
             closeAfterSelecting={true}
             dropDownContainerStyle={{ height: 125 }}
           />
@@ -119,9 +81,6 @@ const IngredientModal = ({ addIngredient }) => {
             setValue={setFraction}
             closeAfterSelecting={true}
             dropDownContainerStyle={{ height: 125 }}
-            // dropDownDirection="TOP"
-
-            //dropDownContainerStyle={{ zIndex: 1000 }}
           />
         </View>
         <View>

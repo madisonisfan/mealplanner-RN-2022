@@ -19,8 +19,10 @@ import {
 import IngredientModal from "./RecipeIngredientModal";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DirectionModal from "./RecipeDirectionModal";
+import IngredientsSectionForm from "./IngredientsSectionForm";
+import DirectionsSectionForm from "./DirectionsSectionForm";
 
-const RecipeForm = ({ toggle, navigation }) => {
+const RecipeForm = ({ navigation }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [cooktime, setCooktime] = useState(null);
@@ -28,9 +30,7 @@ const RecipeForm = ({ toggle, navigation }) => {
   const [servings, setServings] = useState(null);
   const [calories, setCalories] = useState(null);
   const [ingredients, setIngredients] = useState([]);
-  const [currentIngredient, setCI] = useState("");
   const [directions, setDirections] = useState([]);
-  const [currentDirection, setCD] = useState("");
 
   const dispatch = useDispatch();
 
@@ -38,7 +38,7 @@ const RecipeForm = ({ toggle, navigation }) => {
   //const bottomSheetModalRef = useRef < BottomSheetModal > null;
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ["25%", "50%"], []);
-  const handlePresentModalPress = useCallback(() => {
+  const handlePresentIngredientModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
   const handleSheetChanges = useCallback((index: number) => {
@@ -48,12 +48,20 @@ const RecipeForm = ({ toggle, navigation }) => {
   // DIRECTIONS: bottom sheet modal
   const bottomSheetModalRefDirections = useRef(null);
   const snapPointsDirections = useMemo(() => ["25%", "50%"], []);
-  const handlePresentModalPressDirections = useCallback(() => {
+  const handlePresentDirectionsModalPress = useCallback(() => {
     bottomSheetModalRefDirections.current?.present();
   }, []);
   const handleSheetChangesDirections = useCallback((index: number) => {
     console.log("handleSheetChanges", index);
   }, []);
+
+  const closeDirectionModal = () => {
+    bottomSheetModalRefDirections.current?.close();
+  };
+
+  const closeIngredientModal = () => {
+    bottomSheetModalRef.current?.close();
+  };
 
   const addIngredient = (ingredient) => {
     console.log("adding ingredient ");
@@ -103,8 +111,6 @@ const RecipeForm = ({ toggle, navigation }) => {
         >
           <Text style={styles.inputLabel}>Recipe Name</Text>
           <TextInput
-            // containerStyle={styles.inputContainer}
-            //autofocus={true}
             placeholderTextColor="grey"
             style={styles.input}
             placeholder="recipe name"
@@ -161,87 +167,21 @@ const RecipeForm = ({ toggle, navigation }) => {
             style={styles.input}
             onChangeText={(text) => setCalories(text)}
           />
-          <View style={styles.headerView}>
-            <Text style={styles.inputLabel}>Ingredients</Text>
 
-            <Button
-              type="outline"
-              onPress={() => {
-                bottomSheetModalRefDirections.current?.close();
-                handlePresentModalPress();
-              }}
-              title="+ Add"
-              titleStyle={styles.addButtonTitleStyle}
-              buttonStyle={styles.addButtonStyle}
-              color="black"
-              style={{ padding: 0 }}
-            />
-          </View>
-
-          <View style={styles.largeInputSurroundingView}>
-            {ingredients.length === 0 && (
-              <Text style={styles.ingredientItem}>No ingredients added</Text>
-            )}
-            {ingredients.map((ingredient, index) => {
-              console.log(ingredient);
-              return (
-                <View
-                  key={index}
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    paddingVertical: 2,
-                  }}
-                >
-                  <Icon
-                    name="circle"
-                    type="font-awesome"
-                    size={10}
-                    iconStyle={{ paddingRight: 3 }}
-                  />
-
-                  <Text style={styles.ingredientItem}>{ingredient}</Text>
-                </View>
-              );
-            })}
-          </View>
-
-          <View style={styles.headerView}>
-            <Text style={styles.inputLabel}>Directions</Text>
-
-            <Button
-              type="outline"
-              onPress={() => {
-                bottomSheetModalRef.current?.close();
-                handlePresentModalPressDirections();
-              }}
-              title="+ Add"
-              titleStyle={styles.addButtonTitleStyle}
-              buttonStyle={styles.addButtonStyle}
-              color="black"
-              style={{ padding: 0 }}
-            />
-          </View>
-          <View style={styles.largeInputSurroundingView}>
-            {directions.length === 0 && (
-              <Text style={styles.directionItem}>No directions added</Text>
-            )}
-            {directions.map((direction, index) => {
-              return (
-                <View
-                  key={index}
-                  style={{
-                    flexDirection: "row",
-                    // alignItems: "center",
-                    //paddingVertical: 2,
-                  }}
-                >
-                  <Text style={styles.directionNum}> {index + 1}.</Text>
-                  <Text style={styles.directionItem}>{direction}</Text>
-                </View>
-              );
-            })}
-          </View>
+          <IngredientsSectionForm
+            ingredients={ingredients}
+            closeDirectionModal={closeDirectionModal}
+            handlePresentIngredientModalPress={
+              handlePresentIngredientModalPress
+            }
+          />
+          <DirectionsSectionForm
+            directions={directions}
+            closeIngredientModal={closeIngredientModal}
+            handlePresentDirectionsModalPress={
+              handlePresentDirectionsModalPress
+            }
+          />
 
           <Button
             title="Submit"
@@ -468,4 +408,42 @@ export default RecipeForm;
       />
 
 
+      */
+
+/*
+
+ <View style={styles.headerView}>
+            <Text style={styles.inputLabel}>Directions</Text>
+
+            <Button
+              type="outline"
+              onPress={() => {
+                bottomSheetModalRef.current?.close();
+                handlePresentModalPressDirections();
+              }}
+              title="+ Add"
+              titleStyle={styles.addButtonTitleStyle}
+              buttonStyle={styles.addButtonStyle}
+              color="black"
+              style={{ padding: 0 }}
+            />
+          </View>
+          <View style={styles.largeInputSurroundingView}>
+            {directions.length === 0 && (
+              <Text style={styles.directionItem}>No directions added</Text>
+            )}
+            {directions.map((direction, index) => {
+              return (
+                <View
+                  key={index}
+                  style={{
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text style={styles.directionNum}> {index + 1}.</Text>
+                  <Text style={styles.directionItem}>{direction}</Text>
+                </View>
+              );
+            })}
+          </View>
       */

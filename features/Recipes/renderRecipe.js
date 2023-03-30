@@ -1,35 +1,14 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  Image,
-  Modal,
-  TouchableHighlight,
-  TouchableOpacity,
-} from "react-native";
-import { ListItem, Button } from "react-native-elements";
-import { RECIPES } from "../../shared/recipes";
-import FavoritesModal from "../Mealplan/MealplanOptionsModal";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { selectRecipeById } from "./recipesSlice";
 import {
   toggleFavorite,
   selectAllFavorites,
 } from "../Favorites/favoritesSlice";
-import { favoritesReducer } from "../Favorites/favoritesSlice";
-import { Icon } from "@rneui/themed";
-import { useState } from "react";
-import RecipeDetailsModal from "./recipeDetailsModal";
-import { Card } from "@rneui/themed";
+import { Icon, Card } from "@rneui/themed";
 
 const RenderRecipe = ({ recipe, navigate }) => {
-  // const recipe = useSelector(selectRecipeById(recipeId));
   const favorites = useSelector(selectAllFavorites);
   const dispatch = useDispatch();
-  const [isFavModalOpen, toggleFavModal] = useState(false);
-  const [isDetailsOpen, toggleDetails] = useState(false);
-  console.log(`recipe being displayed: `, recipe);
 
   if (recipe) {
     return (
@@ -37,28 +16,13 @@ const RenderRecipe = ({ recipe, navigate }) => {
         <TouchableOpacity
           onPress={() => navigate("RecipeDetails", { recipe })}
           style={styles.parentContainer}
-          //onPress={() => toggleDetails(true)}
         >
           <Card containerStyle={styles.card}>
             <Card.Image source={recipe.image} style={styles.image} />
             <Card.Title style={styles.name}>{recipe.name}</Card.Title>
-
-            <View
-              style={{
-                //width: 100,
-                //height: 100,
-                //backgroundColor: "red",
-                position: "absolute",
-                top: -3,
-                right: 15,
-                padding: 0,
-              }}
-            >
+            <View style={styles.iconView}>
               <Icon
-                // reverse
                 size={35}
-                // color="rgb(99, 97, 90, 0.5)"
-
                 iconStyle={
                   favorites.includes(recipe.id)
                     ? styles.iconFilled
@@ -104,6 +68,12 @@ const styles = StyleSheet.create({
   image: {
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
+  },
+  iconView: {
+    position: "absolute",
+    top: -3,
+    right: 15,
+    padding: 0,
   },
   iconFilled: {
     padding: 0,

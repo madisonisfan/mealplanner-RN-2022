@@ -1,26 +1,10 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Icon } from "@rneui/themed";
 
 const MealplanTypeHeader = ({ navigation, mealType, mealplanId }) => {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        marginHorizontal: 11,
-        marginTop: 10,
-        justifyContent: "space-between",
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 20,
-          fontWeight: "500",
-          paddingRight: 10,
-          paddingBottom: 10,
-        }}
-      >
-        {mealType}
-      </Text>
+    <View style={styles.mainView}>
+      <Text style={styles.mealtypeText}>{mealType}</Text>
       <Icon
         name="plus"
         color="black"
@@ -36,5 +20,20 @@ const MealplanTypeHeader = ({ navigation, mealType, mealplanId }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  mainView: {
+    flexDirection: "row",
+    marginHorizontal: 11,
+    marginTop: 10,
+    justifyContent: "space-between",
+  },
+  mealtypeText: {
+    fontSize: 20,
+    fontWeight: "500",
+    paddingRight: 10,
+    paddingBottom: 10,
+  },
+});
 
 export default MealplanTypeHeader;
