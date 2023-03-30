@@ -16,6 +16,7 @@ import {
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
 
 import MealplanItem from "../features/Mealplan/MealplanItem";
+import EmptyMealplanItem from "../features/Mealplan/EmptyMealplanItem";
 import { Icon, Card } from "@rneui/themed";
 
 const Mealplan = ({ navigation }) => {
@@ -77,6 +78,7 @@ const Mealplan = ({ navigation }) => {
           SECTION NEEDS THIS ARRAY 
           MEALPLAN SECTION WILL THEN RENDER MEALPLAN ITEM
           */}
+        {currentDay.breakfast.length === 0 && <EmptyMealplanItem />}
         {currentDay.breakfast.map((recipeId) => {
           return (
             <MealplanItem
@@ -93,6 +95,7 @@ const Mealplan = ({ navigation }) => {
           mealplanId={currentDay.id}
           mealType={"Lunch"}
         />
+        {currentDay.lunch.length === 0 && <EmptyMealplanItem />}
 
         {currentDay.lunch.map((recipeId) => {
           return (
@@ -110,6 +113,7 @@ const Mealplan = ({ navigation }) => {
           mealplanId={currentDay.id}
           mealType={"Dinner"}
         />
+        {currentDay.dinner.length === 0 && <EmptyMealplanItem />}
         {currentDay.dinner.map((recipeId) => {
           return (
             <MealplanItem
@@ -126,7 +130,8 @@ const Mealplan = ({ navigation }) => {
           mealplanId={currentDay.id}
           mealType={"Snacks"}
         />
-        {currentDay.breakfast.map((recipeId) => {
+        {currentDay.snacks.length === 0 && <EmptyMealplanItem />}
+        {currentDay.snacks.map((recipeId) => {
           return (
             <MealplanItem
               navigation={navigation}
@@ -142,6 +147,7 @@ const Mealplan = ({ navigation }) => {
           mealplanId={currentDay.id}
           mealType={"Drinks"}
         />
+        {currentDay.drinks.length === 0 && <EmptyMealplanItem />}
         {currentDay.drinks.map((recipeId) => {
           return (
             <MealplanItem

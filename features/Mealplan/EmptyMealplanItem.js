@@ -4,14 +4,8 @@ import { Icon } from "@rneui/themed";
 
 const EmptyMealplanItem = () => {
   return (
-    <View style={styles.container}>
-      <Button
-        containerStyle={styles.buttonContainer}
-        buttonStyle={styles.button}
-        titleStyle={styles.buttonTitle}
-      >
-        +
-      </Button>
+    <View style={styles.mainView}>
+      <Text style={styles.text}>No Meals Added Yet</Text>
     </View>
   );
 };
@@ -19,27 +13,25 @@ const EmptyMealplanItem = () => {
 //<Icon name="circle-plus" type="font-awesome" />
 
 const styles = StyleSheet.create({
-  container: {
-    height: 200,
-    width: "45%",
-    padding: 10,
-    margin: 10,
-    borderRadius: 7,
-    backgroundColor: "grey",
+  mainView: {
+    height: 50,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-  },
-  buttonContainer: {
-    width: "30%",
     backgroundColor: "white",
-    borderRadius: 20,
+    marginHorizontal: 11,
+    marginVertical: 10,
+    borderRadius: 7,
+    borderWidth: 0,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
-  button: {
-    backgroundColor: "white",
-  },
-  buttonTitle: {
+  text: {
     color: "black",
-    fontWeight: "bold",
+    fontSize: 14,
+    fontWeight: "600",
   },
 });
 

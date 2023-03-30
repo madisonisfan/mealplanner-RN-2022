@@ -1,5 +1,5 @@
 import MainRecipes from "../screens/MainRecipesScreen";
-import MainRecipesTwo from "../screens/MainRecipesScreenTwo";
+
 import Blog from "../screens/BlogScreen";
 import Mealplan from "../screens/MealplanScreen";
 import Profile from "../screens/ProfileScreen";
@@ -40,7 +40,7 @@ const MainRecipesDirectory = () => {
     >
       <Stack.Screen
         name="MainRecipes"
-        component={MainRecipesTwo}
+        component={MainRecipes}
         options={{
           title: "Recipes",
         }}

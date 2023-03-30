@@ -1,7 +1,7 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Card } from "@rneui/themed";
 import { useDispatch } from "react-redux";
-import { addRecipeToDate } from "./mealplanSlice";
+import { addRecipeToMealplan } from "./mealplanSlice";
 
 const RenderMealplanOption = ({ recipe, mealplanId, mealType, navigation }) => {
   console.log(`RENDER MEALPLAN OPTOIN, mealtype`, mealType);
@@ -16,7 +16,7 @@ const RenderMealplanOption = ({ recipe, mealplanId, mealType, navigation }) => {
       mealType,
       recipeId,
     };
-    dispatch(addRecipeToDate(newMealplanItem));
+    dispatch(addRecipeToMealplan(newMealplanItem));
   };
 
   return (

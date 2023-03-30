@@ -6,13 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import Constants from "expo-constants";
 import { selectAllFavorites } from "../Favorites/favoritesSlice";
 import { selectAllRecipes } from "../Recipes/recipesSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { Image, Card, Icon, Button } from "@rneui/themed";
-import { addRecipeToDate } from "./mealplanSlice";
-import FavoriteScreen from "../../screens/FavoritesScreen";
 import RenderMealplanOption from "./MealplanOption";
 
 const MealplanOptionsModal = ({ route }) => {
@@ -27,6 +23,14 @@ const MealplanOptionsModal = ({ route }) => {
     let favoriteOptions = favorites.filter((favId) => !meals.includes(favId));
     return recipes.filter((recipe) => favoriteOptions.includes(recipe.id));
   };
+
+  if (getFavoriteRecipes().length === 0) {
+    return (
+      <View style={styles.emptyView}>
+        <Text style={styles.emptyText}>No Meals Saved Yet!</Text>
+      </View>
+    );
+  }
 
   return (
     <>
@@ -110,5 +114,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 10,
+  },
+  emptyView: {
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyText: {
+    fontSize: 20,
+    fontWeight: 500,
   },
 });

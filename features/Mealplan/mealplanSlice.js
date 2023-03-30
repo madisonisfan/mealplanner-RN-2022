@@ -10,7 +10,7 @@ const mealplanSlice = createSlice({
   name: "mealplan",
   initialState,
   reducers: {
-    addRecipeToDate: (state, action) => {
+    addRecipeToMealplan: (state, action) => {
       const { mealplanId, mealType, recipeId } = action.payload;
       let mealplan = state.mealplanArray[mealplanId];
       mealplan[`${mealType.toLowerCase()}`].push(recipeId);
@@ -30,5 +30,5 @@ export const selectAllDays = (state) => {
   return state.mealplan.mealplanArray;
 };
 
-export const { addRecipeToDate } = mealplanSlice.actions;
+export const { addRecipeToMealplan } = mealplanSlice.actions;
 export const mealplanReducer = mealplanSlice.reducer;
