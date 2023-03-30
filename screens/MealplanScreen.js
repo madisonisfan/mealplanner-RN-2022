@@ -14,10 +14,7 @@ import {
   selectDayByIndex,
 } from "../features/Mealplan/mealplanSlice";
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
-import RenderRecipe from "../features/Recipes/renderRecipe";
-import MealplanItem from "../features/Mealplan/MealplanItem";
-import MealplanItemTwo from "../features/Mealplan/MealplanItemTwo";
-import MealplanItemTesting from "../features/Mealplan/MealplanItemTesting";
+
 import MealplanItemTestingTwo from "../features/Mealplan/MealplanItemTestingTwo";
 import { Icon, Card } from "@rneui/themed";
 
@@ -60,7 +57,7 @@ const Mealplan = ({ navigation }) => {
                 textDecorationLine:
                   index === currentIndex ? "underline" : "none",
                 textDecorationColor: "#f0faeb",
-                textDecorationThickness: "3px",
+                //textDecorationThickness: "3px",
               }}
               containerStyle={{ borderBottom: "solid 1px blue" }}
             />
@@ -71,43 +68,70 @@ const Mealplan = ({ navigation }) => {
         {/*<Text style={styles.date}>{currentDay.date}</Text>*/}
 
         <MealplanTitle title="Breakfast" navigation={navigation} />
-        <MealplanItemTestingTwo
-          navigation={navigation}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.breakfast)}
-          mealplanId={currentDay.id}
-          mealType={"Breakfast"}
-        />
+        {/*
+          EACH MEAL HAS AN ARRAY OF IDS
+          SECTION NEEDS THIS ARRAY 
+          MEALPLAN SECTION WILL THEN RENDER MEALPLAN ITEM
+          */}
+        {currentDay.breakfast.map((recipeId) => {
+          return (
+            <MealplanItemTestingTwo
+              navigation={navigation}
+              recipe={recipes.find((recipe) => recipe.id === recipeId)}
+              mealplanId={currentDay.id}
+              mealType={"Breakfast"}
+            />
+          );
+        })}
 
         <MealplanTitle title="Lunch" navigation={navigation} />
-        <MealplanItemTestingTwo
-          navigation={navigation}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.lunch)}
-          mealplanId={currentDay.id}
-          mealType={"Lunch"}
-        />
+
+        {currentDay.lunch.map((recipeId) => {
+          return (
+            <MealplanItemTestingTwo
+              navigation={navigation}
+              recipe={recipes.find((recipe) => recipe.id === recipeId)}
+              mealplanId={currentDay.id}
+              mealType={"Lunch"}
+            />
+          );
+        })}
+
         <MealplanTitle title="Dinner" navigation={navigation} />
-        <MealplanItemTestingTwo
-          navigation={navigation}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.dinner)}
-          mealplanId={currentDay.id}
-          mealType={"Dinner"}
-        />
+        {currentDay.dinner.map((recipeId) => {
+          return (
+            <MealplanItemTestingTwo
+              navigation={navigation}
+              recipe={recipes.find((recipe) => recipe.id === recipeId)}
+              mealplanId={currentDay.id}
+              mealType={"Dinner"}
+            />
+          );
+        })}
 
         <MealplanTitle title="Snacks" navigation={navigation} />
-        <MealplanItemTestingTwo
-          navigation={navigation}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.snacks)}
-          mealplanId={currentDay.id}
-          mealType={"Snacks"}
-        />
+        {currentDay.breakfast.map((recipeId) => {
+          return (
+            <MealplanItemTestingTwo
+              navigation={navigation}
+              recipe={recipes.find((recipe) => recipe.id === recipeId)}
+              mealplanId={currentDay.id}
+              mealType={"Snacks"}
+            />
+          );
+        })}
 
         <MealplanTitle title="Drinks" navigation={navigation} />
-        <MealplanItemTestingTwo
-          navigation={navigation}
-          recipe={recipes.find((recipe) => recipe.id === currentDay.drinks)}
-          mealplanId={currentDay.id}
-          mealType={"Drinks"}
-        />
+        {currentDay.drinks.map((recipeId) => {
+          return (
+            <MealplanItemTestingTwo
+              navigation={navigation}
+              recipe={recipes.find((recipe) => recipe.id === recipeId)}
+              mealplanId={currentDay.id}
+              mealType={"Drinks"}
+            />
+          );
+        })}
       </ScrollView>
     </>
   );
@@ -137,7 +161,7 @@ const MealplanTitle = ({ title, navigation }) => {
         name="plus"
         color="black"
         type="font-awesome"
-        onPress={() => navigation.navigate("MealplanOptionsModal")}
+        onPress={() => navigation.navigate("MealplanOptionsModalTwo")}
       />
     </View>
   );

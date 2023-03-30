@@ -186,3 +186,32 @@ const styles = StyleSheet.create({
 });
 
 export default MealplanOptionsModal;
+
+/*
+
+const renderFavorite = ({ item: recipe }) => {
+    return (
+      <Card
+        containerStyle={styles.cardContainer}
+        wrapperStyle={styles.cardInner}
+      >
+        <Card.Image source={recipe.image} style={styles.image} />
+
+        <View style={styles.contentView}>
+          <Text style={styles.recipeName}>{recipe.name}</Text>
+          <Button
+            type="clear"
+            icon={
+              <Icon size={23} name="plus" color="black" type="font-awesome" />
+            }
+            onPress={() => {
+              //add functionalty to add/switch recipe
+              navigation.goBack();
+            }}
+          />
+        </View>
+      </Card>
+    );
+  };
+
+*/

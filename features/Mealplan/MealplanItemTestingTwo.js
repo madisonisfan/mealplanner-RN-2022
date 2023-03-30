@@ -15,6 +15,23 @@ import { useState } from "react";
 const MealplanItemTestingTwo = ({ recipe, mealType, navigation }) => {
   console.log(`RECIPE for ${mealType}`, recipe);
   const [isCompleted, toggleIsCompleted] = useState(false);
+
+  const getTimeValue = (timeInMinutes) => {
+    //console.log(`timeInMinutes: `, timeInMinutes);
+    if (timeInMinutes < 60) {
+      return `${timeInMinutes}${" "}mins`;
+    } else {
+      const hours = Math.trunc(timeInMinutes / 60);
+      const mins = timeInMinutes % 60;
+
+      if (hours === 1) {
+        return `1 hr ${mins} mins`;
+      } else {
+        return `${hours} hr ${mins} mins`;
+      }
+    }
+  };
+
   if (recipe) {
     const { image, name, totaltime, calories, servings } = recipe;
     return (
@@ -53,7 +70,9 @@ const MealplanItemTestingTwo = ({ recipe, mealType, navigation }) => {
             </ImageBackground>
           </View>
           <View style={styles.rightView}>
-            <Text style={styles.recipeInfoText}>Total Time: {totaltime}</Text>
+            <Text style={styles.recipeInfoText}>
+              Total Time: {getTimeValue(totaltime)}
+            </Text>
             <Text style={styles.recipeInfoText}> {calories} calories</Text>
             <Text style={styles.recipeInfoText}> {servings} servings</Text>
           </View>
