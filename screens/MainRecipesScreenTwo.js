@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, FlatList, Modal, Switch } from "react-native";
-import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
+import RenderRecipe from "../features/Recipes/RenderRecipe";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -73,7 +73,7 @@ const MainRecipesTwo = ({ navigation }) => {
           {recipes.map((recipe, index) => {
             console.log(`recipe`, recipe);
             return (
-              <RenderRecipeTwo
+              <RenderRecipe
                 key={recipe.id}
                 recipe={recipe}
                 navigate={navigation.navigate}

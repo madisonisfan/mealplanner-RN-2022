@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
-import { Card, ListItem, Button } from "react-native-elements";
+import { ListItem, Button } from "react-native-elements";
 import { RECIPES } from "../../shared/recipes";
 import FavoritesModal from "../Mealplan/MealplanOptionsModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,7 @@ import { favoritesReducer } from "../Favorites/favoritesSlice";
 import { Icon } from "@rneui/themed";
 import { useState } from "react";
 import RecipeDetailsModal from "./recipeDetailsModal";
+import { Card } from "@rneui/themed";
 
 const RenderRecipe = ({ recipe, navigate }) => {
   // const recipe = useSelector(selectRecipeById(recipeId));
@@ -28,108 +29,128 @@ const RenderRecipe = ({ recipe, navigate }) => {
   const dispatch = useDispatch();
   const [isFavModalOpen, toggleFavModal] = useState(false);
   const [isDetailsOpen, toggleDetails] = useState(false);
+  console.log(`recipe being displayed: `, recipe);
 
   if (recipe) {
     return (
       <>
         <TouchableOpacity
           onPress={() => navigate("RecipeDetails", { recipe })}
+          style={styles.parentContainer}
           //onPress={() => toggleDetails(true)}
         >
           <Card containerStyle={styles.card}>
-            <View style={styles.cardView}>
-              <View style={styles.imageView}>
-                <Card.Image source={recipe.image} style={styles.image} />
-              </View>
-              <View style={styles.contentView}>
-                <View style={styles.textView}>
-                  <Text style={styles.recipeName}>{recipe.name}</Text>
-                </View>
-                <View style={styles.iconView}>
-                  <Icon
-                    iconStyle={styles.icon}
-                    name={favorites.includes(recipe.id) ? "star" : "star-o"}
-                    type="font-awesome"
-                    onPress={() => {
-                      dispatch(toggleFavorite(recipe.id));
-                    }}
-                  />
-                </View>
-              </View>
+            <Card.Image source={recipe.image} style={styles.image} />
+            <Card.Title style={styles.name}>{recipe.name}</Card.Title>
+
+            <View
+              style={{
+                //width: 100,
+                //height: 100,
+                //backgroundColor: "red",
+                position: "absolute",
+                top: -3,
+                right: 15,
+                padding: 0,
+              }}
+            >
+              <Icon
+                // reverse
+                size={35}
+                // color="rgb(99, 97, 90, 0.5)"
+
+                iconStyle={
+                  favorites.includes(recipe.id)
+                    ? styles.iconFilled
+                    : styles.iconEmpty
+                }
+                name={favorites.includes(recipe.id) ? "bookmark" : "bookmark-o"}
+                type="font-awesome"
+                onPress={() => {
+                  dispatch(toggleFavorite(recipe.id));
+                }}
+              />
             </View>
           </Card>
         </TouchableOpacity>
-
-        <Modal visible={isDetailsOpen} swipeDirection={["up"]}>
-          <RecipeDetailsModal recipe={recipe} toggleModal={toggleDetails} />
-        </Modal>
       </>
     );
   }
 
   return (
-    <>
-      <View></View>
-    </>
+    <View style={{ height: 100, backgroundColor: "blue" }}>
+      <Text>no recipe</Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    padding: 0,
-    //margin: 30,
-    borderWidth: 0,
-    borderColor: "green",
-    borderRadius: 20,
-  },
-
-  cardView: {
-    flexDirection: "row",
-    padding: 0,
-    // borderWidth: 2,
-    //borderColor: "blue",
-
-    //margin: 10,
-  },
-  imageView: {
-    flex: 3,
-
-    // backgroundColor: "grey",
-    borderWidth: 0,
-    borderBottomStartRadius: 20,
-  },
-  contentView: {
-    //flexDirection: "column",
-    //justifyContent: "flex-end",
-    //alignItems: "flex-end",
-    flex: 2,
+  parentContainer: {
+    width: "50%",
     padding: 10,
-  },
-  textView: {
-    //flex: 2,
-    justifyContent: "center",
-    //borderColor: "green",
     //borderWidth: 1,
-    flexGrow: 1,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
   },
-  recipeName: {
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: "500",
+
+  card: {
+    margin: 1,
+    padding: 0,
+    borderWidth: 0,
+    borderRadius: 7,
   },
-  iconView: {},
   image: {
-    borderBottomLeftRadius: 20,
-    borderTopLeftRadius: 20,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
+  },
+  iconFilled: {
+    padding: 0,
+    color: "#04A804",
+  },
+  iconEmpty: {
+    padding: 0,
+    color: "#02B102",
+  },
+
+  textView: {
+    flex: 1,
+
+    //justifyContent: "center",
+  },
+  name: {
+    //flex: 1,
+    marginTop: "auto",
+    marginBottom: "auto",
+    paddingVertical: 10,
+    // paddingVertical: 8,
   },
 });
+
+/*
+
+<Icon
+                // reverse
+                size={35}
+                // color="rgb(99, 97, 90, 0.5)"
+
+                iconStyle={styles.icon}
+                name={favorites.includes(recipe.id) ? "bookmark" : "bookmark-o"}
+                type="font-awesome"
+                onPress={() => {
+                  dispatch(toggleFavorite(recipe.id));
+                }}
+              />
+
+              */
 
 export default RenderRecipe;
 
 /*
-              <Button
-                buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
-                type="outline"
-                title="Details"
-                onPress={() => navigate("RecipeDetails", { recipe })}
-              />*/
+                <Button
+                  buttonStyle={{ paddingTop: 0, paddingBottom: 0, marginTop: 5 }}
+                  type="outline"
+                  title="Details"
+                  onPress={() => navigate("RecipeDetails", { recipe })}
+                />*/

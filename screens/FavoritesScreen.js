@@ -5,8 +5,8 @@ import { toggleFavorite } from "../features/Favorites/favoritesSlice";
 import { selectAllFavorites } from "../features/Favorites/favoritesSlice";
 
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
-import RenderRecipe from "../features/Recipes/renderRecipe";
-import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
+import RenderRecipe from "../features/Recipes/RenderRecipe";
+import RenderRecipe from "../features/Recipes/RenderRecipe";
 
 const Favorites = ({ navigation }) => {
   const favorites = useSelector(selectAllFavorites);
@@ -19,34 +19,10 @@ const Favorites = ({ navigation }) => {
         {recipes
           .filter((r) => favorites.includes(r.id))
           .map((recipe) => {
-            return <RenderRecipeTwo recipe={recipe} />;
+            return <RenderRecipe recipe={recipe} />;
           })}
       </View>
     </ScrollView>
   );
 };
 export default Favorites;
-
-/*<ScrollView style={{ borderWidth: 1, borderColor: "red" }}>
-     
-    </ScrollView>
-      <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
-        {recipes.map((recipe) => {
-          console.log(`recipe`, recipe);
-          return (
-            <RenderRecipeTwo
-              //key={index}
-              recipe={recipe}
-              navigate={navigation.navigate}
-            />
-          );
-        })}
-      </View>
-
-      */
-/*
-<FlatList
-      data={recipes.filter((recipe) => favorites.includes(recipe.id))}
-      renderItem={renderFavorite}
-    />
-*/

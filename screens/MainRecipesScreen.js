@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, FlatList, Modal } from "react-native";
 import { Card, ListItem, Button } from "react-native-elements";
 import RenderRecipe from "../features/Recipes/renderRecipe";
-import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
+import RenderRecipe from "../features/Recipes/RenderRecipe";
 import { RECIPES } from "../shared/recipes";
 import { Picker } from "@react-native-picker/picker";
 import Favorites from "./FavoritesScreen";
