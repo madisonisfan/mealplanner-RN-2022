@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { USERMEALPLAN } from "../../shared/mealplan";
+import { MEALTYPES } from "../../shared/mealTypes";
 
 const initialState = {
   mealplanArray: USERMEALPLAN,
@@ -12,12 +13,16 @@ const mealplanSlice = createSlice({
     addRecipeToDate: (state, action) => {
       console.log(`action`, action.payload);
       const { mealplanId, mealType, recipeId } = action.payload;
+      console.log(`ACTION.PAYLOAD: `, action.payload);
 
       console.log(
         `Add recipe ${recipeId} for ${mealType} to mealplan ${mealplanId}`
       );
       let mealplan = state.mealplanArray[mealplanId];
-      mealplan[`${mealType}`] = recipeId;
+      let type = MEALTYPES.find(
+        (item) => item.displayName === mealType
+      ).codeName;
+      mealplan[`${type}`].push(recipeId);
     },
   },
 });

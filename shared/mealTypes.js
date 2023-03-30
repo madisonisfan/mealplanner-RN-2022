@@ -6,22 +6,27 @@ export const MEALTYPES = [
   },
   {
     id: 1,
-    mealType: "breakfast",
-    title: "Breakfast",
+    codeName: "breakfast",
+    displayName: "Breakfast",
   },
   {
     id: 2,
-    mealType: "lunchDinner",
-    title: "Lunch & Dinner",
+    codeName: "lunch",
+    display: "Lunch",
   },
   {
     id: 3,
-    mealType: "snacks",
-    title: "Snacks",
+    codeName: "dinner",
+    display: "Dinner",
   },
   {
     id: 4,
-    mealType: "drinks",
-    title: "Drinks",
+    codeName: "snacks",
+    displayName: "Snacks",
+  },
+  {
+    id: 5,
+    codeName: "drinks",
+    displayName: "Drinks",
   },
 ];

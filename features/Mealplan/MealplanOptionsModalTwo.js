@@ -16,25 +16,10 @@ import FavoriteScreen from "../../screens/FavoritesScreen";
 import { render } from "react-dom";
 import RenderMealplanOption from "./MealplanOption";
 
-const MealplanOptionsModalTwo = ({
-  toggleModal,
-  mealplanId,
-  mealType,
-  navigation,
-}) => {
+const MealplanOptionsModalTwo = ({ route }) => {
+  const { mealplanId, mealType, navigation } = route.params;
   const favorites = useSelector(selectAllFavorites);
   const recipes = useSelector(selectAllRecipes);
-  const dispatch = useDispatch();
-
-  const handleAddingRecipe = (recipeId, mealplanId) => {
-    console.log(`add recipe: ${recipeId} to mealplan: ${mealplanId}`);
-    const newMealplanItem = {
-      mealplanId,
-      mealType,
-      recipeId,
-    };
-    dispatch(addRecipeToDate(newMealplanItem));
-  };
 
   const getFavoriteRecipes = () => {
     console.log(``);
@@ -55,7 +40,14 @@ const MealplanOptionsModalTwo = ({
             .map((recipe, index) => {
               console.log(`recipe from map`, recipe);
 
-              return <RenderMealplanOption recipe={recipe} />;
+              return (
+                <RenderMealplanOption
+                  recipe={recipe}
+                  mealplanId={mealplanId}
+                  mealType={mealType}
+                  navigation={navigation}
+                />
+              );
             })}
         </View>
       </ScrollView>

@@ -1,12 +1,31 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { Card } from "@rneui/themed";
+import { useDispatch } from "react-redux";
+import { addRecipeToDate } from "./mealplanSlice";
 
-const RenderMealplanOption = ({ recipe }) => {
-  console.log(`RENDER MEALPLAN OPTOIN`, recipe);
+const RenderMealplanOption = ({ recipe, mealplanId, mealType, navigation }) => {
+  console.log(`RENDER MEALPLAN OPTOIN, mealtype`, mealType);
+
+  const dispatch = useDispatch();
+
+  const handleAddingRecipe = () => {
+    console.log(`add recipe: ${recipe.id} to mealplan: ${mealplanId}`);
+    let recipeId = recipe.id;
+    const newMealplanItem = {
+      mealplanId,
+      mealType,
+      recipeId,
+    };
+    dispatch(addRecipeToDate(newMealplanItem));
+  };
+
   return (
     <>
       <TouchableOpacity
-        // onPress={() => navigate("RecipeDetails", { recipe })}
+        onPress={() => {
+          navigation.navigate("Mealplan");
+          handleAddingRecipe();
+        }}
         style={styles.parentContainer}
         //onPress={() => toggleDetails(true)}
         key={recipe.id}

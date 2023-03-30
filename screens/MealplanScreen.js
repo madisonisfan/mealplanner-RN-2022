@@ -67,7 +67,11 @@ const Mealplan = ({ navigation }) => {
       <ScrollView contentContainerStyle={{ paddingBottom: 10, paddingTop: 20 }}>
         {/*<Text style={styles.date}>{currentDay.date}</Text>*/}
 
-        <MealplanTitle title="Breakfast" navigation={navigation} />
+        <MealplanTitle
+          navigation={navigation}
+          mealplanId={currentDay.id}
+          mealType={"Breakfast"}
+        />
         {/*
           EACH MEAL HAS AN ARRAY OF IDS
           SECTION NEEDS THIS ARRAY 
@@ -84,7 +88,11 @@ const Mealplan = ({ navigation }) => {
           );
         })}
 
-        <MealplanTitle title="Lunch" navigation={navigation} />
+        <MealplanTitle
+          navigation={navigation}
+          mealplanId={currentDay.id}
+          mealType={"Lunch"}
+        />
 
         {currentDay.lunch.map((recipeId) => {
           return (
@@ -97,7 +105,11 @@ const Mealplan = ({ navigation }) => {
           );
         })}
 
-        <MealplanTitle title="Dinner" navigation={navigation} />
+        <MealplanTitle
+          navigation={navigation}
+          mealplanId={currentDay.id}
+          mealType={"Dinner"}
+        />
         {currentDay.dinner.map((recipeId) => {
           return (
             <MealplanItemTestingTwo
@@ -109,7 +121,11 @@ const Mealplan = ({ navigation }) => {
           );
         })}
 
-        <MealplanTitle title="Snacks" navigation={navigation} />
+        <MealplanTitle
+          navigation={navigation}
+          mealplanId={currentDay.id}
+          mealType={"Snacks"}
+        />
         {currentDay.breakfast.map((recipeId) => {
           return (
             <MealplanItemTestingTwo
@@ -121,7 +137,11 @@ const Mealplan = ({ navigation }) => {
           );
         })}
 
-        <MealplanTitle title="Drinks" navigation={navigation} />
+        <MealplanTitle
+          navigation={navigation}
+          mealplanId={currentDay.id}
+          mealType={"Drinks"}
+        />
         {currentDay.drinks.map((recipeId) => {
           return (
             <MealplanItemTestingTwo
@@ -137,7 +157,7 @@ const Mealplan = ({ navigation }) => {
   );
 };
 
-const MealplanTitle = ({ title, navigation }) => {
+const MealplanTitle = ({ navigation, mealType, mealplanId }) => {
   return (
     <View
       style={{
@@ -155,13 +175,19 @@ const MealplanTitle = ({ title, navigation }) => {
           paddingBottom: 10,
         }}
       >
-        {title}
+        {mealType}
       </Text>
       <Icon
         name="plus"
         color="black"
         type="font-awesome"
-        onPress={() => navigation.navigate("MealplanOptionsModalTwo")}
+        onPress={() =>
+          navigation.navigate("MealplanOptionsModalTwo", {
+            mealplanId,
+            mealType,
+            navigation,
+          })
+        }
       />
     </View>
   );
