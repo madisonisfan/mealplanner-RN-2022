@@ -41,13 +41,28 @@ const IngredientModal = ({ addIngredient }) => {
   const [isFractionDropdownOpen, setFractionDropdown] = useState(false);
 
   const formIngredient = () => {
+    /*
     const ingredientObject = {
       name: ingredientName,
       wholeValue: selectedWhole,
       fractionValue: selectedFraction,
       unit: selectedUnit,
-    };
-    addIngredient(ingredientObject);
+    };*/
+    const correctUnit = unitFormat();
+    const ingredientStr = `${selectedWhole !== "0" ? selectedWhole : ""} ${
+      selectedFraction !== "0" ? selectedFraction : ""
+    } ${correctUnit} ${ingredientName}`;
+
+    console.log(`ingredient str`, ingredientStr);
+
+    //addIngredient(ingredientObject);
+    addIngredient(ingredientStr);
+  };
+
+  const unitFormat = () => {
+    if (selectedWhole && selectedWhole > 1) return selectedUnit + "s";
+
+    return selectedUnit;
   };
 
   const clearForm = () => {

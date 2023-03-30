@@ -17,6 +17,8 @@ const recipesSlice = createSlice({
         id: state.recipesArray.length + 1,
         date: new Date(Date.now()).toISOString(),
         totaltime: action.payload.preptime + action.payload.cooktime,
+        image: require("../../assets/images/food1.jpg"),
+
         ...action.payload,
         //image: require("../../assets/images/food1.jpg"),
       };

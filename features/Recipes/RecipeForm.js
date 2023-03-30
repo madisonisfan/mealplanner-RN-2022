@@ -20,19 +20,18 @@ import IngredientModal from "./RecipeIngredientModal";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DirectionModal from "./RecipeDirectionModal";
 
-const RecipeForm = ({ toggle }) => {
+const RecipeForm = ({ toggle, navigation }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [cooktime, setCooktime] = useState(null);
   const [preptime, setPreptime] = useState(null);
-  //const [totaltime, setTotaltime] = useState(null);
   const [servings, setServings] = useState(null);
   const [calories, setCalories] = useState(null);
   const [ingredients, setIngredients] = useState([]);
   const [currentIngredient, setCI] = useState("");
-
   const [directions, setDirections] = useState([]);
   const [currentDirection, setCD] = useState("");
+
   const dispatch = useDispatch();
 
   // INGRREDIENTS: bottom sheet modal
@@ -201,18 +200,7 @@ const RecipeForm = ({ toggle }) => {
                     iconStyle={{ paddingRight: 3 }}
                   />
 
-                  {ingredient.wholeValue !== "0" && (
-                    <Text style={styles.ingredientItem}>
-                      {ingredient.wholeValue}
-                    </Text>
-                  )}
-                  {ingredient.fractionValue !== "0" && (
-                    <Text style={styles.ingredientItem}>
-                      {ingredient.fractionValue}
-                    </Text>
-                  )}
-                  <Text style={styles.ingredientItem}>{ingredient.unit}</Text>
-                  <Text style={styles.ingredientItem}>{ingredient.name}</Text>
+                  <Text style={styles.ingredientItem}>{ingredient}</Text>
                 </View>
               );
             })}
@@ -262,7 +250,8 @@ const RecipeForm = ({ toggle }) => {
             buttonStyle={styles.submitButton}
             onPress={() => {
               handleRecipeSubmit();
-              toggle(false);
+              navigation.navigate("MainRecipes");
+              //toggle(false);
             }}
           />
         </ScrollView>
