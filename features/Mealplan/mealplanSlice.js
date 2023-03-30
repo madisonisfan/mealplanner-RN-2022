@@ -11,18 +11,9 @@ const mealplanSlice = createSlice({
   initialState,
   reducers: {
     addRecipeToDate: (state, action) => {
-      console.log(`action`, action.payload);
       const { mealplanId, mealType, recipeId } = action.payload;
-      console.log(`ACTION.PAYLOAD: `, action.payload);
-
-      console.log(
-        `Add recipe ${recipeId} for ${mealType} to mealplan ${mealplanId}`
-      );
       let mealplan = state.mealplanArray[mealplanId];
-      let type = MEALTYPES.find(
-        (item) => item.displayName === mealType
-      ).codeName;
-      mealplan[`${type}`].push(recipeId);
+      mealplan[`${mealType.toLowerCase()}`].push(recipeId);
     },
   },
 });

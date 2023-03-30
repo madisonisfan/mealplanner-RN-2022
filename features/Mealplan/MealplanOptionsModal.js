@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import Constants from "expo-constants";
 import { selectAllFavorites } from "../Favorites/favoritesSlice";
 import { selectAllRecipes } from "../Recipes/recipesSlice";
@@ -6,134 +13,55 @@ import { useSelector, useDispatch } from "react-redux";
 import { Image, Card, Icon, Button } from "@rneui/themed";
 import { addRecipeToDate } from "./mealplanSlice";
 import FavoriteScreen from "../../screens/FavoritesScreen";
+import RenderMealplanOption from "./MealplanOption";
 
-const MealplanOptionsModal = ({
-  toggleModal,
-  mealplanId,
-  mealType,
-  navigation,
-}) => {
+const MealplanOptionsModal = ({ route }) => {
+  const { mealplanId, mealType, navigation } = route.params;
+  const mealplan = useSelector((state) => state.mealplan.mealplanArray);
   const favorites = useSelector(selectAllFavorites);
   const recipes = useSelector(selectAllRecipes);
-  const dispatch = useDispatch();
 
-  const handleAddingRecipe = (recipeId, mealplanId) => {
-    console.log(`add recipe: ${recipeId} to mealplan: ${mealplanId}`);
-    const newMealplanItem = {
-      mealplanId,
-      mealType,
-      recipeId,
-    };
-    dispatch(addRecipeToDate(newMealplanItem));
-  };
-
-  const renderFavorite = ({ item: recipe }) => {
-    return (
-      <Card
-        containerStyle={styles.cardContainer}
-        wrapperStyle={styles.cardInner}
-      >
-        <Card.Image source={recipe.image} style={styles.image} />
-
-        <View style={styles.contentView}>
-          <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Button
-            type="clear"
-            icon={
-              <Icon size={23} name="plus" color="black" type="font-awesome" />
-            }
-            onPress={() => {
-              //add functionalty to add/switch recipe
-              navigation.goBack();
-            }}
-          />
-        </View>
-      </Card>
-    );
+  const getFavoriteRecipes = () => {
+    let currentDay = mealplan[mealplanId];
+    let meals = currentDay[mealType.toLowerCase()];
+    let favoriteOptions = favorites.filter((favId) => !meals.includes(favId));
+    return recipes.filter((recipe) => favoriteOptions.includes(recipe.id));
   };
 
   return (
-    <FlatList
-      contentContainerStyle={styles.mainView}
-      data={recipes.filter((recipe) => favorites.includes(recipe.id))}
-      renderItem={renderFavorite}
-      style={{ flex: 1 }}
-      ListEmptyComponent={
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "500",
-            }}
-          >
-            No Recipes Saved Yet.
-          </Text>
+    <>
+      <ScrollView
+        style={styles.mainView}
+        contentContainerstyle={styles.containerStyle}
+      >
+        <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
+          {getFavoriteRecipes().map((recipe, index) => {
+            return (
+              <RenderMealplanOption
+                recipe={recipe}
+                mealplanId={mealplanId}
+                mealType={mealType}
+                navigation={navigation}
+              />
+            );
+          })}
         </View>
-      }
-      //ListHeaderComponent={<Text style={styles.pageTitle}>Choose meal</Text>}
-      //ListHeaderComponentStyle={styles.mainView}
-      ListFooterComponent={
-        favorites.length !== 0 && (
-          <Button
-            raised
-            radius={10}
-            title="Done"
-            color="white"
-            titleStyle={{
-              color: "black",
-            }}
-            containerStyle={{
-              //width: 100,
-              marginHorizontal: "30%",
-            }}
-            buttonStyle={{
-              borderWidth: "1px",
-              borderColor: "black",
-            }}
-            onPress={() => navigation.goBack()}
-          />
-        )
-      }
-      ListFooterComponentStyle={styles.footerStyle}
-    />
+      </ScrollView>
+    </>
   );
 };
 
-/*
- <Button
-          raised
-          radius={10}
-          title="Done"
-          color="white"
-          titleStyle={{
-            color: "black",
-          }}
-          containerStyle={{
-            //width: 100,
-            marginHorizontal: "30%",
-          }}
-          buttonStyle={{
-            borderWidth: "1px",
-            borderColor: "black",
-          }}
-          onPress={() => navigation.goBack()}
-        />
-*/
+export default MealplanOptionsModal;
 
 const styles = StyleSheet.create({
   mainView: {
-    //paddingTop: Constants.statusBarHeight,
     flex: 1,
-    // paddingHorizontal: 10,
-    backgroundColor: "#f0faeb",
   },
-
+  containerStyle: {
+    paddingTop: 10,
+    paddingHorizontal: 10,
+    //paddingBottom: 20,
+  },
   recipeView: {
     flexDirection: "row",
     paddingTop: 20,
@@ -184,34 +112,3 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
 });
-
-export default MealplanOptionsModal;
-
-/*
-
-const renderFavorite = ({ item: recipe }) => {
-    return (
-      <Card
-        containerStyle={styles.cardContainer}
-        wrapperStyle={styles.cardInner}
-      >
-        <Card.Image source={recipe.image} style={styles.image} />
-
-        <View style={styles.contentView}>
-          <Text style={styles.recipeName}>{recipe.name}</Text>
-          <Button
-            type="clear"
-            icon={
-              <Icon size={23} name="plus" color="black" type="font-awesome" />
-            }
-            onPress={() => {
-              //add functionalty to add/switch recipe
-              navigation.goBack();
-            }}
-          />
-        </View>
-      </Card>
-    );
-  };
-
-*/

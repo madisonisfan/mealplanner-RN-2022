@@ -15,7 +15,7 @@ import {
 } from "../features/Mealplan/mealplanSlice";
 import { selectAllRecipes } from "../features/Recipes/recipesSlice";
 
-import MealplanItemTestingTwo from "../features/Mealplan/MealplanItemTestingTwo";
+import MealplanItem from "../features/Mealplan/MealplanItem";
 import { Icon, Card } from "@rneui/themed";
 
 const Mealplan = ({ navigation }) => {
@@ -79,7 +79,7 @@ const Mealplan = ({ navigation }) => {
           */}
         {currentDay.breakfast.map((recipeId) => {
           return (
-            <MealplanItemTestingTwo
+            <MealplanItem
               navigation={navigation}
               recipe={recipes.find((recipe) => recipe.id === recipeId)}
               mealplanId={currentDay.id}
@@ -96,7 +96,7 @@ const Mealplan = ({ navigation }) => {
 
         {currentDay.lunch.map((recipeId) => {
           return (
-            <MealplanItemTestingTwo
+            <MealplanItem
               navigation={navigation}
               recipe={recipes.find((recipe) => recipe.id === recipeId)}
               mealplanId={currentDay.id}
@@ -112,7 +112,7 @@ const Mealplan = ({ navigation }) => {
         />
         {currentDay.dinner.map((recipeId) => {
           return (
-            <MealplanItemTestingTwo
+            <MealplanItem
               navigation={navigation}
               recipe={recipes.find((recipe) => recipe.id === recipeId)}
               mealplanId={currentDay.id}
@@ -128,7 +128,7 @@ const Mealplan = ({ navigation }) => {
         />
         {currentDay.breakfast.map((recipeId) => {
           return (
-            <MealplanItemTestingTwo
+            <MealplanItem
               navigation={navigation}
               recipe={recipes.find((recipe) => recipe.id === recipeId)}
               mealplanId={currentDay.id}
@@ -144,7 +144,7 @@ const Mealplan = ({ navigation }) => {
         />
         {currentDay.drinks.map((recipeId) => {
           return (
-            <MealplanItemTestingTwo
+            <MealplanItem
               navigation={navigation}
               recipe={recipes.find((recipe) => recipe.id === recipeId)}
               mealplanId={currentDay.id}
@@ -182,7 +182,7 @@ const MealplanTitle = ({ navigation, mealType, mealplanId }) => {
         color="black"
         type="font-awesome"
         onPress={() =>
-          navigation.navigate("MealplanOptionsModalTwo", {
+          navigation.navigate("MealplanOptionsModal", {
             mealplanId,
             mealType,
             navigation,

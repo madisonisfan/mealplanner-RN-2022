@@ -7,7 +7,7 @@ import RecipeDetails from "../screens/RecipeDetailsScreen";
 import Favorites from "../screens/FavoritesScreen";
 import RecipeForm from "../features/Recipes/RecipeForm";
 //import MealplanOptionsModal from "../features/Mealplan/MealplanOptionsModal";
-import MealplanOptionsModalTwo from "../features/Mealplan/MealplanOptionsModalTwo";
+import MealplanOptionsModal from "../features/Mealplan/MealplanOptionsModal";
 import CreatePostModal from "../features/Posts/createPostModal";
 import { Text, View, StyleSheet, Platform } from "react-native";
 import Constants from "expo-constants";
@@ -106,8 +106,8 @@ const MealplanDirectory = () => {
         options={{}}
       />
       <Stack.Screen
-        name="MealplanOptionsModalTwo"
-        component={MealplanOptionsModalTwo}
+        name="MealplanOptionsModal"
+        component={MealplanOptionsModal}
         options={{
           presentation: "modal",
           title: "Choose Meal",
