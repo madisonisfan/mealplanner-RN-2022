@@ -1,10 +1,5 @@
 import { Text, View, StyleSheet, FlatList, Modal, Switch } from "react-native";
-import { Card, ListItem } from "react-native-elements";
-import RenderRecipe from "../features/Recipes/renderRecipe";
 import RenderRecipeTwo from "../features/Recipes/renderRecipeTwo";
-import { RECIPES } from "../shared/recipes";
-//import { Picker } from "@react-native-picker/picker";
-import Favorites from "./FavoritesScreen";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -14,61 +9,10 @@ import {
 import RecipeForm from "../features/Recipes/RecipeForm";
 import { ScrollView } from "react-native-gesture-handler";
 import { Icon, Button } from "@rneui/themed";
-
 import DropDownPicker from "react-native-dropdown-picker";
-
-const recipeTypes = {
-  all: "All Recipes",
-  breakfast: "Breakfast",
-  lunchDinner: "Lunch/Dinner",
-  snacks: "Snacks",
-  drinks: "Drinks",
-};
-
-/*
-<Button
-        type="outline"
-        title="F"
-        containerStyle={{
-          position: "absolute",
-          width: 75,
-          borderWidth: 1,
-          borderColor: "red",
-        }}
-        titleStyle={{ color: "black" }}
-        buttonStyle={styles.button}
-        onPress={() => {
-          console.log(`pressed favs`);
-          navigation.navigate("Favorites");
-        }}
-      />
-
-      <Button
-        buttonStyle={styles.button}
-        containerStyle={{
-          position: "absolute",
-          right: 0,
-          marginRight: 10,
-          //marginTop: 10,
-          borderRadius: 10,
-        }}
-        titleStyle={{ color: "black" }}
-        type="outline"
-        title="+"
-        onPress={() => {
-          console.log(`pressed`);
-          toggleRecipeForm(!isRecipeFormOpen);
-        }}
-      />
-
-
-*/
 
 const MainRecipesTwo = ({ navigation }) => {
   const [selectedRecipeType, setType] = useState("all");
-  const [isTypeModalOpen, toggleTypeModal] = useState(false);
-  const [isRecipeFormOpen, toggleRecipeForm] = useState(false);
-  const [favoritesEnabled, toggleFavorites] = useState(false);
   const [dropdownOpen, setDropdown] = useState(false);
   const recipes = useSelector(selectAllRecipes);
   const mealtypes = [
@@ -78,17 +22,6 @@ const MainRecipesTwo = ({ navigation }) => {
     { label: "Drinks", value: "drinks" },
     { label: "Snacks", value: "snacks" },
   ];
-  //const recipes = useSelector(selectRecipeByType(selectedRecipeType));
-
-  const renderRecipe = ({ item: recipe }) => {
-    return (
-      <RenderRecipeTwo
-        recipe={recipe}
-        navigate={navigation.navigate}
-        toAdd={false}
-      />
-    );
-  };
 
   return (
     <>

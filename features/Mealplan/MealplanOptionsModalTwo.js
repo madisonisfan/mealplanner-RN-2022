@@ -15,15 +15,30 @@ import { addRecipeToDate } from "./mealplanSlice";
 import FavoriteScreen from "../../screens/FavoritesScreen";
 import { render } from "react-dom";
 import RenderMealplanOption from "./MealplanOption";
+import { current } from "@reduxjs/toolkit";
+import { MEALTYPES } from "../../shared/mealTypes";
 
 const MealplanOptionsModalTwo = ({ route }) => {
   const { mealplanId, mealType, navigation } = route.params;
+  const mealplan = useSelector((state) => state.mealplan.mealplanArray);
   const favorites = useSelector(selectAllFavorites);
   const recipes = useSelector(selectAllRecipes);
 
   const getFavoriteRecipes = () => {
+    let currentDay = mealplan[mealplanId];
+
+    let meals =
+      currentDay[
+        MEALTYPES.find((item) => item.displayName === mealType).codeName
+      ];
+
+    console.log(`Current day: ${currentDay}, meals: ${meals}`);
+    //Filter favorites for recipe not in current mealtype
+    let favoriteOptions = favorites.filter((favId) => !meals.includes(favId));
+    console.log(`favorite options`, favoriteOptions);
+
     console.log(``);
-    return recipes.filter((recipe) => favorites.includes(recipe.id));
+    return recipes.filter((recipe) => favoriteOptions.includes(recipe.id));
   };
 
   console.log(`FAVORITES: `, getFavoriteRecipes());
@@ -35,20 +50,18 @@ const MealplanOptionsModalTwo = ({ route }) => {
         contentContainerstyle={styles.containerStyle}
       >
         <View style={{ flexDirection: "row", marginTop: 10 }} flexWrap>
-          {recipes
-            .filter((recipe) => favorites.includes(recipe.id))
-            .map((recipe, index) => {
-              console.log(`recipe from map`, recipe);
+          {getFavoriteRecipes().map((recipe, index) => {
+            console.log(`recipe from map`, recipe);
 
-              return (
-                <RenderMealplanOption
-                  recipe={recipe}
-                  mealplanId={mealplanId}
-                  mealType={mealType}
-                  navigation={navigation}
-                />
-              );
-            })}
+            return (
+              <RenderMealplanOption
+                recipe={recipe}
+                mealplanId={mealplanId}
+                mealType={mealType}
+                navigation={navigation}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </>
